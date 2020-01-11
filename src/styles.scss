@@ -30,3 +30,7 @@ body {
     border-radius: 5px;
     border: 1px solid var(--secondary);
 }
+
+.is-invalid::placeholder {
+    color: var(--danger);
+}

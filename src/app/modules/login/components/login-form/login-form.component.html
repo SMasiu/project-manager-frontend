@@ -1,11 +1,37 @@
-<form class="login-form">
+<form class="login-form" [formGroup]="form" (ngSubmit)="handleSubmit()">
 
     <div class="form-group">
-        <input type="text" class="form-control" placeholder="User name">
+        <input
+            type="text"
+            class="form-control"
+            [class.is-invalid]="form.controls.userName.invalid && form.controls.userName.touched"
+            placeholder="User name"
+            formControlName="userName">
+        <app-form-info 
+            hint="Your email or nick" 
+            [control]="form.controls.userName"
+            [errorList]="{
+                required: 'User name is required',
+                minlength: 'User name is too short',
+                maxlength: 'User name is too long'
+            }"></app-form-info>
     </div>
 
     <div class="form-group">
-        <input type="text" class="form-control" placeholder="Password">
+        <input 
+            type="password"
+            class="form-control"
+            [class.is-invalid]="form.controls.password.invalid && form.controls.password.touched"
+            placeholder="Password"
+            formControlName="password">
+        <app-form-info
+            [control]="form.controls.password"
+            [errorList]="{
+                required: 'Password is required',
+                minlength: 'Password is too short',
+                maxlength: 'Invalid password'
+            }"
+        ></app-form-info>
     </div>
 
     <footer>

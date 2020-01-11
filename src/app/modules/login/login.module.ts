@@ -7,7 +7,9 @@ import { DeviderComponent } from 'src/app/shared/components/devider/devider.comp
 import { RegisterPageComponent } from './components/register-page/register-page.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormInfoComponent } from 'src/app/shared/components/form-info/form-info.component';
+import { GraphQLModule } from 'src/app/graphql.module';
 
 
 @NgModule({
@@ -17,11 +19,15 @@ import { RegisterFormComponent } from './components/register-form/register-form.
     LoginFormComponent,
     DeviderComponent,
     RegisterPageComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    FormInfoComponent
   ],
   imports: [
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    GraphQLModule
   ],
   exports: [
     LoginPageComponent,
