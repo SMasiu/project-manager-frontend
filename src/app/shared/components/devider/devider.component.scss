@@ -1,0 +1,22 @@
+.devider-wrapper {
+    text-align: center;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 10px 0;
+
+    .devider-item {
+        height: 2px;
+        width: 100%;
+        border-radius: 2px;
+        background-color: var(--dark);
+    }
+
+    .devider-content {
+        position: absolute;
+        padding: 0 10px;
+        background-color: #fff;
+    }
+}
