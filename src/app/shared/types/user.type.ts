@@ -10,3 +10,8 @@ export interface LoginDataType {
     userName: string;
     password: string;
 }
+
+export interface NewUserType extends Omit<MeType, 'id'> {
+    password: string;
+    confirmPassword: string;
+}

@@ -1,38 +1,112 @@
-<form class="container-fluid register-form">
-    
+<form class="container-fluid register-form" [formGroup]="form" (ngSubmit)="handleSubmit()">
+
     <div class="form-group">
-            <input type="text" class="form-control" placeholder="Email">
-        </div>
+        <input 
+            type="text"
+            class="form-control"
+            placeholder="Email"
+            formControlName="email"
+            [class.is-invalid]="hasError('email')">
+        <app-form-info
+            [control]="form.controls.email"
+            [errorList]="{
+                required: 'Email is required',
+                email: 'Invalid email'
+            }"></app-form-info>
+    </div>
     <section class="row">
 
         <div class="form-group col-6">
-            <input type="text" class="form-control" placeholder="Name">
+            <input
+                type="text"
+                class="form-control"
+                placeholder="Name"
+                formControlName="name"
+                [class.is-invalid]="hasError('name')">
+            <app-form-info
+                [control]="form.controls.name"
+                [errorList]="{
+                    required: 'Name is required',
+                    maxlength: 'Name is too long',
+                    minlength: 'Name is too short'
+                }"></app-form-info>
         </div>
 
         <div class="form-group col-6">
-            <input type="text" class="form-control" placeholder="Surname">
+            <input
+                type="text"
+                class="form-control"
+                placeholder="Surname"
+                formControlName="surname"
+                [class.is-invalid]="hasError('surname')">
+            <app-form-info
+                [control]="form.controls.surname"
+                [errorList]="{
+                    required: 'Surname is required',
+                    maxlength: 'Surname is too long',
+                    minlength: 'Surname is too short'
+                }"></app-form-info>
         </div>
 
     </section>
 
     <div class="form-group">
-            <input type="text" class="form-control" placeholder="Nick">
-        </div>
+        <input
+            type="text"
+            class="form-control"
+            placeholder="Nick"
+            formControlName="nick"
+            [class.is-invalid]="hasError('nick')">
+        <app-form-info
+            [control]="form.controls.nick"
+            [errorList]="{
+                required: 'Nick is required',
+                maxlength: 'Nick is too long',
+                minlength: 'Nick is too short'
+            }"></app-form-info>
+    </div>
 
     <section class="row">
 
         <div class="form-group col-6">
-            <input type="password" class="form-control" placeholder="Password">
+            <input
+                type="password"
+                class="form-control"
+                placeholder="Password"
+                formControlName="password"
+                [class.is-invalid]="hasError('password')">
+            <app-form-info
+                [control]="form.controls.password"
+                [errorList]="{
+                    required: 'Password is required',
+                    maxlength: 'Password is too long',
+                    minlength: 'Password is too short'
+                }"></app-form-info>
         </div>
 
         <div class="form-group col-6">
-            <input type="password" class="form-control" placeholder="Confirm password">
+            <input
+                type="password"
+                class="form-control"
+                placeholder="Confirm password"
+                formControlName="confirmPassword"
+                [class.is-invalid]="hasError('confirmPassword')">
+            <app-form-info
+                [control]="form.controls.confirmPassword"
+                [errorList]="{
+                    required: 'Confirm password is required',
+                    match: 'Confirm password and password are different'
+                }"></app-form-info>
         </div>
 
     </section>
+
+    <div>
+        <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+    </div>
 
     <footer>
-        <button type="submit" class="btn btn-primary btn-block">Create account</button>
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid || !validNick || !validEmail">Create account</button>
     </footer>
 
 </form>
