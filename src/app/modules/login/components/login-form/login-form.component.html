@@ -25,6 +25,7 @@
             placeholder="Password"
             formControlName="password">
         <app-form-info
+            hint="Password for your account"
             [control]="form.controls.password"
             [errorList]="{
                 required: 'Password is required',
@@ -34,8 +35,12 @@
         ></app-form-info>
     </div>
 
+    <div>
+        <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}!</div>
+    </div>
+
     <footer>
-        <button type="submit" class="btn btn-primary btn-block">Login</button>
+        <button type="submit" class="btn btn-primary btn-block" [disabled]="disabledSubmit || form.invalid">Login</button>
     </footer>
 
 </form>

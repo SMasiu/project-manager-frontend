@@ -8,6 +8,7 @@
 
 :root {
     --dark: #303030;
+    --danger-secondary: #e07d79;
 }
 
 * {
@@ -16,6 +17,10 @@
 
 body {
     color: var(--dark);
+}
+
+button:disabled {
+    cursor: default;
 }
 
 .content-center {
@@ -33,4 +38,15 @@ body {
 
 .is-invalid::placeholder {
     color: var(--danger);
+}
+
+.alert {
+    padding: 5px;
+}
+
+.alert-danger {
+    background-color: var(--danger-secondary);
+    text-align: center;
+    border-left-width: 5px;
+    border-color: var(--danger);
 }

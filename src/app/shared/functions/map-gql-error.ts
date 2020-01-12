@@ -1,0 +1,1 @@
+export const mapGqlError = ({message}: Error) => message.substr(message.indexOf(':') + 2);
