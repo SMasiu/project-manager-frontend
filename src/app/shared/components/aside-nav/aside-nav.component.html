@@ -1,5 +1,5 @@
 <ul class="aside-nav">
-    <li *ngFor="let item of items" [class.active]="item.active">
+    <li *ngFor="let item of items" [class.active]="item.active" (click)="item.navigate()">
         <span class="item">
             <app-icon [icon]="item.icon"></app-icon>
             {{item.value}}

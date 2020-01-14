@@ -7,6 +7,7 @@ import { MeType } from '../types/user.type';
 export class UserService {
 
   user: MeType;
+  logged: boolean = false;
   
   constructor() { }
 

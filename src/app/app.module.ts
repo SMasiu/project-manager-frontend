@@ -14,6 +14,8 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { PageComponent } from './shared/components/page/page.component';
 import { AsideNavComponent } from './shared/components/aside-nav/aside-nav.component';
 import { IconComponent } from './shared/components/icon/icon.component';
+import { AboutModule } from './modules/about/about.module';
+import { ContactModule } from './modules/contact/contact.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { IconComponent } from './shared/components/icon/icon.component';
     ModalModule.forRoot(),
     GraphQLModule,
     HttpClientModule,
-    DashboardModule
+    DashboardModule,
+    AboutModule,
+    ContactModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AsideNavItemsType } from '../../types/aside-nav.type';
+import NavbarItem from '../../classes/navbar-item';
 
 @Component({
   selector: 'app-aside-nav',
@@ -8,7 +8,7 @@ import { AsideNavItemsType } from '../../types/aside-nav.type';
 })
 export class AsideNavComponent implements OnInit {
 
-  @Input() items: AsideNavItemsType[] = [];
+  @Input() items: NavbarItem[] = [];
 
   constructor() { }
 

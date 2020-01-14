@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AsideNavItemsType } from 'src/app/shared/types/aside-nav.type';
+import { NavbarService } from '../../services/navbar.service';
+import { Subscription } from 'rxjs';
+import NavbarItem from '../../classes/navbar-item';
 
 @Component({
   selector: 'app-page',
@@ -8,15 +10,18 @@ import { AsideNavItemsType } from 'src/app/shared/types/aside-nav.type';
 })
 export class PageComponent implements OnInit {
 
-  pageItems: AsideNavItemsType[] = [
-    { value: 'Login', action: () => console.log(1), active: true, icon: 'key' },
-    { value: 'About', action: () => console.log(1), active: false, icon: 'book' },
-    { value: 'Contact', action: () => console.log(1), active: false, icon: 'envelope-closed' },
-  ]
-
-  constructor() { }
+  pageItems: NavbarItem[] = [];
+  pageItemsSubscription: Subscription;
+  
+  constructor(private navbarService: NavbarService) { }
 
   ngOnInit() {
+    this.pageItems = this.navbarService.pageItemsToDisplay;
+    this.pageItemsSubscription = this.navbarService.valueChanges.subscribe( pages => this.pageItems = pages );
   }
-  
+ 
+  ngOnDestroy() {
+    this.pageItemsSubscription.unsubscribe();
+  }
+
 }

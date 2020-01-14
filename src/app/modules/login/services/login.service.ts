@@ -70,6 +70,7 @@ export class LoginService {
 						return observer.error(data)
 					}
 					this.userService.setUser(data);
+					this.userService.logged = true;
 					observer.next(data);
 					return observer.complete();
 				});
@@ -114,6 +115,7 @@ export class LoginService {
 						return observer.error(data);
 					} else {
 						this.userService.setUser(<MeType>data);
+						this.userService.logged = true;
 						observer.next(data);
 						return observer.complete();
 					}
