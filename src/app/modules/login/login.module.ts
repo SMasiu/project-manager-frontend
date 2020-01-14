@@ -11,7 +11,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormInfoComponent } from 'src/app/shared/components/form-info/form-info.component';
 import { GraphQLModule } from 'src/app/graphql.module';
 
-
 @NgModule({
   declarations: [
     LoginPageComponent,
@@ -20,7 +19,7 @@ import { GraphQLModule } from 'src/app/graphql.module';
     DeviderComponent,
     RegisterPageComponent,
     RegisterFormComponent,
-    FormInfoComponent
+    FormInfoComponent,
   ],
   imports: [
     CommonModule,

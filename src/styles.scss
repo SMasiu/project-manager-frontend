@@ -4,11 +4,13 @@
 @import "~bootswatch/dist/sandstone/variables";
 @import "~bootstrap/scss/bootstrap";
 @import "~bootswatch/dist/sandstone/bootswatch";
+@import "~open-iconic/font/css/open-iconic.css";
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
 :root {
     --dark: #303030;
     --danger-secondary: #e07d79;
+    --light: rgb(251, 251, 251);
 }
 
 * {

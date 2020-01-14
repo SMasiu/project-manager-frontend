@@ -11,7 +11,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 const loginQuery = gql`
 	mutation LoginUser($userName: String!, $password: String!) {
 		LoginUser(userName: $userName, password: $password) {
-			id,
+			user_id,
 			name,
 			surname,
 			email,
@@ -27,7 +27,7 @@ const registerQuery = gql`
 			email,
 			surname,
 			name,
-			id
+			user_id
 		}
 	}
 `

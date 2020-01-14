@@ -1,0 +1,16 @@
+.page-wrapper {
+
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    min-height: 100vh;
+
+    .page-aside {
+        background-color: var(--dark);
+    }
+
+    .content {
+        height: 100%;
+        padding: 0 50px;
+    }
+
+}

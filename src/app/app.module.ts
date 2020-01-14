@@ -11,10 +11,16 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { PageComponent } from './shared/components/page/page.component';
+import { AsideNavComponent } from './shared/components/aside-nav/aside-nav.component';
+import { IconComponent } from './shared/components/icon/icon.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageComponent,
+    AsideNavComponent,
+    IconComponent
   ],
   imports: [
     BrowserModule,
