@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import NavbarItem from '../../classes/navbar-item';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-aside-nav',
@@ -10,7 +11,11 @@ export class AsideComponent implements OnInit {
 
   @Input() items: NavbarItem[] = [];
 
-  constructor() { }
+  helpItems: NavbarItem[] = [
+    new NavbarItem(this.router, { value: 'Help', icon: 'heart', top: 1, displayIfLogged: 0, path: '/help' })
+  ];
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }

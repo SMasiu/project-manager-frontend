@@ -6,31 +6,8 @@
         padding: 20px 0;
     }
 
-    .aside-nav {
-        list-style-type: none;
-        padding: 0;
-
-        li {
-            font-size: 1rem;
-            padding: 15px 0;
-            border-left: 7px solid transparent;
-            transition: all .3s;
-            
-            .item {
-                padding: 0 15px;
-                display: grid;
-                grid-template-columns: 25px auto;
-                gap: 35px;
-                cursor: pointer;
-            }
-
-        }
-        .active {
-            border-left-color: var(--blue);
-        }
-    }
-
-    footer {
+    footer p {
         text-align: center;
+        margin-bottom: 5px;
     }
 }
