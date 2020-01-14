@@ -1,6 +1,16 @@
 .logo {
-    max-width: 125px;
-    img {
-        width: 100%;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 35px;
+
+    .logo-start {
+        color: var(--dark);
     }
+
+    .logo-end {
+        color: var(--blue);
+    }
+}
+
+.logo.invert .logo-start {
+    color: var(--light);
 }

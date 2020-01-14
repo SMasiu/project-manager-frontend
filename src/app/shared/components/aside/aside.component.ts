@@ -3,10 +3,10 @@ import NavbarItem from '../../classes/navbar-item';
 
 @Component({
   selector: 'app-aside-nav',
-  templateUrl: './aside-nav.component.html',
-  styleUrls: ['./aside-nav.component.scss']
+  templateUrl: './aside.component.html',
+  styleUrls: ['./aside.component.scss']
 })
-export class AsideNavComponent implements OnInit {
+export class AsideComponent implements OnInit {
 
   @Input() items: NavbarItem[] = [];
 

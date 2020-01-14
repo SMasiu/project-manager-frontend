@@ -1,0 +1,18 @@
+<div class="aside-wrapper d-flex flex-column justify-content-between">
+    <section>
+        <div class="logo d-flex justify-content-center">
+            <app-logo [invert]="true"></app-logo>
+        </div>
+        <ul class="aside-nav">
+            <li *ngFor="let item of items" [class.active]="item.active" (click)="item.navigate()">
+                <span class="item">
+                    <app-icon [icon]="item.icon"></app-icon>
+                    {{item.value}}
+                </span>
+            </li>
+        </ul>
+    </section>
+    <footer>
+        <p>&copy; Altaja 2020</p>
+    </footer>
+</div>
