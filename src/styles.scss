@@ -11,12 +11,13 @@
 :root {
     --dark: #303030;
     --danger-secondary: #e07d79;
-    --light: rgb(251, 251, 251);
+    --light: rgb(250, 250, 250);
 }
 
 body {
     font-family: 'Montserrat', sans-serif;
     color: var(--dark);
+    background-color: var(--light);
 }
 
 button:disabled {
@@ -49,4 +50,8 @@ button:disabled {
     text-align: center;
     border-left-width: 5px;
     border-color: var(--danger);
+}
+
+.container-fluid {
+    padding: 0;
 }

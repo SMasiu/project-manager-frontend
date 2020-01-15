@@ -1,0 +1,41 @@
+.profile-tile {
+
+    display: grid;
+    grid-template-columns: 175px 1fr;
+    gap: 20px;
+
+    .profile-image {
+        max-width: 150px;
+        border-radius: 50%;
+        img {
+            border-radius: inherit;
+            border: 3px solid var(--white);
+            box-shadow: 0 3px 5px var(--dark);
+            width: 100%;
+        }
+    }
+
+    h3 {
+        margin: 0;
+    }
+
+    .email {
+        font-size: 14px;
+        color: var(--secondary);
+    }
+
+    .jobs {
+        margin: 10px 0;
+        font-size: 18px;
+        font-weight: 200;
+    }
+
+    .profile-info {
+        display: grid;
+        grid-template-columns: repeat(4, auto);
+    }
+
+    .profile-footer {
+        grid-column: span 2;
+    }
+}

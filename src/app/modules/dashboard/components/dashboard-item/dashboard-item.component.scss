@@ -1,0 +1,12 @@
+.dashboard-item {
+    background-color: var(--light);
+    min-height: 300px;
+    padding: 25px;
+    border-radius: 3px;
+    background-color: var(--white);
+    box-shadow: 0 0 3px var(--dark);
+
+    h5 {
+        margin-bottom: 25px;
+    }
+}

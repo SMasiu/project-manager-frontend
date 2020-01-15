@@ -1,0 +1,25 @@
+<section class="profile-tile">
+    <div>
+        <figure class="profile-image">
+            <img src="./assets/profile.jpg" alt="profile image">
+        </figure>
+    </div>
+    <div class="d-flex flex-column justify-content-between">
+        <div>
+            <h3><strong>{{user.name}} ({{user.nick}}) {{user.surname}}</strong></h3>
+
+            <p class="jobs">Frontend developer</p>
+        </div>
+        <div class="profile-info">
+            <app-account-info-item title="Friends" icon="bell"></app-account-info-item>
+            <app-account-info-item title="Teams" icon="people" badge="10"></app-account-info-item>
+            <app-account-info-item title="Messages" icon="chat" badge="3"></app-account-info-item>
+            <app-account-info-item title="Notifications" icon="bell" [noBorder]="true"></app-account-info-item>
+        </div>
+
+    </div>
+    <footer class="profile-footer d-flex align-items-center justify-content-between">
+        <button class="btn btn-danger">Logout</button>
+        <button class="btn btn-primary">Manage your account</button>
+    </footer>
+</section>

@@ -13,7 +13,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { PageComponent } from './shared/components/page/page.component';
 import { AsideComponent } from './shared/components/aside/aside.component';
-import { IconComponent } from './shared/components/icon/icon.component';
 import { AboutModule } from './modules/about/about.module';
 import { ContactModule } from './modules/contact/contact.module';
 import { SharedModule } from './modules/shared/shared.module';
@@ -23,7 +22,6 @@ import { AsideMenuComponent } from './shared/components/aside-menu/aside-menu.co
     AppComponent,
     PageComponent,
     AsideComponent,
-    IconComponent,
     AsideMenuComponent
   ],
   imports: [

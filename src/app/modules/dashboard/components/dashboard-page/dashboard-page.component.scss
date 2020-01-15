@@ -1,0 +1,11 @@
+.dashboard-wrapper {
+    margin: auto;
+    padding: 50px 100px;
+
+    .items-wrapper {
+        margin-top: 25px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+}

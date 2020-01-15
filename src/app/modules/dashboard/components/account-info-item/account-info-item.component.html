@@ -1,0 +1,9 @@
+<div class="profile-info-item" [class.no-border]="noBorder">
+    <div class="icon-wrapper">
+        <button class="btn btn-outline-dark">
+            <app-icon [icon]="icon"></app-icon>
+            <span [class]="getBadgeClasses()">{{getBadge()}}</span>
+        </button>
+    </div>
+    <p>{{title}}</p>
+</div>
