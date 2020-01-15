@@ -1,0 +1,22 @@
+.teams-wrapper {
+
+    display: grid;
+    grid-template-rows: 1fr auto;
+    gap: 20px;
+    height: 100%;
+
+    .label {
+        margin: 5px 0;
+    }
+
+    .info-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+
+        .info-items-wrapper {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}

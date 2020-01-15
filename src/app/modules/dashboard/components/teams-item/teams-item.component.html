@@ -1,0 +1,26 @@
+<section class="teams-wrapper">
+    <div class="d-flex flex-column justify-content-between">
+        <div>
+            <p class="label">Search for a team</p>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="search">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" type="button" id="button-addon2">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="info-wrapper">
+            <div>
+                <app-team-list></app-team-list>
+            </div>
+            <div class="info-items-wrapper">
+                <app-account-info-item title="Messages" icon="question_answer"></app-account-info-item>
+                <app-account-info-item title="Invitations" icon="notifications" [noBorder]="true" badge="1"></app-account-info-item>
+            </div>
+        </div>
+    </div>
+    <footer class="d-flex justify-content-between">
+        <button class="btn btn-primary">Create team</button>
+        <button class="btn btn-primary">Manage your teams</button>
+    </footer>
+</section>

@@ -12,7 +12,7 @@ export class AsideComponent implements OnInit {
   @Input() items: NavbarItem[] = [];
 
   helpItems: NavbarItem[] = [
-    new NavbarItem(this.router, { value: 'Help', icon: 'heart', top: 1, displayIfLogged: 0, path: '/help' })
+    new NavbarItem(this.router, { value: 'Help', icon: 'help', top: 1, displayIfLogged: 0, path: '/help' })
   ];
 
   constructor(private router: Router) { }

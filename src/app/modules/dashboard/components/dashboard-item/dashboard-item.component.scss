@@ -1,12 +1,18 @@
 .dashboard-item {
     background-color: var(--light);
-    min-height: 300px;
+    min-height: 320px;
     padding: 25px;
     border-radius: 3px;
     background-color: var(--white);
     box-shadow: 0 0 3px var(--dark);
+    display: grid;
+    grid-template-rows: auto 1fr;
 
     h5 {
-        margin-bottom: 25px;
+        margin-bottom: 15px;
+    }
+
+    .content {
+        min-height: 100%;
     }
 }

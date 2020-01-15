@@ -14,7 +14,7 @@ export class NavbarService {
     new NavbarItem(this.router, { value: 'Dashboard', icon: 'home', top: 1, path: '/dashboard', displayIfLogged: 1 }),
     new NavbarItem(this.router, { value: 'Login', icon: 'key', top: 2, path: '/login', displayIfLogged: -1, extendedPath: ['/register'] }),
     new NavbarItem(this.router, { value: 'About', icon: 'book', top: 4, path: '/about', displayIfLogged: 0 }),
-    new NavbarItem(this.router, { value: 'Contact', icon: 'envelope-closed', top: 5, path: '/contact', displayIfLogged: 0}),
+    new NavbarItem(this.router, { value: 'Contact', icon: 'mail', top: 5, path: '/contact', displayIfLogged: 0}),
     new NavbarItem(this.router, { value: 'Teams', icon: 'people', top: 3, path: '/teams', displayIfLogged: 1 })
   ]
 

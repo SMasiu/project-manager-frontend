@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-icon',
@@ -8,15 +8,9 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 export class IconComponent implements OnInit {
 
   @Input() icon: string = 'key';
-  @ViewChild('wrapper', { static: true }) wrapper: { nativeElement: HTMLElement };
 
   constructor() { }
 
   ngOnInit() {
   }
-
-  ngAfterContentChecked() {
-    this.wrapper.nativeElement.innerHTML = `<span class="oi" data-glyph="${this.icon}" title="${this.icon}" aria-hidden="true"></span>`;
-  }
-
 }

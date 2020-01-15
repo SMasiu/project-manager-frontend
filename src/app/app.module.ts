@@ -17,6 +17,8 @@ import { AboutModule } from './modules/about/about.module';
 import { ContactModule } from './modules/contact/contact.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { AsideMenuComponent } from './shared/components/aside-menu/aside-menu.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,8 @@ import { AsideMenuComponent } from './shared/components/aside-menu/aside-menu.co
     DashboardModule,
     AboutModule,
     ContactModule,
-    SharedModule
+    SharedModule,
+    NoopAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

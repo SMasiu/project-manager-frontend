@@ -5,6 +5,8 @@ import { DashboardItemComponent } from './components/dashboard-item/dashboard-it
 import { AccountItemComponent } from './components/account-item/account-item.component';
 import { SharedModule } from '../shared/shared.module';
 import { AccountInfoItemComponent } from './components/account-info-item/account-info-item.component';
+import { TeamsItemComponent } from './components/teams-item/teams-item.component';
+import { TeamListComponent } from './components/team-list/team-list.component';
 
 
 
@@ -14,6 +16,8 @@ import { AccountInfoItemComponent } from './components/account-info-item/account
     DashboardItemComponent,
     AccountItemComponent,
     AccountInfoItemComponent,
+    TeamsItemComponent,
+    TeamListComponent,
   ],
   imports: [
     CommonModule,
