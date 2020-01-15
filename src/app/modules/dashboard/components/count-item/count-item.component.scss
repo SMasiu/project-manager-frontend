@@ -1,0 +1,14 @@
+.info-item {
+    border-right: 1px solid var(--secondary);
+
+    p {
+        margin: 0;
+        text-align: center;
+        font-weight: 700;
+    }
+
+    .count {
+        font-size: 20px;
+        font-family: 'Orbitron', sans-serif;
+    }
+}

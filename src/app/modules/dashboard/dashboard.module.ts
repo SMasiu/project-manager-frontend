@@ -6,7 +6,10 @@ import { AccountItemComponent } from './components/account-item/account-item.com
 import { SharedModule } from '../shared/shared.module';
 import { AccountInfoItemComponent } from './components/account-info-item/account-info-item.component';
 import { TeamsItemComponent } from './components/teams-item/teams-item.component';
-import { TeamListComponent } from './components/team-list/team-list.component';
+import { ListComponent } from './components/list/list.component';
+import { ProjectItemComponent } from './components/project-item/project-item.component';
+import { CountItemComponent } from './components/count-item/count-item.component';
+import { FriendsItemComponent } from './components/friends-item/friends-item.component';
 
 
 
@@ -17,7 +20,10 @@ import { TeamListComponent } from './components/team-list/team-list.component';
     AccountItemComponent,
     AccountInfoItemComponent,
     TeamsItemComponent,
-    TeamListComponent,
+    ListComponent,
+    ProjectItemComponent,
+    CountItemComponent,
+    FriendsItemComponent,
   ],
   imports: [
     CommonModule,

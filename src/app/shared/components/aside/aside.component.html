@@ -1,12 +1,14 @@
-<div class="aside-wrapper d-flex flex-column justify-content-between">
-    <section>
-        <div class="logo d-flex justify-content-center">
-            <app-logo [invert]="true"></app-logo>
-        </div>
-        <app-aside-menu [items]="items"></app-aside-menu>
-    </section>
-    <footer>
-        <app-aside-menu [items]="helpItems"></app-aside-menu>
-        <p>&copy; Altaja 2020</p>
-    </footer>
+<div class="aside-wrapper">
+    <div class="aside-inner-wrapper d-flex flex-column justify-content-between">
+        <section>
+            <div class="logo d-flex justify-content-center">
+                <app-logo [invert]="true"></app-logo>
+            </div>
+            <app-aside-menu [items]="items"></app-aside-menu>
+        </section>
+        <footer>
+            <app-aside-menu [items]="helpItems"></app-aside-menu>
+            <p>&copy; Altaja 2020</p>
+        </footer>
+    </div>
 </div>

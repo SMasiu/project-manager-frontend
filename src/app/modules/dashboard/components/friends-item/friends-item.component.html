@@ -1,0 +1,21 @@
+<section class="friends-item-wrapper">
+    <div class="d-flex flex-column justify-content-between">
+        <div>
+            <p class="label">Search for a friends</p>
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="search">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="info-wrapper">
+            <app-count-item count="1" title1="My" title2="friends"></app-count-item>
+            <app-account-info-item badge="0" title="Messages" icon="question_answer"></app-account-info-item>
+            <app-account-info-item badge="2" title="Invitations" icon="notifications" [noBorder]="true"></app-account-info-item>
+        </div>
+    </div>
+    <footer>
+        <button class="btn btn-primary btn-block">Manage your friends</button>
+    </footer>
+</section>

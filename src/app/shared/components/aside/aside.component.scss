@@ -2,12 +2,31 @@
     color: var(--light);
     height: 100%;
 
-    .logo {
-        padding: 20px 0;
-    }
+    .aside-inner-wrapper {
+        height: 100vh;
+        position: sticky;
+        top: 0;
+        overflow: auto;
+        &::-webkit-scrollbar-track {
+            background-color: #F5F5F5;
+        }
 
-    footer p {
-        text-align: center;
-        margin-bottom: 5px;
+        &::-webkit-scrollbar {
+            width: 3px;
+            background-color: #F5F5F5;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #555;
+        }
+
+        .logo {
+            padding: 20px 0;
+        }
+
+        footer p {
+            text-align: center;
+            margin-bottom: 20px;
+        }
     }
 }

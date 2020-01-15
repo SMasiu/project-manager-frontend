@@ -1,0 +1,12 @@
+.friends-item-wrapper {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    gap: 20px;
+    height: 100%;
+
+    .info-wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        margin-bottom: 5px;
+    }
+}

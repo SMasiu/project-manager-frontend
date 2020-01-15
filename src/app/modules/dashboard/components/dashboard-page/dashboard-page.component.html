@@ -2,13 +2,17 @@
     <h2>Dashboard</h2>
 
     <div class="items-wrapper">
-        <app-dashboard-item title="Account">
+        <app-dashboard-item [title]="'Account'">
             <app-account-item></app-account-item>
         </app-dashboard-item>
-        <app-dashboard-item title="Projects"></app-dashboard-item>
-        <app-dashboard-item title="Teams">
+        <app-dashboard-item [title]="'Projects'">
+            <app-project-item></app-project-item>
+        </app-dashboard-item>
+        <app-dashboard-item [title]="'Teams'">
             <app-teams-item></app-teams-item>
         </app-dashboard-item>
-        <app-dashboard-item title="Friends"></app-dashboard-item>
+        <app-dashboard-item [title]="'Friends'">
+            <app-friends-item></app-friends-item>
+        </app-dashboard-item>
     </div>
 </section>
