@@ -1,6 +1,10 @@
 .teams-wrapper {
     margin: auto;
     padding: 50px 100px;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    gap: 25px;
 
     .search-wrapper {
         margin-top: 20px;

@@ -4,12 +4,14 @@ import { LogoComponent } from 'src/app/shared/components/logo/logo.component';
 import { IconComponent } from 'src/app/shared/components/icon/icon.component';
 import { MatIconModule } from '@angular/material';
 import { ProfileImageComponent } from 'src/app/shared/components/profile-image/profile-image.component';
+import { PagesSelectComponent } from 'src/app/shared/components/pages-select/pages-select.component';
 
 @NgModule({
   declarations: [
     LogoComponent,
     IconComponent,
-    ProfileImageComponent
+    ProfileImageComponent,
+    PagesSelectComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { ProfileImageComponent } from 'src/app/shared/components/profile-image/p
   exports: [
     LogoComponent,
     IconComponent,
-    ProfileImageComponent
+    ProfileImageComponent,
+    PagesSelectComponent
   ]
 })
 export class SharedModule { }

@@ -1,1 +1,51 @@
-<p>pages-select works!</p>
+<div class="btn-group" *ngIf="pages > 1">
+
+    <button
+        class="btn btn-primary button-change"
+        (click)="previous()">Prevoius</button>
+        
+    <ng-template [ngIf]="page > pages - 3 && pages > 3">
+
+        <button
+            class="btn btn-outline-primary button-number"
+            (click)="setPage(1)">{{1}}</button>
+
+        <button
+            class="btn btn-outline-primary button-number">...</button>
+        
+    </ng-template>
+
+    <button
+        class="btn btn-outline-primary button-number"
+        [class.button-selected]="isSelected(getIndex(0))"
+        (click)="setPage(getIndex(0))">{{getIndex(0)}}</button>
+
+    <button
+        class="btn btn-outline-primary button-number"
+        [class.button-selected]="isSelected(getIndex(1))"
+        (click)="setPage(getIndex(1))">{{getIndex(1)}}</button>
+
+    <button
+        *ngIf="pages > 2"
+        class="btn btn-outline-primary button-number"
+        [class.button-selected]="isSelected(getIndex(2))"
+        (click)="setPage(getIndex(2))">{{getIndex(2)}}</button>
+        
+    <ng-template [ngIf]="pages - 2 > page">
+
+        <button
+            class="btn btn-outline-primary button-number">...</button>
+
+        <button
+            
+            class="btn btn-outline-primary button-number"
+            (click)="setPage(pages)">{{pages}}</button>
+
+    </ng-template>
+
+    <button
+        class="btn btn-primary button-change"
+        (click)="next()">Next</button>
+
+
+</div>

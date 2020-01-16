@@ -21,4 +21,7 @@ export class TeamPageComponent implements OnInit {
     this.teamsSubsctiption = this.teamsService.teamsChanges.subscribe( t => this.teams = t );
   }
 
+  handlePageChanges(page: number) {
+  }
+
 }
