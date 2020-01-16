@@ -18,6 +18,7 @@ import { ContactModule } from './modules/contact/contact.module';
 import { SharedModule } from './modules/shared/shared.module';
 import { AsideMenuComponent } from './shared/components/aside-menu/aside-menu.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TeamsModule } from './modules/teams/teams.module';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     ContactModule,
     SharedModule,
     NoopAnimationsModule,
+    TeamsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

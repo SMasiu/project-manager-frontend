@@ -15,3 +15,5 @@ export interface NewUserType extends Omit<MeType, 'id'> {
     password: string;
     confirmPassword: string;
 }
+
+export interface UserType extends Omit<MeType, 'email'> { }

@@ -59,3 +59,9 @@ button:disabled {
     cursor: pointer;
 }
 
+.item-box {
+    background-color: var(--white);
+    box-shadow: 0 0 3px var(--dark);
+    padding: 25px;
+    border-radius: 3px;
+}

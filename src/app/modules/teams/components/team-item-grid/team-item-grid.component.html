@@ -1,0 +1,26 @@
+<article class="item-box team-item">
+    <section>
+        <app-profile-image path="./assets/profile.jpg"></app-profile-image>
+    </section>
+    <section>
+        <h3><strong>{{team.name}}</strong></h3>
+        <ul class="list-group team-info">
+            <li class="list-group-item">
+                <p class="d-flex align-items-center">
+                    <span class="member-icon"><app-icon icon="people"></app-icon></span>
+                    Owner:
+                    {{team.owner.name}} {{team.owner.surname}}
+                </p>
+            </li>
+            <li class="list-group-item">
+                <p class="d-flex align-items-center">
+                    <span class="member-icon"><app-icon icon="people"></app-icon></span> 
+                    {{team.membersCount}} members
+                </p>
+            </li>
+        </ul>
+    </section>
+    <footer class="team-footer">
+        <button class="btn btn-block btn-primary">Manage</button>
+    </footer>
+</article>

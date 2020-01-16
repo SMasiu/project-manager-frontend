@@ -1,10 +1,5 @@
 .dashboard-item {
-    background-color: var(--light);
-    min-height: 320px;
-    padding: 25px;
-    border-radius: 3px;
-    background-color: var(--white);
-    box-shadow: 0 0 3px var(--dark);
+    min-height: 325px;
     display: grid;
     grid-template-rows: auto 1fr;
 
