@@ -7,9 +7,17 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 })
 export class PagesSelectComponent implements OnInit {
 
-  @Input() itemsCount: number = 0;
   @Input() itemsOnPage: number = 0;
+  @Input() set itemsCount(value: any) {
+    this._itemsCount = parseInt(value);
+    this.onInit();
+  };
 
+  get itemsCount() {
+    return this._itemsCount;
+  }
+
+  _itemsCount: number = 0;
   pages: number;
   page: number = 1;
   @Output() change: EventEmitter<number> = new EventEmitter();
@@ -17,12 +25,14 @@ export class PagesSelectComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.itemsCount = parseInt(<any>this.itemsCount);
     this.itemsOnPage = parseInt(<any>this.itemsOnPage);
-
+    this.onInit();
+  }
+  
+  onInit() {
     this.pages = Math.ceil(this.itemsCount / this.itemsOnPage);
   }
-
+  
   setPage(page) {
     this.page = page;
     this.change.emit(this.page);
