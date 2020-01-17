@@ -34,7 +34,7 @@ export class TeamPageComponent implements OnInit {
     this.teamsPaging = new Paging({
       filterCondition: (d, v) => !v ? true : d.name.search(v) !== -1,
       sortCondition: (x, y) => x.name > y.name ? 1 : -1,
-      itemsOnPage: 2
+      itemsOnPage: 4
     });
     
     this.teamsSubsctiption = this.teamsService.teamsChanges.subscribe( t => { this.teams = t; this.teamsPaging.setData(t)});

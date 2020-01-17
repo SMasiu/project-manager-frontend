@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TeamType } from '../../types/team.type';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-team-item-grid',
@@ -9,8 +10,12 @@ import { TeamType } from '../../types/team.type';
 export class TeamItemGridComponent implements OnInit {
 
   @Input() team: TeamType;
+  
+  constructor(private router: Router) { }
 
-  constructor() { }
+  manage() {
+    this.router.navigateByUrl(`/teams/manage/${this.team.team_id}`);
+  }
 
   ngOnInit() {
   }

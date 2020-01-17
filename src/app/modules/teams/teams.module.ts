@@ -31,7 +31,8 @@ import { ManageTeamComponent } from './components/manage-team/manage-team.compon
   exports: [
     TeamPageComponent,
     CreateTeamPageComponent,
-    TeamPageWrapperComponent
+    TeamPageWrapperComponent,
+    ManageTeamComponent
   ]
 })
 export class TeamsModule { }

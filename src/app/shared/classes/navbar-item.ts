@@ -33,9 +33,24 @@ class NavbarItem {
     } 
 
     isActive(url: string) {
-        const valid = this.path === url || this.extendedPath.findIndex( e => e === url ) !== -1;
+        const valid = this.path === url || this.isInExtended(url);
         this.active = valid; 
         return valid;
+    }
+
+    isInExtended(url: string) {
+        for(let e of this.extendedPath) {
+            if(e === url) {
+                return true;
+            }
+            let idx = e.indexOf('*');
+            if(idx !== -1) {
+                if(e.substr(0, idx) === url.substr(0, idx)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }

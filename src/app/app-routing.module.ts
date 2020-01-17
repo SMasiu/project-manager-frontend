@@ -8,6 +8,7 @@ import { ContactPageComponent } from './modules/contact/components/contact-page/
 import { TeamPageComponent } from './modules/teams/components/team-page/team-page.component';
 import { CreateTeamPageComponent } from './modules/teams/components/create-team-page/create-team-page.component';
 import { TeamPageWrapperComponent } from './modules/teams/components/team-page-wrapper/team-page-wrapper.component';
+import { ManageTeamComponent } from './modules/teams/components/manage-team/manage-team.component';
 
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
 	{ path: 'contact', component: ContactPageComponent },
 	{ path: 'teams', component: TeamPageWrapperComponent, children: [
 		{ path: '', pathMatch: 'full', component: TeamPageComponent },
-		{ path: 'create', component: CreateTeamPageComponent }
+		{ path: 'create', component: CreateTeamPageComponent },
+		{ path: 'manage/:id', component: ManageTeamComponent }
 	]}
 ];
 

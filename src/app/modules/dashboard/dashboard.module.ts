@@ -10,6 +10,7 @@ import { ListComponent } from './components/list/list.component';
 import { ProjectItemComponent } from './components/project-item/project-item.component';
 import { CountItemComponent } from './components/count-item/count-item.component';
 import { FriendsItemComponent } from './components/friends-item/friends-item.component';
+import { AppRoutingModule } from 'src/app/app-routing.module';
 
 
 
@@ -27,7 +28,8 @@ import { FriendsItemComponent } from './components/friends-item/friends-item.com
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    AppRoutingModule
   ],
   exports: [
     DashboardPageComponent
