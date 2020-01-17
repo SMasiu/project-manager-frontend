@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { CreateTeamService } from '../../services/create-team.service';
 import { take } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-team-page',
@@ -12,7 +13,7 @@ export class CreateTeamPageComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private createTeamService: CreateTeamService) { }
+  constructor(private createTeamService: CreateTeamService, private router: Router) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -22,7 +23,7 @@ export class CreateTeamPageComponent implements OnInit {
 
   handleSubmit() {
     this.createTeamService.createTeam(this.form.value).pipe(take(1)).subscribe( team => {
-      console.log(team);
+      this.router.navigateByUrl(`/teams/manage/${team.team_id}`);
     });
   }
 

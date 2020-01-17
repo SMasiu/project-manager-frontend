@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { TeamType } from '../../types/team.type';
+import { ActivatedRoute, Router } from '@angular/router';
+import { take } from 'rxjs/operators';
+import { TeamService } from '../../services/team.service';
 
 @Component({
   selector: 'app-manage-team',
@@ -7,9 +11,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageTeamComponent implements OnInit {
 
-  constructor() { }
+  team: TeamType = {
+    name: 'pm-backend',
+    team_id: '6',
+    membersCount: 3,
+    owner: {
+      name: 'szymon',
+      surname: 'masko',
+      nick: 'masiu',
+      user_id: '1'
+    }
+  };
+
+  constructor(private route: ActivatedRoute, private teamService: TeamService, private router: Router) { }
 
   ngOnInit() {
+    // this.route.paramMap.pipe(take(1)).subscribe( map => {
+    //   let team = this.teamService.getTeam(map.get('id'));
+    //   if(team) {
+    //     this.team = team;
+    //   } else {
+    //     this.router.navigateByUrl('/teams');
+    //   }
+    // });
   }
 
 }

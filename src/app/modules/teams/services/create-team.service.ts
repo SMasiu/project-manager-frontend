@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
 import { take, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { TeamType, NewTeamType } from '../types/team.type';
+import { TeamType } from '../types/team.type';
 import { TeamService } from './team.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
@@ -12,7 +12,12 @@ const createTeamQuery = gql`
   CreateTeam(name: $name) {
     name,
     team_id,
-    owner
+    owner {
+      name,
+      surname,
+      nick,
+      user_id
+    }
   }
 }
 `
@@ -22,9 +27,9 @@ const createTeamQuery = gql`
 })
 export class CreateTeamService {
 
-  constructor(private apollo: Apollo, private teamService: TeamService, private userService: UserService) { }
+  constructor(private apollo: Apollo, private teamService: TeamService) { }
 
-  createTeam(vars: {name: string}): Observable<any> {
+  createTeam(vars: {name: string}): Observable<TeamType> {
     return Observable.create( observer => {
       this.apollo.mutate({
         mutation: createTeamQuery,
@@ -32,20 +37,8 @@ export class CreateTeamService {
       }).pipe(
         take(1),
         map( ({data}) => (<any>data).CreateTeam )
-      ).subscribe( (team: NewTeamType) => {
-        const {user_id, name, surname, nick} = this.userService.user;
-
-        this.teamService.addTeam({
-          team_id: team.team_id,
-          membersCount: 1,
-          name: team.name,
-          owner: {
-            user_id,
-            name,
-            surname,
-            nick
-          }
-        });
+      ).subscribe( (team: TeamType) => {
+        this.teamService.addTeam(team);
         observer.next(team);
         return observer.complete();
       });

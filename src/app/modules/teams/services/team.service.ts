@@ -41,6 +41,11 @@ export class TeamService {
     return [...this.teams];
   }
 
+  getTeam(id: string) {
+    let team = this.teams.find( t => t.team_id === id );
+    return team ? {...team} : null;
+  }
+
   downloadTeams() {
     if(!this.downloaded) {
       this.apollo.watchQuery({
