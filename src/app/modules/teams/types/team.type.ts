@@ -6,3 +6,9 @@ export interface TeamType {
     membersCount: number;
     owner: UserType;
 }
+
+export interface NewTeamType {
+    team_id: string;
+    name: string;
+    owner: string;
+}

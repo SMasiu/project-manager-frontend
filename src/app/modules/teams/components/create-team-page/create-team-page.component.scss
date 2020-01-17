@@ -1,0 +1,28 @@
+.create-team-wrapper {
+    padding: 50px 100px;
+    margin: auto;
+    min-height: 100vh;
+
+    .form-wrapper {
+
+        min-width: 700px;
+
+        h2 {
+            text-align: center;
+        }
+
+        .create-form {
+            margin-top: 15px;
+        }
+
+        footer {
+            p {
+                margin: 0;
+            }
+
+            .button-submit {
+                width: 150px;
+            }
+        }
+    }
+}   

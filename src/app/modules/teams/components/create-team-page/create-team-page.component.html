@@ -1,1 +1,32 @@
-<p>create-team-page works!</p>
+<section class="create-team-wrapper d-flex justify-content-center align-items-center">
+    <div class="item-box-big form-wrapper">
+        <h2>Create team</h2>
+
+        <form class="create-form" [formGroup]="form" (ngSubmit)="handleSubmit()">
+            <label 
+            for="name"
+            [class.text-danger]="form.controls.name.invalid && form.controls.name.touched">Name</label>
+            <div class="form-group">
+                <input
+                    type="text"
+                    placeholder="name"
+                    class="form-control"
+                    id="name"
+                    formControlName="name"
+                    [class.is-invalid]="form.controls.name.invalid && form.controls.name.touched">
+                <app-form-info 
+                    [control]="form.controls.name"
+                    [errorList]="{
+                        required: 'Name is required',
+                        minlength: 'Name is too short',
+                        maxlength: 'Name is too long'
+                    }"></app-form-info>
+            </div>
+
+            <footer class="d-flex justify-content-between align-items-center">
+                <p class="back" routerLink="/teams">Back</p>
+                <button class="btn btn-primary button-submit">Create</button>
+            </footer>
+        </form>
+    </div>
+</section>

@@ -26,6 +26,7 @@ const getTeamsQuery = gql`
 })
 export class TeamService {
 
+  private downloaded: boolean = false;
   private teams: TeamType[] = [];
   teamsChanges: Subject<TeamType[]> = new Subject();
 
@@ -41,13 +42,21 @@ export class TeamService {
   }
 
   downloadTeams() {
-    this.apollo.watchQuery({
-      query: getTeamsQuery
-    }).valueChanges.pipe(
-      take(1),
-      map( ({data}) => (<any>data).Teams )
-      ).subscribe(
-      t => this.setTeams(t)
-    );
+    if(!this.downloaded) {
+      this.apollo.watchQuery({
+        query: getTeamsQuery
+      }).valueChanges.pipe(
+        take(1),
+        map( ({data}) => (<any>data).Teams )
+        ).subscribe(t => {
+          this.downloaded = true;
+          this.setTeams(t)
+        });
+    }
+  }
+
+  addTeam(team: TeamType) {
+    this.teams.push(team);
+    this.teamsChanges.next([...this.teams]);
   }
 }

@@ -30,12 +30,6 @@ button:disabled {
     justify-content: center;
 }
 
-.border-box {
-    padding: 25px;
-    border-radius: 5px;
-    border: 1px solid var(--secondary);
-}
-
 .is-invalid::placeholder {
     color: var(--danger);
 }
@@ -59,9 +53,23 @@ button:disabled {
     cursor: pointer;
 }
 
-.item-box {
+.item-box, .item-box-big {
     background-color: var(--white);
     box-shadow: 0 0 3px var(--dark);
     padding: 25px;
     border-radius: 3px;
+}
+
+.item-box-big {
+    padding: 50px;
+}
+
+.back {
+    transition: color .3s;
+    cursor: pointer;
+    padding: 5px 0;
+
+    &:hover {
+        color: var(--primary);
+    }
 }

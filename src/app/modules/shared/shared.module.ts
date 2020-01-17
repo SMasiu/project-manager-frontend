@@ -5,13 +5,15 @@ import { IconComponent } from 'src/app/shared/components/icon/icon.component';
 import { MatIconModule } from '@angular/material';
 import { ProfileImageComponent } from 'src/app/shared/components/profile-image/profile-image.component';
 import { PagesSelectComponent } from 'src/app/shared/components/pages-select/pages-select.component';
+import { FormInfoComponent } from 'src/app/shared/components/form-info/form-info.component';
 
 @NgModule({
   declarations: [
     LogoComponent,
     IconComponent,
     ProfileImageComponent,
-    PagesSelectComponent
+    PagesSelectComponent,
+    FormInfoComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { PagesSelectComponent } from 'src/app/shared/components/pages-select/pag
     LogoComponent,
     IconComponent,
     ProfileImageComponent,
-    PagesSelectComponent
+    PagesSelectComponent,
+    FormInfoComponent
   ]
 })
 export class SharedModule { }

@@ -1,5 +1,5 @@
 export interface MeType {
-    id: string;
+    user_id: string;
     email: string;
     nick: string;
     name: string;

@@ -7,7 +7,6 @@ import { RegisterPageComponent } from './components/register-page/register-page.
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormInfoComponent } from 'src/app/shared/components/form-info/form-info.component';
 import { GraphQLModule } from 'src/app/graphql.module';
 import { SharedModule } from '../shared/shared.module';
 
@@ -17,8 +16,7 @@ import { SharedModule } from '../shared/shared.module';
     LoginFormComponent,
     DeviderComponent,
     RegisterPageComponent,
-    RegisterFormComponent,
-    FormInfoComponent,
+    RegisterFormComponent
   ],
   imports: [
     CommonModule,
