@@ -1,0 +1,25 @@
+<section class="item-box team-wrapper">
+
+    <div class="img-wrapper">
+        <app-profile-image path="./assets/profile.jpg"></app-profile-image>
+    </div>
+    <h3><strong>{{team.name}}</strong></h3>
+ 
+    <div class="d-flex justify-content-center">
+        <ul class="list-group list-group-horizontal team-info">
+            <li class="list-group-item d-flex align-items-center team-list-item">
+                <span class="icon-wrapper"><app-icon icon="person"></app-icon></span>
+                Owner: {{team.owner.name}} {{team.owner.surname}}
+            </li>
+            <li class="list-group-item d-flex align-items-center team-list-item">
+                <span class="icon-wrapper"><app-icon icon="people"></app-icon></span>
+                {{team.membersCount}} members
+            </li>
+        </ul>
+    </div>
+    
+    <div class="button-wrapper">
+        <button class="btn btn-primary btn-block">Manage team</button>
+    </div>
+
+</section>

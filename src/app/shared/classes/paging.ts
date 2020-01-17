@@ -4,6 +4,7 @@ interface OptionType {
     itemsOnPage?: number;
     offset?: number;
     filterCondition(d: any, value: string): boolean;
+    sortCondition(x: any, y: any): number;
 }
 
 class Paging {
@@ -11,6 +12,7 @@ class Paging {
     itemsOnPage: number;
     offset: number;
     filterCondition: (d: any, value: string) => boolean;
+    sortCondition: (x: any, y: any) => number;
 
     valueChanges: Subject<{
         data: any[],
@@ -18,14 +20,27 @@ class Paging {
         pageData: any[]
     }> = new Subject();
 
+    private _enableSorting: boolean = false;
+
+    set enableSorting(value: boolean) {
+        this._enableSorting = value;
+        this.sort();
+    }
+
+    get enableSorting() {
+        return this._enableSorting;
+    }
+    
     private data: any[] = [];
     private filtredData: any[] = [];
     private pageData: any[] = [];
+    private notSorted: any[] = [];
 
-    constructor({itemsOnPage, offset, filterCondition}: OptionType) {
+    constructor({itemsOnPage, offset, filterCondition, sortCondition}: OptionType) {
         this.itemsOnPage = itemsOnPage || 25;
         this.offset = offset || 0;
         this.filterCondition = filterCondition;
+        this.sortCondition = sortCondition;
     }
 
     setPage(page: number) {
@@ -38,7 +53,17 @@ class Paging {
         this.filtredData = data;
         this.filterPage();
     }
-    
+
+    sort() {
+        if(this.enableSorting) {
+            this.notSorted = [...this.filtredData];
+            this.filtredData.sort( (a, b) => this.sortCondition(a, b) );
+        } else {
+            this.filtredData = [...this.notSorted];
+        }
+        this.filterPage();
+    }
+
     filter(value: string) {
         this.filtredData = this.data.filter( d => this.filterCondition(d, value) );
         this.filterPage();

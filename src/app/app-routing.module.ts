@@ -6,6 +6,8 @@ import { DashboardPageComponent } from './modules/dashboard/components/dashboard
 import { AboutPageComponent } from './modules/about/components/about-page/about-page.component';
 import { ContactPageComponent } from './modules/contact/components/contact-page/contact-page.component';
 import { TeamPageComponent } from './modules/teams/components/team-page/team-page.component';
+import { CreateTeamPageComponent } from './modules/teams/components/create-team-page/create-team-page.component';
+import { TeamPageWrapperComponent } from './modules/teams/components/team-page-wrapper/team-page-wrapper.component';
 
 
 const routes: Routes = [
@@ -15,7 +17,10 @@ const routes: Routes = [
 	{ path: 'dashboard', component: DashboardPageComponent },
 	{ path: 'about', component: AboutPageComponent },
 	{ path: 'contact', component: ContactPageComponent },
-	{ path: 'teams', component: TeamPageComponent }
+	{ path: 'teams', component: TeamPageWrapperComponent, children: [
+		{ path: '', pathMatch: 'full', component: TeamPageComponent },
+		{ path: 'create', component: CreateTeamPageComponent }
+	]}
 ];
 
 @NgModule({

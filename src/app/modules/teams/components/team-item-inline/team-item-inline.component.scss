@@ -1,0 +1,29 @@
+.team-wrapper {
+    display: grid;
+    grid-template-columns: 65px auto 1fr auto;
+    gap: 25px;
+    align-items: center;
+    justify-items: center;
+
+    .img-wrapper {
+        width: 65px;
+    }
+
+    .button-wrapper {
+        min-width: 140px;
+    }
+
+    .team-list-item {
+        width: 250px;
+    }
+
+    .icon-wrapper {
+        padding-right: 10px;
+    }
+}
+
+@media(max-width: 1500px) {
+    .team-wrapper {
+        grid-template-columns: auto;
+    }
+}

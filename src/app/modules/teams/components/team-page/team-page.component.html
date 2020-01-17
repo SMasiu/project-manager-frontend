@@ -12,17 +12,26 @@
                 </div>
             </form>
             <div class="d-flex align-items-center">
-                <app-icon icon="list" class="mr-3" [button]="true"></app-icon>
-                <app-icon icon="sort_by_alpha" [button]="true"></app-icon>
+                <app-icon [icon]="negateDisplay()" class="mr-3" [button]="true" (click)="changeItemsDisplay()"></app-icon>
+                <app-icon icon="sort_by_alpha" (click)="enableSorting()" [button]="true"></app-icon>
             </div>
             <div>
                 <button class="btn btn-primary">Create new team</button>
             </div>
         </div>
 
-        <section class="teams-items-wrapper">
-            <app-team-item-grid *ngFor="let team of pagedTeams" [team]="team"></app-team-item-grid>
-        </section>
+        <ng-template [ngIf]="displayItems === 'view_module'" [ngIfElse]="list">
+            <section class="teams-items-wrapper">
+                <app-team-item-grid *ngFor="let team of pagedTeams" [team]="team"></app-team-item-grid>
+            </section>
+         </ng-template>
+         
+         <ng-template #list>
+            <section class="teams-items-inline-wrapper">
+                <app-team-item-inline *ngFor="let team of pagedTeams" [team]="team"></app-team-item-inline>
+            </section>
+         </ng-template>
+        
     </div>
     <footer class="d-flex justify-content-center">
         <app-pages-select [itemsCount]="filtredTeams.length" [itemsOnPage]="teamsPaging.itemsOnPage" (change)="handlePageChanges($event)"></app-pages-select>

@@ -23,13 +23,19 @@ export class TeamPageComponent implements OnInit {
 
   searchForm: FormGroup;
 
+  displayItems: string = 'view_module';
+
   constructor(private teamsService: TeamService) { }
 
   ngOnInit() {
     this.teamsService.downloadTeams();
     this.teams = this.teamsService.getTeams();
 
-    this.teamsPaging = new Paging({filterCondition: (d, v) => !v ? true : d.name.search(v) !== -1, itemsOnPage: 2});
+    this.teamsPaging = new Paging({
+      filterCondition: (d, v) => !v ? true : d.name.search(v) !== -1,
+      sortCondition: (x, y) => x.name > y.name ? 1 : -1,
+      itemsOnPage: 2
+    });
     this.teamsPaging.setData(this.teams);
 
     this.teamsSubsctiption = this.teamsService.teamsChanges.subscribe( t => { this.teams = t; this.teamsPaging.setData(t)});
@@ -48,6 +54,18 @@ export class TeamPageComponent implements OnInit {
 
   handlePageChanges(page: number) {
     this.teamsPaging.setPage(page);
+  }
+
+  enableSorting() {
+    this.teamsPaging.enableSorting = !this.teamsPaging.enableSorting;    
+  }
+
+  changeItemsDisplay() {
+    this.displayItems = this.negateDisplay();
+  }
+
+  negateDisplay() {
+    return this.displayItems === 'list' ? 'view_module' : 'list';
   }
 
   ngOnDestroy() {
