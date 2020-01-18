@@ -1,0 +1,9 @@
+.team-me-wrapper {
+    display: grid;
+    grid-template-columns: 175px 1fr;
+    gap: 20px;
+
+    footer {
+        grid-column: span 2;
+    }
+}

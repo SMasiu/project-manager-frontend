@@ -6,3 +6,9 @@ export interface TeamType {
     membersCount: number;
     owner: UserType;
 }
+
+export interface TeamMeType {
+    user: UserType;
+    permission: number;
+  }
+  

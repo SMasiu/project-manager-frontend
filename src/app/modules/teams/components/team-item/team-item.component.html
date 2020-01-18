@@ -6,9 +6,12 @@
         <h3><strong>{{team.name}}</strong></h3>
         <div class="team-info">
             <app-item-list [items]="[
-                { header: 'Owner', value: team.owner.name },
-                { header: 'Members', value: team.membersCount, icon: 'people' }
-            ]"></app-item-list>
+            { header: 'Owner', value: team.owner | fullname },
+            { header: 'Members', value: team.membersCount, icon: 'people' }
+        ]"></app-item-list>
+        </div>
+        <div class="extend-content">
+            <ng-content select=".extended-content"></ng-content>
         </div>
     </section>
     <footer class="team-footer" *ngIf="!noFooter">

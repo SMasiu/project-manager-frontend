@@ -11,6 +11,8 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { ManageTeamComponent } from './components/manage-team/manage-team.component';
 import { TeamManagerHeaderComponent } from './components/team-manager-header/team-manager-header.component';
 import { TeamItemComponent } from './components/team-item/team-item.component';
+import { TeamMeComponent } from './components/team-me/team-me.component';
+import { PermissionPipe } from './pipes/permission.pipe';
 
 
 
@@ -23,7 +25,9 @@ import { TeamItemComponent } from './components/team-item/team-item.component';
     TeamPageWrapperComponent,
     ManageTeamComponent,
     TeamManagerHeaderComponent,
-    TeamItemComponent
+    TeamItemComponent,
+    TeamMeComponent,
+    PermissionPipe
   ],
   imports: [
     CommonModule,

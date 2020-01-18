@@ -1,0 +1,19 @@
+<section class="item-box team-me-wrapper">
+
+    <div>
+        <app-profile-image path="./assets/profile.jpg"></app-profile-image>
+    </div>
+
+    <div>
+        <h3><strong>Me</strong></h3>
+        <app-item-list [items]="[
+            { header: 'name', value: me.user | fullname },
+            { header: 'role', value: me.permission | permission }
+        ]"></app-item-list>
+    </div>
+
+    <footer>
+        <button class="btn btn-danger btn-block">Leave team</button>
+    </footer>
+
+</section>
