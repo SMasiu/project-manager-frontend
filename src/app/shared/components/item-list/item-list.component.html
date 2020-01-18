@@ -1,0 +1,9 @@
+<ul [class.vertical]="vertical">
+    <li *ngFor="let item of items; let i">
+        <span class="item-header">{{item.header}}</span>
+        <span class="item-value d-flex align-items-center">
+            {{item.value}}
+            <app-icon *ngIf="item.icon" [icon]="item.icon" class="ml-2"></app-icon>
+        </span>
+    </li>
+</ul>

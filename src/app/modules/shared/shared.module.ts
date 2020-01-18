@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material';
 import { ProfileImageComponent } from 'src/app/shared/components/profile-image/profile-image.component';
 import { PagesSelectComponent } from 'src/app/shared/components/pages-select/pages-select.component';
 import { FormInfoComponent } from 'src/app/shared/components/form-info/form-info.component';
+import { ItemListComponent } from 'src/app/shared/components/item-list/item-list.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { FormInfoComponent } from 'src/app/shared/components/form-info/form-info
     IconComponent,
     ProfileImageComponent,
     PagesSelectComponent,
-    FormInfoComponent
+    FormInfoComponent,
+    ItemListComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { FormInfoComponent } from 'src/app/shared/components/form-info/form-info
     IconComponent,
     ProfileImageComponent,
     PagesSelectComponent,
-    FormInfoComponent
+    FormInfoComponent,
+    ItemListComponent
   ]
 })
 export class SharedModule { }

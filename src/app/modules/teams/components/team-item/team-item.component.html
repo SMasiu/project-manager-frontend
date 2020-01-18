@@ -1,0 +1,17 @@
+<article class="item-box team-item">
+    <section>
+        <app-profile-image path="./assets/profile.jpg"></app-profile-image>
+    </section>
+    <section>
+        <h3><strong>{{team.name}}</strong></h3>
+        <div class="team-info">
+            <app-item-list [items]="[
+                { header: 'Owner', value: team.owner.name },
+                { header: 'Members', value: team.membersCount, icon: 'people' }
+            ]"></app-item-list>
+        </div>
+    </section>
+    <footer class="team-footer" *ngIf="!noFooter">
+        <ng-content></ng-content>
+    </footer>
+</article>

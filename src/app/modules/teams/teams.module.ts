@@ -9,6 +9,8 @@ import { CreateTeamPageComponent } from './components/create-team-page/create-te
 import { TeamPageWrapperComponent } from './components/team-page-wrapper/team-page-wrapper.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { ManageTeamComponent } from './components/manage-team/manage-team.component';
+import { TeamManagerHeaderComponent } from './components/team-manager-header/team-manager-header.component';
+import { TeamItemComponent } from './components/team-item/team-item.component';
 
 
 
@@ -19,7 +21,9 @@ import { ManageTeamComponent } from './components/manage-team/manage-team.compon
     TeamItemInlineComponent,
     CreateTeamPageComponent,
     TeamPageWrapperComponent,
-    ManageTeamComponent
+    ManageTeamComponent,
+    TeamManagerHeaderComponent,
+    TeamItemComponent
   ],
   imports: [
     CommonModule,
