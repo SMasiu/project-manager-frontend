@@ -6,10 +6,12 @@
     <h3><strong>{{team.name}}</strong></h3>
  
     <div>
-        <app-item-list [items]="[
-                { header: 'Owner', value: team.owner.name },
-                { header: 'Members', value: team.membersCount, icon: 'people' }
-        ]" [vertical]="true"></app-item-list>
+        <div>
+            <app-item-list [items]="[
+                    { header: 'Owner', value: team.owner.name },
+                    { header: 'Members', value: team.membersCount, icon: 'people' }
+            ]" [vertical]="true"></app-item-list>
+        </div>
     </div>
     
     <div class="button-wrapper">

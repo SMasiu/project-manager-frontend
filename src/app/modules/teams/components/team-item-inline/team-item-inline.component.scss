@@ -1,6 +1,6 @@
 .team-wrapper {
     display: grid;
-    grid-template-columns: 65px auto 1fr auto;
+    grid-template-columns: 65px minmax(200px, auto) 1fr auto;
     gap: 25px;
     align-items: center;
     justify-items: center;

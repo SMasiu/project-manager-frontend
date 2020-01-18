@@ -13,6 +13,7 @@ import { TeamManagerHeaderComponent } from './components/team-manager-header/tea
 import { TeamItemComponent } from './components/team-item/team-item.component';
 import { TeamMeComponent } from './components/team-me/team-me.component';
 import { PermissionPipe } from './pipes/permission.pipe';
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 
 
 
@@ -27,7 +28,8 @@ import { PermissionPipe } from './pipes/permission.pipe';
     TeamManagerHeaderComponent,
     TeamItemComponent,
     TeamMeComponent,
-    PermissionPipe
+    PermissionPipe,
+    AdminPanelComponent
   ],
   imports: [
     CommonModule,

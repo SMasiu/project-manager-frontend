@@ -7,6 +7,10 @@
         gap: 25px;
         grid-template-columns: 1fr 2fr;
 
+        .admin-panel {
+            grid-column: span 2;
+        }
+
         .users-wrapper {
             grid-row: span 2;
         }

@@ -5,10 +5,10 @@
     <section>
         <h3><strong>{{team.name}}</strong></h3>
         <div class="team-info">
-            <app-item-list [items]="[
+            <app-item-list [items]="getItems([
             { header: 'Owner', value: team.owner | fullname },
             { header: 'Members', value: team.membersCount, icon: 'people' }
-        ]"></app-item-list>
+        ])"></app-item-list>
         </div>
         <div class="extend-content">
             <ng-content select=".extended-content"></ng-content>

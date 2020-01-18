@@ -3,6 +3,7 @@
     <h2>Team manager</h2>
 
     <section class="manage-wrapper">
+        <app-admin-panel class="admin-panel" [me]="teamMe" *ngIf="teamMe.permission !== 0"></app-admin-panel>
         <app-team-manager-header [team]="team"></app-team-manager-header>
         <div class="users-wrapper">users</div>
         <app-team-me [me]="teamMe"></app-team-me>
