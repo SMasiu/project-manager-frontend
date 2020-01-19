@@ -14,8 +14,9 @@ import { TeamItemComponent } from './components/team-item/team-item.component';
 import { TeamMeComponent } from './components/team-me/team-me.component';
 import { PermissionPipe } from './pipes/permission.pipe';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
-
-
+import { UserListComponent } from './components/user-list/user-list.component';
+import { ProjectListComponent } from './components/project-list/project-list.component';
+import {NgbModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap'; 
 
 @NgModule({
   declarations: [
@@ -29,14 +30,18 @@ import { AdminPanelComponent } from './components/admin-panel/admin-panel.compon
     TeamItemComponent,
     TeamMeComponent,
     PermissionPipe,
-    AdminPanelComponent
+    AdminPanelComponent,
+    UserListComponent,
+    ProjectListComponent,
   ],
   imports: [
     CommonModule,
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule,
+    NgbDropdownModule
   ],
   exports: [
     TeamPageComponent,

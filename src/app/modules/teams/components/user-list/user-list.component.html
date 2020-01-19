@@ -1,0 +1,27 @@
+<section class="member-list" *ngIf="members">
+    <div class="user-item-wrapper" *ngFor="let member of members">
+        <app-user-item-wrapper [user]="member.user">
+
+            <div class="d-flex align-items-center">
+
+                <p class="role">
+                    {{member.permission | permission}}
+                    <span class="text-secondary" *ngIf="member.user.user_id === meId">(me)</span>
+                </p>
+
+                <div ngbDropdown class="d-inline-block" placement="bottom-right">
+                    <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>More</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <button ngbDropdownItem class="text-dark">View profile</button>
+                        <button ngbDropdownItem class="text-dark">Send message</button>
+                        <ng-template [ngIf]="permission > 1 && member.permission !== 3">
+                            <button ngbDropdownItem class="text-dark">Change permission</button>
+                            <button ngbDropdownItem class="text-danger">Kick out of the team</button>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
+
+        </app-user-item-wrapper>
+    </div>
+</section>

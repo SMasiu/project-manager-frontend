@@ -41,7 +41,7 @@ import { TeamsModule } from './modules/teams/teams.module';
     ContactModule,
     SharedModule,
     NoopAnimationsModule,
-    TeamsModule
+    TeamsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
