@@ -67,7 +67,7 @@ export class UserService {
         if(logged) {
           this.setUser(me);
           this.setLogged(true);
-          this.router.navigateByUrl('/teams/manage/1');
+          this.router.navigateByUrl('/teams/invite/1');
         }
       }
     );

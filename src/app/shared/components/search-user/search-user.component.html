@@ -1,0 +1,20 @@
+<section class="wrapper">
+
+    <form>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search">
+            <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="button">Search</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="list">
+        <ng-content></ng-content>
+    </div>
+
+    <footer class="d-flex justify-content-center">
+        <app-pages-select itemsCount="200" itemsOnPage="20"></app-pages-select>
+    </footer>
+
+</section>

@@ -1,0 +1,19 @@
+.invite-member-wrapper {
+    padding: 50px 100px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
+
+    .serach-wrapper {
+        margin-top: 25px;
+    }
+
+    .user-wrapper {
+        margin: 20px 0;
+        padding-bottom: 20px;
+        
+        &:not(:last-of-type) {
+            border-bottom: 1px solid var(--dark);
+        }
+    }
+}

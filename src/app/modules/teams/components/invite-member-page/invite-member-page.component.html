@@ -1,0 +1,17 @@
+<section class="invite-member-wrapper">
+
+    <h2>Invite member</h2>
+    <div class="serach-wrapper">
+        <app-search-user (change)="setUsers($event)">
+            <div *ngFor="let user of users" class="user-wrapper">
+                <app-user-item-wrapper [user]="user">
+                    <div>
+                        <button class="btn btn-primary mr-3">View profile</button>
+                        <button class="btn btn-primary">Invite to team</button>
+                    </div>
+                </app-user-item-wrapper>
+            </div>
+        </app-search-user>
+    </div>
+
+</section>

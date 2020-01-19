@@ -9,6 +9,7 @@ import { TeamPageComponent } from './modules/teams/components/team-page/team-pag
 import { CreateTeamPageComponent } from './modules/teams/components/create-team-page/create-team-page.component';
 import { TeamPageWrapperComponent } from './modules/teams/components/team-page-wrapper/team-page-wrapper.component';
 import { ManageTeamComponent } from './modules/teams/components/manage-team/manage-team.component';
+import { InviteMemberPageComponent } from './modules/teams/components/invite-member-page/invite-member-page.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
 	{ path: 'teams', component: TeamPageWrapperComponent, children: [
 		{ path: '', pathMatch: 'full', component: TeamPageComponent },
 		{ path: 'create', component: CreateTeamPageComponent },
-		{ path: 'manage/:id', component: ManageTeamComponent }
+		{ path: 'manage/:id', component: ManageTeamComponent },
+		{ path: 'invite/:id', component: InviteMemberPageComponent }
 	]}
 ];
 

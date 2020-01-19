@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { TeamMeType } from '../../types/team.type';
+import { TeamMeType, TeamType } from '../../types/team.type';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-panel',
@@ -9,10 +10,15 @@ import { TeamMeType } from '../../types/team.type';
 export class AdminPanelComponent implements OnInit {
 
   @Input() me: TeamMeType;
+  @Input() team: TeamType;
 
-  constructor() { }
-
+  constructor(private router: Router) { }
+  
   ngOnInit() {
+  }
+
+  inviteMember() {
+    this.router.navigateByUrl(`/teams/invite/${this.team.team_id}`);
   }
 
 }

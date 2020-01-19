@@ -16,7 +16,8 @@ import { PermissionPipe } from './pipes/permission.pipe';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { ProjectListComponent } from './components/project-list/project-list.component';
-import {NgbModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap'; 
+import {NgbModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { InviteMemberPageComponent } from './components/invite-member-page/invite-member-page.component'; 
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {NgbModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
     AdminPanelComponent,
     UserListComponent,
     ProjectListComponent,
+    InviteMemberPageComponent,
   ],
   imports: [
     CommonModule,
@@ -47,7 +49,8 @@ import {NgbModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
     TeamPageComponent,
     CreateTeamPageComponent,
     TeamPageWrapperComponent,
-    ManageTeamComponent
+    ManageTeamComponent,
+    InviteMemberPageComponent
   ]
 })
 export class TeamsModule { }

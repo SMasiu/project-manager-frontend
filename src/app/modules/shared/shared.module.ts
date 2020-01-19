@@ -11,6 +11,7 @@ import { UserFullNamePipe } from 'src/app/shared/pipes/user-full-name.pipe';
 import { CountItemComponent } from 'src/app/shared/components/count-item/count-item.component';
 import { AccountInfoItemComponent } from 'src/app/shared/components/account-info-item/account-info-item.component';
 import { UserItemWrapperComponent } from 'src/app/shared/components/user-item-wrapper/user-item-wrapper.component';
+import { SearchUserComponent } from 'src/app/shared/components/search-user/search-user.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { UserItemWrapperComponent } from 'src/app/shared/components/user-item-wr
     UserFullNamePipe,
     CountItemComponent,
     AccountInfoItemComponent,
-    UserItemWrapperComponent
+    UserItemWrapperComponent,
+    SearchUserComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +41,8 @@ import { UserItemWrapperComponent } from 'src/app/shared/components/user-item-wr
     UserFullNamePipe,
     CountItemComponent,
     AccountInfoItemComponent,
-    UserItemWrapperComponent
+    UserItemWrapperComponent,
+    SearchUserComponent
   ]
 })
 export class SharedModule { }
