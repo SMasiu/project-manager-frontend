@@ -17,8 +17,7 @@ const getMembersQuery = gql`
         user_id,
         nick
       },
-      permission,
-      accepted
+      permission
     }
   }
 `
@@ -26,7 +25,6 @@ const getMembersQuery = gql`
 const inviteMemberQuery = gql`
   mutation AddTeamMember($teamId: ID!, $userId: ID!){
     AddTeamMember(teamId: $teamId, userId: $userId) {
-      accepted,
       permission,
       user {
         name,

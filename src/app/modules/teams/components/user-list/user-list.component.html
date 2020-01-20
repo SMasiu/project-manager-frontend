@@ -13,10 +13,15 @@
                     <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>More</button>
                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                         <button ngbDropdownItem class="text-dark">View profile</button>
-                        <button ngbDropdownItem class="text-dark">Send message</button>
-                        <ng-template [ngIf]="permission > 1 && member.permission !== 3">
-                            <button ngbDropdownItem class="text-dark">Change permission</button>
-                            <button ngbDropdownItem class="text-danger">Kick out of the team</button>
+                        <ng-template [ngIf]="member.user.user_id !== meId" [ngIfElse]="leave">
+                            <button ngbDropdownItem class="text-dark">Send message</button>
+                            <ng-template [ngIf]="permission > 1 && member.permission !== 3">
+                                <button ngbDropdownItem class="text-dark">Change permission</button>
+                                <button ngbDropdownItem class="text-danger">Kick out of the team</button>
+                            </ng-template>
+                        </ng-template>
+                        <ng-template #leave>
+                            <button ngbDropdownItem class="text-danger" *ngIf="member.permission !== 3">Leave team</button>
                         </ng-template>
                     </div>
                 </div>
