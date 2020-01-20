@@ -22,7 +22,9 @@ export class InviteMemberPageComponent implements OnInit {
   }
 
   setUsers(users: UserType[]) {
-    this.users = users;
+    if(!(users instanceof Event)) {
+      this.users = users;
+    }
   }
 
 }

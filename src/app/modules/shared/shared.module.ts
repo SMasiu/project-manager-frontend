@@ -12,6 +12,7 @@ import { CountItemComponent } from 'src/app/shared/components/count-item/count-i
 import { AccountInfoItemComponent } from 'src/app/shared/components/account-info-item/account-info-item.component';
 import { UserItemWrapperComponent } from 'src/app/shared/components/user-item-wrapper/user-item-wrapper.component';
 import { SearchUserComponent } from 'src/app/shared/components/search-user/search-user.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,9 @@ import { SearchUserComponent } from 'src/app/shared/components/search-user/searc
   ],
   imports: [
     CommonModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     LogoComponent,

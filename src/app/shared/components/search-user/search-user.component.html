@@ -1,8 +1,8 @@
 <section class="wrapper">
 
-    <form>
+    <form [formGroup]="form">
         <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search">
+            <input type="text" class="form-control" placeholder="Search" formControlName="fullname">
             <div class="input-group-append">
                 <button class="btn btn-outline-primary" type="button">Search</button>
             </div>
@@ -14,7 +14,7 @@
     </div>
 
     <footer class="d-flex justify-content-center">
-        <app-pages-select itemsCount="200" itemsOnPage="20"></app-pages-select>
+        <app-pages-select [itemsCount]="count" [itemsOnPage]="limit" (change)="handlePageChange($event)"></app-pages-select>
     </footer>
 
 </section>
