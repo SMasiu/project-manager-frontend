@@ -53,7 +53,7 @@ export class ManageTeamComponent implements OnInit {
           this.members = m;
           this.getMe();
         });
-
+        
       } else {
         this.router.navigateByUrl('/teams');
       }

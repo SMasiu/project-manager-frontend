@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { UserType } from 'src/app/shared/types/user.type';
+import { TeamManagerService } from '../../services/team-manager.service';
 
 @Component({
   selector: 'app-invite-member-page',
@@ -10,14 +11,14 @@ import { UserType } from 'src/app/shared/types/user.type';
 })
 export class InviteMemberPageComponent implements OnInit {
 
-  team_id: string;
+  teamId: string;
   users: UserType[] = [];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private teamManagerService: TeamManagerService) { }
 
   ngOnInit() {
     this.route.paramMap.pipe(take(1)).subscribe( params => {
-      this.team_id = params.get('id');
+      this.teamId = params.get('id');
     });
   }
 
@@ -25,6 +26,10 @@ export class InviteMemberPageComponent implements OnInit {
     if(!(users instanceof Event)) {
       this.users = users;
     }
+  }
+
+  inviteUser(user: UserType) {
+    this.teamManagerService.inviteMember({teamId: this.teamId, userId: user.user_id});
   }
 
 }

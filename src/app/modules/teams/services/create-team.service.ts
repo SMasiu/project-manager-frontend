@@ -5,13 +5,13 @@ import { take, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { TeamType } from '../types/team.type';
 import { TeamService } from './team.service';
-import { UserService } from 'src/app/shared/services/user.service';
 
 const createTeamQuery = gql`
   mutation CreateTeam($name: String!){
   CreateTeam(name: $name) {
     name,
     team_id,
+    membersCount
     owner {
       name,
       surname,

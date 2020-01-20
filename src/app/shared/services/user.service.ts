@@ -28,23 +28,35 @@ const checkUserStatusQuery = gql`
   }
 `
 
+const logoutQuery = gql`
+  mutation {
+    LogoutUser
+  }
+`
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  user: MeType = {
-    user_id: '-1',
-    name: '',
-    surname: '',
-    nick: '',
-    email: ''
-  };
+  user: MeType;
   logged: boolean = false;
   loggedChanges: Subject<boolean> = new Subject();
   userChanges: Subject<MeType> = new Subject();
 
-  constructor(private apollo: Apollo, private router: Router) { }
+  constructor(private apollo: Apollo, private router: Router) {
+    this.clearUser();
+  }
+
+  clearUser() {
+    this.user = {
+      user_id: '-1',
+      name: '',
+      surname: '',
+      nick: '',
+      email: ''
+    };
+  }
 
   setUser(user: MeType) {
     this.user = { ...this.user, ...user };
@@ -67,10 +79,21 @@ export class UserService {
         if(logged) {
           this.setUser(me);
           this.setLogged(true);
-          this.router.navigateByUrl('/teams/invite/1');
+          this.router.navigateByUrl('/teams');
         }
       }
     );
+  }
+
+  logout() {
+    this.apollo.mutate({
+      mutation: logoutQuery
+    }).pipe(take(1)).subscribe(
+      () => {
+        this.clearUser();
+        this.router.navigateByUrl('/login');
+      }
+    )
   }
 
 }

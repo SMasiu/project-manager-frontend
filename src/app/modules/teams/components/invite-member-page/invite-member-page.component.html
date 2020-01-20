@@ -7,7 +7,7 @@
                 <app-user-item-wrapper [user]="user">
                     <div>
                         <button class="btn btn-primary mr-3">View profile</button>
-                        <button class="btn btn-primary">Invite to team</button>
+                        <button class="btn btn-primary" (click)="inviteUser(user)">Invite to team</button>
                     </div>
                 </app-user-item-wrapper>
             </div>

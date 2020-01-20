@@ -18,4 +18,8 @@ export class AccountItemComponent implements OnInit {
     this.userService.userChanges.subscribe( user => this.user = user );
   }
 
+  logout() {
+    this.userService.logout();
+  }
+
 }

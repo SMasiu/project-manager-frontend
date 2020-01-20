@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
 import { take, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { CacheAsyncQuery } from 'src/app/shared/classes/cache-async-query';
 
 const getTeamsQuery = gql`
   {
@@ -29,6 +30,8 @@ export class TeamService {
   private downloaded: boolean = false;
   private teams: TeamType[] = [];
   teamsChanges: Subject<TeamType[]> = new Subject();
+
+  teamMembers = new CacheAsyncQuery();
 
   constructor(private apollo: Apollo) { }
 
@@ -63,5 +66,13 @@ export class TeamService {
   addTeam(team: TeamType) {
     this.teams.push(team);
     this.teamsChanges.next([...this.teams]);
+  }
+
+  addMemberToTeam(team_id: string) {
+    let team = this.teams.find( t => t.team_id === team_id );
+    if(team) {
+      team.membersCount++;
+      this.teamsChanges.next([...this.teams]);
+    }
   }
 }

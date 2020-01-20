@@ -19,4 +19,8 @@ export class CacheAsyncQuery {
         return true;
     }
 
+    set(name: string, data: any) {
+        this.data[name] = data;
+    }
+
 }

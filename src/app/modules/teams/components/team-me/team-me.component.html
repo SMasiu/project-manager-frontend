@@ -12,7 +12,7 @@
         ]"></app-item-list>
     </div>
 
-    <footer>
+    <footer *ngIf="me.permission !== 3">
         <button class="btn btn-danger btn-block">Leave team</button>
     </footer>
 
