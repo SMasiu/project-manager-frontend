@@ -10,6 +10,7 @@ import { CreateTeamPageComponent } from './modules/teams/components/create-team-
 import { TeamPageWrapperComponent } from './modules/teams/components/team-page-wrapper/team-page-wrapper.component';
 import { ManageTeamComponent } from './modules/teams/components/manage-team/manage-team.component';
 import { InviteMemberPageComponent } from './modules/teams/components/invite-member-page/invite-member-page.component';
+import { DangerZonePageComponent } from './modules/teams/components/danger-zone-page/danger-zone-page.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
 		{ path: '', pathMatch: 'full', component: TeamPageComponent },
 		{ path: 'create', component: CreateTeamPageComponent },
 		{ path: 'manage/:id', component: ManageTeamComponent },
-		{ path: 'invite/:id', component: InviteMemberPageComponent }
+		{ path: 'invite/:id', component: InviteMemberPageComponent },
+		{ path: 'danger-zone/:id', component: DangerZonePageComponent }
 	]}
 ];
 

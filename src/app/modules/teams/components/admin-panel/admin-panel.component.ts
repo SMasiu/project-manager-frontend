@@ -17,8 +17,8 @@ export class AdminPanelComponent implements OnInit {
   ngOnInit() {
   }
 
-  inviteMember() {
-    this.router.navigateByUrl(`/teams/invite/${this.team.team_id}`);
+  redirectTo(path) {
+    this.router.navigateByUrl(`/teams/${path}/${this.team.team_id}`);
   }
 
 }

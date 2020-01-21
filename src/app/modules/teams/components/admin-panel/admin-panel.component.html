@@ -3,11 +3,11 @@
         <div class="info-wrapper">
             <app-count-item count="20" title1="Open" title2="Projects"></app-count-item>
             <app-count-item count="40" title1="Closed" title2="Projects"></app-count-item>
-            <app-count-item count="150" title1="Team" title2="Members"></app-count-item>
+            <app-count-item [count]="team.membersCount" title1="Team" title2="Members"></app-count-item>
             <div class="buttons">
                 <button class="btn btn-primary">Create new project</button>
-                <button class="btn btn-primary" (click)="inviteMember()">Invite members</button>
-                <button class="btn btn-danger">Danger zone</button>
+                <button class="btn btn-primary" (click)="redirectTo('invite')">Invite members</button>
+                <button class="btn btn-danger" (click)="redirectTo('danger-zone')">Danger zone</button>
             </div>      
         </div>
     </div>

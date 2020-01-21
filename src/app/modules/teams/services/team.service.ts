@@ -69,9 +69,17 @@ export class TeamService {
   }
 
   addMemberToTeam(team_id: string) {
+    this.changeTeamMambersCount(team_id, 1);
+  }
+
+  removeMemberFromTeam(team_id: string) {
+    this.changeTeamMambersCount(team_id, -1);
+  }
+  
+  changeTeamMambersCount(team_id: string, count: number) {
     let team = this.teams.find( t => t.team_id === team_id );
     if(team) {
-      team.membersCount++;
+      team.membersCount += count;
       this.teamsChanges.next([...this.teams]);
     }
   }

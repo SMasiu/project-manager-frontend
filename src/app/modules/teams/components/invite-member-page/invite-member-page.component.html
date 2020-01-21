@@ -1,6 +1,7 @@
 <section class="invite-member-wrapper">
 
-    <h2>Invite member</h2>
+    <h2 class="d-flex align-items-center"><app-icon icon="keyboard_arrow_left" class="mr-2" [button]="true" (click)="back()"></app-icon>Invite member</h2>
+    
     <div class="serach-wrapper">
         <app-search-user (change)="setUsers($event)">
             <div *ngFor="let user of users" class="user-wrapper">

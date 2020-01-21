@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { UserType } from 'src/app/shared/types/user.type';
 import { TeamManagerService } from '../../services/team-manager.service';
@@ -14,7 +14,7 @@ export class InviteMemberPageComponent implements OnInit {
   teamId: string;
   users: UserType[] = [];
 
-  constructor(private route: ActivatedRoute, private teamManagerService: TeamManagerService) { }
+  constructor(private route: ActivatedRoute, private teamManagerService: TeamManagerService, private router: Router) { }
 
   ngOnInit() {
     this.route.paramMap.pipe(take(1)).subscribe( params => {
@@ -30,6 +30,10 @@ export class InviteMemberPageComponent implements OnInit {
 
   inviteUser(user: UserType) {
     this.teamManagerService.inviteMember({teamId: this.teamId, userId: user.user_id});
+  }
+
+  back() {
+    this.router.navigateByUrl(`teams/manage/${this.teamId}`);
   }
 
 }

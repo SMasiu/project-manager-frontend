@@ -1,6 +1,6 @@
 <section class="team-manager-wrapper" *ngIf="team && teamMe">
  
-    <h2>Team manager</h2>
+    <h2 class="d-flex align-items-center"><app-icon icon="keyboard_arrow_left" class="mr-2" [button]="true" routerLink="/teams"></app-icon>Team manager</h2>
 
     <section class="manage-wrapper">
         <app-admin-panel class="admin-panel" [me]="teamMe" *ngIf="teamMe.permission  > 1" [team]="team"></app-admin-panel>

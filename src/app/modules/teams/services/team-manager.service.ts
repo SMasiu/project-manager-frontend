@@ -36,6 +36,20 @@ const inviteMemberQuery = gql`
   }
 `
 
+const kickMemberQuery = gql`
+  mutation KickOutOfTheTeam($team_id: ID!, $user_id: ID!){
+    KickOutOfTheTeam(team_id: $team_id, user_id: $user_id) {
+      permission,
+      user {
+        name,
+        nick,
+        surname,
+        user_id
+      }
+    }
+  }
+`
+
 @Injectable({
   providedIn: 'root'
 })
@@ -60,6 +74,22 @@ export class TeamManagerService {
 
   addMember(member: MemberType) {
     this.members.push(member);
+    this.teamService.addMemberToTeam(this.team.team_id);
+    this.team.membersCount++;
+    this.updateMembers();
+  }
+
+  removeMember(member_id: string) {
+    const index = this.members.findIndex( m => m.user.user_id === member_id );
+    if(index !== -1) {
+      this.members.splice(index, 1);
+      this.teamService.removeMemberFromTeam(this.team.team_id);      
+      this.team.membersCount--;
+      this.updateMembers();
+    }
+  }
+
+  updateMembers() {
     this.teamService.teamMembers.set(this.team.team_id, this.members);
     this.membersChanges.next(this.members);
   }
@@ -92,7 +122,6 @@ export class TeamManagerService {
         map( (res: any) => res.data.AddTeamMember )
       ).subscribe( (member: MemberType) => {
         this.addMember(member);
-        this.teamService.addMemberToTeam(this.team.team_id);
       });
     }
   }
@@ -103,6 +132,21 @@ export class TeamManagerService {
       return false;
     }
     return true;
+  }
+
+  kickMember(user_id: string) {
+    this.apollo.mutate({
+      mutation: kickMemberQuery,
+      variables: {
+        user_id,
+        team_id: this.team.team_id
+      }
+    }).pipe(
+      take(1),
+      map( (res: any) => res.data.KickOutOfTheTeam )
+    ).subscribe(
+      kicked => this.removeMember(kicked.user.user_id)
+    );
   }
 
 }

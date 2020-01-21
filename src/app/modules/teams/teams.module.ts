@@ -14,10 +14,12 @@ import { TeamItemComponent } from './components/team-item/team-item.component';
 import { TeamMeComponent } from './components/team-me/team-me.component';
 import { PermissionPipe } from './pipes/permission.pipe';
 import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
-import { UserListComponent } from './components/user-list/user-list.component';
+import { UserListComponent, DialogComponent } from './components/user-list/user-list.component';
 import { ProjectListComponent } from './components/project-list/project-list.component';
 import {NgbModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { InviteMemberPageComponent } from './components/invite-member-page/invite-member-page.component'; 
+import { MatDialogModule } from '@angular/material';
+import { DangerZonePageComponent } from './components/danger-zone-page/danger-zone-page.component';
 
 @NgModule({
   declarations: [
@@ -35,22 +37,29 @@ import { InviteMemberPageComponent } from './components/invite-member-page/invit
     UserListComponent,
     ProjectListComponent,
     InviteMemberPageComponent,
+    DialogComponent,
+    DangerZonePageComponent
+  ],
+  entryComponents: [
+    DialogComponent
   ],
   imports: [
-    CommonModule,
+    CommonModule, 
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
     NgbModule,
-    NgbDropdownModule
+    NgbDropdownModule,
+    MatDialogModule,
   ],
   exports: [
     TeamPageComponent,
     CreateTeamPageComponent,
     TeamPageWrapperComponent,
     ManageTeamComponent,
-    InviteMemberPageComponent
+    InviteMemberPageComponent,
+    DangerZonePageComponent
   ]
 })
 export class TeamsModule { }
