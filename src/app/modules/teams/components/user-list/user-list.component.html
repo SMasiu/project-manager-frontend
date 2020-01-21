@@ -16,7 +16,7 @@
                         <ng-template [ngIf]="member.user.user_id !== meId" [ngIfElse]="leave">
                             <button ngbDropdownItem class="text-dark">Send message</button>
                             <ng-template [ngIf]="permission > 1 && member.permission !== 3">
-                                <button ngbDropdownItem class="text-dark">Change permission</button>
+                                <button ngbDropdownItem class="text-dark" *ngIf="member.permission !== 0">Change permission</button>
                                 <button ngbDropdownItem class="text-danger">Kick out of the team</button>
                             </ng-template>
                         </ng-template>
