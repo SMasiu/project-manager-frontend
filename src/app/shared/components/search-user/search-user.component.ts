@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { take, debounceTime } from 'rxjs/operators';
 import { UserType } from '../../types/user.type';
@@ -13,6 +13,7 @@ import { Subscription } from 'rxjs';
 export class SearchUserComponent implements OnInit {
 
   @Output() change: EventEmitter<UserType[]> = new EventEmitter();
+  @Input() team_id: string;
 
   users: UserType[];
   count: number = 0;
@@ -47,8 +48,8 @@ export class SearchUserComponent implements OnInit {
   }
 
   getAndSave() {
-    const { offset, fullname, limit } = this;
-    this.usersService.getUsers({limit, offset, fullname}).pipe(take(1)).subscribe(
+    const { offset, fullname, limit, team_id  } = this;
+    this.usersService.getUsers({limit, offset, fullname, team_id}).pipe(take(1)).subscribe(
       ({users, count}) => {
         this.count = count;
         this.setUsers(users);

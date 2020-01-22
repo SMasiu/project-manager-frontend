@@ -8,8 +8,8 @@ import { CacheQueriesService } from './cache-queries.service';
 import { QueryOptionsType } from '../types/get-user.type';
 
 const getUsersQuery = gql`
-  query GetUsersAndCount($limit: Int!, $offset: Int!, $fullname: String!) {
-    GetUsersAndCount(fullname: $fullname, limit: $limit, offset: $offset) {
+  query GetUsersAndCount($limit: Int!, $offset: Int!, $fullname: String!, $team_id: ID!) {
+    GetUsersAndCount(fullname: $fullname, limit: $limit, offset: $offset, team_id: $team_id) {
       users {
         name,
         surname,
@@ -36,7 +36,7 @@ export class UsersService {
   getUsers(args: QueryOptionsType = {}): Observable<UsersAndCountType> {
     return Observable.create( observer => {
       
-      const { limit, offset, fullname } = args;
+      const { limit, offset, fullname, team_id } = args;
 
       let name = this.cacheQueriesService.nameFromGetUsersAndCount(args);
       const GetUsersAndCount = this.cacheQueriesService.GetUsersAndCount;
@@ -51,7 +51,8 @@ export class UsersService {
         variables: {
           offset: offset || 0,
           limit: limit || 25,
-          fullname: fullname || ''
+          fullname: fullname || '',
+          team_id: team_id || ''
         }
       }).valueChanges.pipe(
         take(1),

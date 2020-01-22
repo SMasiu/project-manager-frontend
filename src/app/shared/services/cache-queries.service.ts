@@ -6,15 +6,15 @@ import { QueryOptionsType } from '../types/get-user.type';
   providedIn: 'root'
 })
 export class CacheQueriesService {
-  //naming convaention __fn-${fullname}_of-${offset}_li-${limit}
+  //naming convention __fn-${fullname}_of-${offset}_li-${limit}_tId-${team_id}
   GetUsersAndCount = new CacheAsyncQuery();
 
   constructor() { }
 
-  nameFromGetUsersAndCount({fullname, offset, limit}: QueryOptionsType = {}) {
+  nameFromGetUsersAndCount({fullname, offset, limit, team_id}: QueryOptionsType = {}) {
     fullname = fullname || '';
     offset = offset || 0;
     limit - limit || 0;
-    return `__fn-${fullname}_of-${offset}_li-${limit}`;
+    return `__fn-${fullname}_of-${offset}_li-${limit}_tId-${team_id}`;
   }
 }

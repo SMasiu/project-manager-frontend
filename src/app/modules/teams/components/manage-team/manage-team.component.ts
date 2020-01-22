@@ -32,13 +32,12 @@ export class ManageTeamComponent implements OnInit {
     private userService: UserService) { }
 
   getMe() {
-    if(!this.teamMe && this.members && this.members.length) {
+    if(this.members && this.members.length) {
       this.teamMe = this.members.find( m => m.user.user_id === this.userService.user.user_id );
     }    
   }
 
   ngOnInit() {
-    
     this.route.paramMap.pipe(take(1)).subscribe( map => {
       let team = this.teamService.getTeam(map.get('id'));
       if(team) {
@@ -46,13 +45,14 @@ export class ManageTeamComponent implements OnInit {
         this.team = team;
         this.teamManagerService.setTeam(this.team);
 
-        this.teamManagerService.getMembers();
         this.members = this.teamManagerService.members;
-        this.getMe();
+        
         this.membersSubscription = this.teamManagerService.membersChanges.subscribe( m => { 
           this.members = m;
           this.getMe();
         });
+
+        this.teamManagerService.getMembers();
         
       } else {
         this.router.navigateByUrl('/teams');

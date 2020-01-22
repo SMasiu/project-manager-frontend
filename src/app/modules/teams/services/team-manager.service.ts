@@ -116,7 +116,10 @@ export class TeamManagerService {
     if(this.validate()) {
       let name = this.team.team_id;
       if(this.teamService.teamMembers.checkIfExists(name)) {
-        return this.teamService.teamMembers.get(name);
+        const members = this.teamService.teamMembers.get(name);
+        this.members = members;
+        this.membersChanges.next(this.members);
+        return members;
       }
       
       this.apollo.watchQuery({

@@ -2,8 +2,8 @@
 
     <h2 class="d-flex align-items-center"><app-icon icon="keyboard_arrow_left" class="mr-2" [button]="true" (click)="back()"></app-icon>Invite member</h2>
     
-    <div class="serach-wrapper">
-        <app-search-user (change)="setUsers($event)">
+    <div class="serach-wrapper" *ngIf="teamId">
+        <app-search-user (change)="setUsers($event)" [team_id]="teamId">
             <div *ngFor="let user of users" class="user-wrapper">
                 <app-user-item-wrapper [user]="user">
                     <div>
