@@ -39,13 +39,17 @@ const inviteMemberQuery = gql`
 const kickMemberQuery = gql`
   mutation KickOutOfTheTeam($team_id: ID!, $user_id: ID!){
     KickOutOfTheTeam(team_id: $team_id, user_id: $user_id) {
-      permission,
       user {
-        name,
-        nick,
-        surname,
         user_id
       }
+    }
+  }
+`
+
+const deleteTeamQuery = gql`
+  mutation DeleteTeam($team_id: ID!) {
+    DeleteTeam(team_id: $team_id) {
+      team_id
     }
   }
 `
@@ -89,34 +93,46 @@ export class TeamManagerService {
     }
   }
 
+  removeTeam() {
+    this.teamService.removeTeam(this.team.team_id);
+    this.members = [];
+    this.team = undefined;
+    this.router.navigateByUrl('/teams');
+  }
+
   updateMembers() {
     this.teamService.teamMembers.set(this.team.team_id, this.members);
     this.membersChanges.next(this.members);
   }
 
   getMembers() {
-    let name = this.team.team_id;
-    if(this.teamService.teamMembers.checkIfExists(name)) {
-      return this.teamService.teamMembers.get(name);
+    if(this.validate()) {
+      let name = this.team.team_id;
+      if(this.teamService.teamMembers.checkIfExists(name)) {
+        return this.teamService.teamMembers.get(name);
+      }
+      
+      this.apollo.watchQuery({
+        query: getMembersQuery,
+        variables: { id: this.team.team_id }
+      }).valueChanges.pipe(
+        take(1),
+        map( (res: any) => res.data.TeamMembers )
+      ).subscribe( members => {
+        this.teamService.teamMembers.add(name, members);
+        this.setMembers(members);
+      });
     }
-    
-    this.apollo.watchQuery({
-      query: getMembersQuery,
-      variables: { id: this.team.team_id }
-    }).valueChanges.pipe(
-      take(1),
-      map( (res: any) => res.data.TeamMembers )
-    ).subscribe( members => {
-      this.teamService.teamMembers.add(name, members);
-      this.setMembers(members);
-    });
   }
 
-  inviteMember(variables: {teamId: string, userId: string}) {
+  inviteMember(variables: {userId: string}) {
     if(this.validate()) {
       this.apollo.mutate({
         mutation: inviteMemberQuery,
-        variables
+        variables: {
+          userId: variables.userId,
+          teamId: this.team.team_id
+        }
       }).pipe(
         take(1),
         map( (res: any) => res.data.AddTeamMember )
@@ -135,18 +151,35 @@ export class TeamManagerService {
   }
 
   kickMember(user_id: string) {
-    this.apollo.mutate({
-      mutation: kickMemberQuery,
-      variables: {
-        user_id,
-        team_id: this.team.team_id
-      }
-    }).pipe(
-      take(1),
-      map( (res: any) => res.data.KickOutOfTheTeam )
-    ).subscribe(
-      kicked => this.removeMember(kicked.user.user_id)
-    );
+    if(this.validate()) {
+      this.apollo.mutate({
+        mutation: kickMemberQuery,
+        variables: {
+          user_id,
+          team_id: this.team.team_id
+        }
+      }).pipe(
+        take(1),
+        map( (res: any) => res.data.KickOutOfTheTeam )
+      ).subscribe(
+        kicked => this.removeMember(kicked.user.user_id)
+      );
+    }
+  }
+
+  deleteTeam() {
+    if(this.validate()) {
+      this.apollo.mutate({
+        mutation: deleteTeamQuery,
+        variables: {
+          team_id: this.team.team_id
+        }
+      }).pipe(take(1)).subscribe(
+        team => {
+          this.removeTeam();
+        }
+      );
+    }
   }
 
 }

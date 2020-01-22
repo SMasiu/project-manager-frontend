@@ -23,4 +23,8 @@ export class CacheAsyncQuery {
         this.data[name] = data;
     }
 
+    reomve(name: string) {
+        delete this.data[name];
+    }
+
 }

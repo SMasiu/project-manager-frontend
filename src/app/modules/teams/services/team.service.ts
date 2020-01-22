@@ -83,4 +83,14 @@ export class TeamService {
       this.teamsChanges.next([...this.teams]);
     }
   }
+
+  removeTeam(team_id: string) {
+    const index = this.teams.findIndex( t => t.team_id === team_id );
+    if(index !== -1) {
+      this.teamMembers.reomve(team_id);
+      this.teams.splice(index, 1);
+      this.teamsChanges.next([...this.teams]);
+    }
+  }
+
 }

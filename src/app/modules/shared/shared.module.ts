@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LogoComponent } from 'src/app/shared/components/logo/logo.component';
 import { IconComponent } from 'src/app/shared/components/icon/icon.component';
-import { MatIconModule } from '@angular/material';
+import { MatIconModule, MatDialogModule } from '@angular/material';
 import { ProfileImageComponent } from 'src/app/shared/components/profile-image/profile-image.component';
 import { PagesSelectComponent } from 'src/app/shared/components/pages-select/pages-select.component';
 import { FormInfoComponent } from 'src/app/shared/components/form-info/form-info.component';
@@ -13,6 +13,8 @@ import { AccountInfoItemComponent } from 'src/app/shared/components/account-info
 import { UserItemWrapperComponent } from 'src/app/shared/components/user-item-wrapper/user-item-wrapper.component';
 import { SearchUserComponent } from 'src/app/shared/components/search-user/search-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.component';
+import { ConfirmTextComponent } from 'src/app/shared/components/confirm-text/confirm-text.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +28,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CountItemComponent,
     AccountInfoItemComponent,
     UserItemWrapperComponent,
-    SearchUserComponent
+    SearchUserComponent,
+    ConfirmComponent,
+    ConfirmTextComponent
+  ],
+  entryComponents: [
+    ConfirmComponent,
+    ConfirmTextComponent
   ],
   imports: [
     CommonModule,
     MatIconModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ],
   exports: [
     LogoComponent,

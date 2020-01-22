@@ -1,7 +1,7 @@
 <section class="dialog">
-    <h3 class="mb-4">Are you sure to kick <strong>{{data.user | fullname}}</strong> ?</h3>
+    <h3 class="mb-4">{{data.text}}</h3>
     <footer class="d-flex justify-content-between">
         <button class="btn btn-danger" (click)="handleClick(false)">Cancel</button>
-        <button class="btn btn-primary" (click)="handleClick(true)">Kick</button>
+        <button class="btn btn-primary" (click)="handleClick(true)">{{data.successBtnText}}</button>
     </footer>
 </section>

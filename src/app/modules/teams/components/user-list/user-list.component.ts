@@ -3,6 +3,7 @@ import { MemberType } from '../../types/member.type';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { UserType } from 'src/app/shared/types/user.type';
 import { TeamManagerService } from '../../services/team-manager.service';
+import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.component';
 
 @Component({
   selector: 'app-user-list',
@@ -25,9 +26,12 @@ export class UserListComponent implements OnInit {
   }
 
   openDialog(user: UserType): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
+    const dialogRef = this.dialog.open(ConfirmComponent, {
       width: 'auto',
-      data: { user }
+      data: {
+        text: `Are you sure to kick ${user.name} ${user.surname}?`,
+        successBtnText: 'Kick'
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -35,27 +39,6 @@ export class UserListComponent implements OnInit {
         this.teamManagerService.kickMember(user.user_id);
       }
     });
-  }
-
-}
-
-@Component({
-  selector: 'app-dialog',
-  templateUrl: 'dialog.component.html',
-  styleUrls: ['dialog.component.scss']
-})
-export class DialogComponent {
-
-  constructor(
-    public dialogRef: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {}
-
-  handleClick(value: boolean) {
-    this.dialogRef.close(value);
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close(false);
   }
 
 }

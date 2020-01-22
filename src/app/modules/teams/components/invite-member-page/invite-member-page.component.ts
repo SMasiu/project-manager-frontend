@@ -29,7 +29,7 @@ export class InviteMemberPageComponent implements OnInit {
   }
 
   inviteUser(user: UserType) {
-    this.teamManagerService.inviteMember({teamId: this.teamId, userId: user.user_id});
+    this.teamManagerService.inviteMember({userId: user.user_id});
   }
 
   back() {

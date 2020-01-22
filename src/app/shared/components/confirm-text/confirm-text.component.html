@@ -1,0 +1,21 @@
+<section *ngIf="data">
+    <h3 class="mb-4">{{data.text}}</h3>
+
+    <p>Please type <strong>{{data.match}}</strong> below</p>
+
+    <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+
+        <div class="form-group">
+            <input type="text" class="form-control" formControlName="match">
+        </div>
+
+        <footer class="d-flex justify-content-between">
+            
+            <button class="btn btn-danger" type="button" (click)="handleClose()">Cancel</button>
+            <button class="btn btn-primary" type="submit" [disabled]="form.invalid">{{data.successBtnText}}</button>
+            
+        </footer>
+
+    </form>
+
+</section>

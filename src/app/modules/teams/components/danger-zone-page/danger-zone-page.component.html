@@ -2,4 +2,20 @@
 
     <h2 class="d-flex align-items-center"><app-icon icon="keyboard_arrow_left" class="mr-2" [button]="true" (click)="back()"></app-icon>Danger zone</h2>
 
+    <section class="danger-item item-box mt-4">
+        <div class="danger-border">
+            <h4>Change owner</h4>
+            <p>If you change owner you won't be a owner but you still will be a mamber with moderator permission</p>
+            <button class="btn btn-danger btn-block">Change</button>
+        </div>
+    </section>
+
+    <section class="danger-item item-box mt-4">
+        <div class="danger-border">
+            <h4>Delete team</h4>
+            <p>Your team will be deleted with all projects corresponding to this team</p>
+            <button class="btn btn-danger btn-block" (click)="openDeleteDialog()">Delete</button>
+        </div>
+    </section>
+
 </section>

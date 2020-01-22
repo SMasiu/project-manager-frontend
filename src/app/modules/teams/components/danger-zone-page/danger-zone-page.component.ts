@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
+import { TeamManagerService } from '../../services/team-manager.service';
+import { MatDialog } from '@angular/material';
+import { ConfirmTextComponent } from 'src/app/shared/components/confirm-text/confirm-text.component';
 
 @Component({
   selector: 'app-danger-zone-page',
@@ -9,7 +12,7 @@ import { take } from 'rxjs/operators';
 })
 export class DangerZonePageComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute, private teamManagerService: TeamManagerService, public dialog: MatDialog) { }
 
   team_id: string;
 
@@ -21,6 +24,23 @@ export class DangerZonePageComponent implements OnInit {
 
   back() {
     this.router.navigateByUrl(`/teams/manage/${this.team_id}`);
+  }
+  
+  openDeleteDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmTextComponent, {
+      width: 'auto',
+      data: {
+        text: `Are you sure to delete the team?`,
+        match: this.teamManagerService.team.name,
+        successBtnText: 'Delete'
+      }
+    });
+    
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.teamManagerService.deleteTeam();
+      }
+    });
   }
 
 }

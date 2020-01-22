@@ -5,6 +5,7 @@ import { Apollo } from 'apollo-angular';
 import { take, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { NotificationService } from './notification.service';
 
 interface CheckStatusType {
   CheckUserStatus: {
@@ -44,7 +45,7 @@ export class UserService {
   loggedChanges: Subject<boolean> = new Subject();
   userChanges: Subject<MeType> = new Subject();
 
-  constructor(private apollo: Apollo, private router: Router) {
+  constructor(private apollo: Apollo, private router: Router, private notificationService: NotificationService) {
     this.clearUser();
   }
 
@@ -79,7 +80,8 @@ export class UserService {
         if(logged) {
           this.setUser(me);
           this.setLogged(true);
-          this.router.navigateByUrl('/teams');
+          this.notificationService.getNotifications();
+          this.router.navigateByUrl('/teams/danger-zone/7');
         }
       }
     );
