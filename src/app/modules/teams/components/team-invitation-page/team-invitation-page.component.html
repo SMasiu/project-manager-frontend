@@ -1,0 +1,33 @@
+<section class="team-invitations-wrapper">
+
+    <h2 class="d-flex align-items-center">
+        <app-icon icon="keyboard_arrow_left" class="mr-2" [button]="true" routerLink="/dashboard"></app-icon>
+        Team invitations
+    </h2>
+
+    <section>
+
+        <ng-template [ngIf]="!invitedTeams.length" [ngIfElse]="teams">
+            <div class="d-flex justify-content-center flex-column no-invitations item-box-big mt-4">
+                <h3>You don't have any team invitations</h3>
+            
+                <button class="btn btn-primary mt-3">Create new team here</button>
+            </div>
+        </ng-template>
+        
+        <ng-template #teams>
+            
+            <div class="mt-4" *ngFor="let team of invitedTeams"> 
+                <app-team-item [team]="team">
+                    <footer class="d-flex justify-content-between">
+                        <button class="btn btn-danger" (click)="reject(team)">Reject invitation</button>
+                        <button class="btn btn-primary" (click)="accept(team)">Accept invitation</button>
+                    </footer>
+                </app-team-item>
+            </div>
+
+        </ng-template>
+
+    </section>
+
+</section>

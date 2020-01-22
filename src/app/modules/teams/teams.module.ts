@@ -19,6 +19,7 @@ import { ProjectListComponent } from './components/project-list/project-list.com
 import {NgbModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { InviteMemberPageComponent } from './components/invite-member-page/invite-member-page.component'; 
 import { DangerZonePageComponent } from './components/danger-zone-page/danger-zone-page.component';
+import { TeamInvitationPageComponent } from './components/team-invitation-page/team-invitation-page.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { DangerZonePageComponent } from './components/danger-zone-page/danger-zo
     UserListComponent,
     ProjectListComponent,
     InviteMemberPageComponent,
-    DangerZonePageComponent
+    DangerZonePageComponent,
+    TeamInvitationPageComponent
   ],
   imports: [
     CommonModule, 
@@ -53,7 +55,8 @@ import { DangerZonePageComponent } from './components/danger-zone-page/danger-zo
     TeamPageWrapperComponent,
     ManageTeamComponent,
     InviteMemberPageComponent,
-    DangerZonePageComponent
+    DangerZonePageComponent,
+    TeamInvitationPageComponent
   ]
 })
 export class TeamsModule { }

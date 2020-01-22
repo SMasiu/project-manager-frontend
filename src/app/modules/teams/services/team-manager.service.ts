@@ -53,6 +53,13 @@ const deleteTeamQuery = gql`
     }
   }
 `
+const leaveTeamQuery = gql`
+  mutation LeaveTeam($team_id: ID!) {
+    LeaveTeam(team_id: $team_id) {
+      permission
+    }
+  }
+`
 
 @Injectable({
   providedIn: 'root'
@@ -179,6 +186,21 @@ export class TeamManagerService {
           this.removeTeam();
         }
       );
+    }
+  }
+
+  leaveTeam() {
+    if(this.validate()) {
+      this.apollo.mutate({
+          mutation: leaveTeamQuery,
+          variables: {
+            team_id: this.team.team_id
+          }
+      }).pipe(take(1)).subscribe( 
+        team => {
+          this.removeTeam();
+        }
+      )
     }
   }
 

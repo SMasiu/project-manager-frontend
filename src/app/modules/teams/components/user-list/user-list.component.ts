@@ -41,4 +41,20 @@ export class UserListComponent implements OnInit {
     });
   }
 
+  openLeaveDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      width: 'auto',
+      data: {
+        text: `Do you realy want to leave?`,
+        successBtnText: 'Leave'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.teamManagerService.leaveTeam();
+      }
+    });
+  }
+
 }

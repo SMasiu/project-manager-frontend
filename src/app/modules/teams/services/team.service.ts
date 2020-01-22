@@ -5,6 +5,7 @@ import { Apollo } from 'apollo-angular';
 import { take, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { CacheAsyncQuery } from 'src/app/shared/classes/cache-async-query';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 
 const getTeamsQuery = gql`
   {
@@ -22,6 +23,22 @@ const getTeamsQuery = gql`
   }
 `
 
+const acceptInvitationQuery = gql`
+  mutation AcceptTeamInvitation($team_id: ID!) {
+    AcceptTeamInvitation(team_id: $team_id) {
+      permission,
+    }
+  }
+`
+
+const rejectInvitationQuery = gql`
+  mutation LeaveTeam($team_id: ID!) {
+    LeaveTeam(team_id: $team_id) {
+      permission
+    }
+  }
+`
+
 @Injectable({
   providedIn: 'root'
 })
@@ -33,7 +50,7 @@ export class TeamService {
 
   teamMembers = new CacheAsyncQuery();
 
-  constructor(private apollo: Apollo) { }
+  constructor(private apollo: Apollo, private notificationService: NotificationService) { }
 
   setTeams(teams) {
     this.teams = teams;
@@ -91,6 +108,34 @@ export class TeamService {
       this.teams.splice(index, 1);
       this.teamsChanges.next([...this.teams]);
     }
+  }
+  
+  acceptRequest(team: TeamType) {
+    this.apollo.mutate({
+      mutation: acceptInvitationQuery,
+      variables: {
+        team_id: team.team_id
+      }
+    }).pipe(take(1)).subscribe( 
+      member => {
+        this.addTeam(team);
+        this.notificationService.removeTeamInvitation(team.team_id);
+        this.addMemberToTeam(team.team_id);
+      }
+    );
+  }
+
+  rejectRequest(team_id: string) {
+    this.apollo.mutate({
+      mutation: rejectInvitationQuery,
+      variables: {
+        team_id
+      }
+    }).pipe(take(1)).subscribe( 
+      member => {
+        this.notificationService.removeTeamInvitation(team_id);
+      }
+    );
   }
 
 }

@@ -80,8 +80,8 @@ export class UserService {
         if(logged) {
           this.setUser(me);
           this.setLogged(true);
-          this.notificationService.getNotifications();
-          this.router.navigateByUrl('/teams/danger-zone/7');
+          this.notificationService.downloadNotifications();
+          this.router.navigateByUrl('/teams/invitations');
         }
       }
     );

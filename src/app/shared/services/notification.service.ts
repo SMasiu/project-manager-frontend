@@ -14,6 +14,9 @@ const getNotifications = gql`
         membersCount,
         owner {
           name,
+          surname,
+          nick,
+          user_id
         }
       }
     }
@@ -32,12 +35,20 @@ export class NotificationService {
 
   constructor(private apollo: Apollo) { }
 
-  setNotifications(n) {
-    this.notifications = n;
-    this.notificationsChanges.next(n);
+  getNotifications() {
+    return {...this.notifications};
   }
 
-  getNotifications() {
+  setNotifications(n) {
+    this.notifications = n;
+    this.emitNotifications();
+  }
+
+  emitNotifications() {
+    this.notificationsChanges.next({...this.notifications});
+  }
+
+  downloadNotifications() {
 
     if(this.downloaded) {
       return;
@@ -52,9 +63,16 @@ export class NotificationService {
       notifications => {
         this.downloaded = true;
         this.setNotifications(notifications);
-        console.log(notifications)
       }
     )
   }
   
+  removeTeamInvitation(team_id: string) {
+    const index = this.notifications.teamInvitations.findIndex( t => t.team_id === team_id );
+    if(index !== -1) {
+      this.notifications.teamInvitations.splice(index, 1);
+      this.emitNotifications();
+    }
+  }
+
 }

@@ -21,7 +21,7 @@
                             </ng-template>
                         </ng-template>
                         <ng-template #leave>
-                            <button ngbDropdownItem class="text-danger" *ngIf="member.permission !== 3">Leave team</button>
+                            <button ngbDropdownItem class="text-danger" *ngIf="member.permission !== 3" (click)="openLeaveDialog()">Leave team</button>
                         </ng-template>
                     </div>
                 </div>
