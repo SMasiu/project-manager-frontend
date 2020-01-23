@@ -31,6 +31,7 @@ export class ManageTeamComponent implements OnInit {
     private teamManagerService: TeamManagerService,
     private userService: UserService) { }
 
+
   getMe() {
     if(this.members && this.members.length) {
       this.teamMe = this.members.find( m => m.user.user_id === this.userService.user.user_id );

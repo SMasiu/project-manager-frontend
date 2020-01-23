@@ -73,3 +73,7 @@ button:disabled {
         color: var(--primary);
     }
 }
+
+option, select {
+    cursor: pointer !important;
+}

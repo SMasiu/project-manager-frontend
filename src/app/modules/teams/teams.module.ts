@@ -20,6 +20,7 @@ import {NgbModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { InviteMemberPageComponent } from './components/invite-member-page/invite-member-page.component'; 
 import { DangerZonePageComponent } from './components/danger-zone-page/danger-zone-page.component';
 import { TeamInvitationPageComponent } from './components/team-invitation-page/team-invitation-page.component';
+import { ChangePermissionPageComponent } from './components/change-permission-page/change-permission-page.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { TeamInvitationPageComponent } from './components/team-invitation-page/t
     ProjectListComponent,
     InviteMemberPageComponent,
     DangerZonePageComponent,
-    TeamInvitationPageComponent
+    TeamInvitationPageComponent,
+    ChangePermissionPageComponent
   ],
   imports: [
     CommonModule, 

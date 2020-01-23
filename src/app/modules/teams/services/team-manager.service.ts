@@ -61,17 +61,41 @@ const leaveTeamQuery = gql`
   }
 `
 
+const changeMemberPermissionQuery = gql`
+  mutation ChangeMemberPermission($team_id: ID!, $user_id: ID!, $permission: Int!) {
+    ChangeMemberPermission(team_id: $team_id, user_id: $user_id, permission: $permission) {
+      permission
+    }
+  }
+`
+
+const changeOwnerQuery = gql`
+  mutation ChangeOwner($team_id: ID!, $user_id: ID!) {
+    ChangeOwner(team_id: $team_id, user_id: $user_id) {
+      owner {
+        name,
+        surname,
+        nick,
+        user_id
+      }
+    }
+  }
+`
+
 @Injectable({
   providedIn: 'root'
 })
 export class TeamManagerService {
 
   team: TeamType;
-  members: MemberType[];
+  members: MemberType[] = [];
 
   membersChanges: Subject<MemberType[]> = new Subject();
 
-  constructor(private apollo: Apollo, private router: Router, private teamService: TeamService) {
+  constructor(
+    private apollo: Apollo,
+    private router: Router,
+    private teamService: TeamService) {
   }
 
   setTeam(team: TeamType) {
@@ -177,6 +201,11 @@ export class TeamManagerService {
     }
   }
 
+  updateMemberPermission(user_id: string, permission: number) {
+    this.members.find( m => m.user.user_id === user_id ).permission = permission;
+    this.updateMembers();
+  }
+
   deleteTeam() {
     if(this.validate()) {
       this.apollo.mutate({
@@ -205,6 +234,52 @@ export class TeamManagerService {
         }
       )
     }
+  }
+
+  getMemberById(user_id: string) {
+    return {...this.members.find( m => m.user.user_id === user_id )};
+  }
+
+  changeOwner(user_id: string) {
+    const { team_id } = this.team;
+
+    this.apollo.mutate({
+      mutation: changeOwnerQuery,
+      variables: {
+        team_id,
+        user_id
+      }
+    }).pipe(
+      take(1),
+      map( (res: any) => res.data.ChangeOwner.owner )
+    ).subscribe(
+      owner => {
+        this.updateMemberPermission(this.team.owner.user_id, 2);
+        this.updateMemberPermission(owner.user_id, 3);
+        this.team.owner = owner;
+        this.teamService.updateTeam(this.team);
+        this.router.navigateByUrl(`/teams/manage/${team_id}`);
+      }
+    );
+  }
+
+  changePermission(user_id: string, permission: number) {
+
+    const { team_id } = this.team;
+
+    this.apollo.mutate({
+      mutation: changeMemberPermissionQuery,
+      variables: {
+        user_id,
+        permission,
+        team_id
+      }
+    }).pipe(take(1)).subscribe(
+      () => {
+        this.updateMemberPermission(user_id, permission);
+        this.router.navigateByUrl(`/teams/manage/${team_id}`);
+      }
+    );
   }
 
 }

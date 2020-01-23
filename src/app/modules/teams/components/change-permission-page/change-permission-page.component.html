@@ -1,0 +1,47 @@
+<section class="change-permission-wrapper">
+
+    <h2 class="d-flex align-items-center">
+        <app-icon icon="keyboard_arrow_left" class="mr-2" [button]="true" (click)="back()"></app-icon>
+        Change permission
+    </h2>
+
+    <section class="item-box mt-4">
+
+        <form [formGroup]="form">
+            
+            <div class="form-group">
+                <label for="select">Select new permission</label>
+                <select class="form-control" id="select" formControlName="permission">
+                    <option *ngIf="permission === 3" value="owner">Owner</option>
+                    <option value="moderator">Moderator</option>
+                    <option value="member">Member</option>
+                </select>
+            </div>
+            
+            <ng-template [ngIf]="selectedMember" [ngIfElse]="userList">
+                <h4>Selected</h4>
+                <div class="mt-4">
+                    <app-user-item-wrapper [user]="selectedMember?.user">
+                        <button class="btn btn-danger unselect" (click)="unselect()">Unselect</button>
+                    </app-user-item-wrapper>
+                </div>
+            </ng-template>
+            
+            <ng-template #userList>    
+                <h4>Select user</h4>
+                <div *ngFor="let member of members" class="mt-4">
+                    <app-user-item-wrapper [user]="member?.user">
+                        <button class="btn btn-primary unselect" (click)="selectUser(member)">Select</button>
+                    </app-user-item-wrapper>
+                </div>
+            </ng-template>
+
+            <footer class="mt-4 d-flex justify-content-end">
+                <button class="btn btn-primary btn-block" [disabled]="!selectedMember" (click)="changePermission()">Change</button>
+            </footer>
+
+        </form>
+
+    </section>
+
+</section>

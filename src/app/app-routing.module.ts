@@ -12,6 +12,7 @@ import { ManageTeamComponent } from './modules/teams/components/manage-team/mana
 import { InviteMemberPageComponent } from './modules/teams/components/invite-member-page/invite-member-page.component';
 import { DangerZonePageComponent } from './modules/teams/components/danger-zone-page/danger-zone-page.component';
 import { TeamInvitationPageComponent } from './modules/teams/components/team-invitation-page/team-invitation-page.component';
+import { ChangePermissionPageComponent } from './modules/teams/components/change-permission-page/change-permission-page.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
 		{ path: 'manage/:id', component: ManageTeamComponent },
 		{ path: 'invite/:id', component: InviteMemberPageComponent },
 		{ path: 'danger-zone/:id', component: DangerZonePageComponent },
+		{ path: 'change-permission', component: ChangePermissionPageComponent }
 	]}
 ];
 

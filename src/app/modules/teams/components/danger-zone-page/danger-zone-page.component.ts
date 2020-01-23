@@ -43,4 +43,8 @@ export class DangerZonePageComponent implements OnInit {
     });
   }
 
+  changeOwner() {
+    this.router.navigateByUrl('/teams/change-permission?permission=3');
+  }
+
 }

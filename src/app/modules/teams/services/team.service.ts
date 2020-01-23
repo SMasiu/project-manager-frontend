@@ -85,6 +85,12 @@ export class TeamService {
     this.teamsChanges.next([...this.teams]);
   }
 
+  updateTeam(team: TeamType) {
+    const index = this.teams.findIndex( t => t.team_id === team.team_id );
+    this.teams.splice(index, 1, team);
+    this.teamsChanges.next([...this.teams]);
+  }
+
   addMemberToTeam(team_id: string) {
     this.changeTeamMambersCount(team_id, 1);
   }

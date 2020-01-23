@@ -4,14 +4,19 @@
     
     <div class="serach-wrapper" *ngIf="teamId">
         <app-search-user (change)="setUsers($event)" [team_id]="teamId">
-            <div *ngFor="let user of users" class="user-wrapper">
-                <app-user-item-wrapper [user]="user">
-                    <div>
-                        <button class="btn btn-primary mr-3">View profile</button>
-                        <button class="btn btn-primary" (click)="inviteUser(user)">Invite to team</button>
-                    </div>
-                </app-user-item-wrapper>
-            </div>
+            <ng-template [ngIf]="users.length" [ngIfElse]="noUsers">
+                <div *ngFor="let user of users" class="user-wrapper">
+                    <app-user-item-wrapper [user]="user">
+                        <div>
+                            <button class="btn btn-primary mr-3">View profile</button>
+                            <button class="btn btn-primary" (click)="inviteUser(user)">Invite to team</button>
+                        </div>
+                    </app-user-item-wrapper>
+                </div>
+            </ng-template>
+            <ng-template #noUsers>
+                <h3 class="mt-4 text-center">No users found!</h3>
+            </ng-template>
         </app-search-user>
     </div>
 

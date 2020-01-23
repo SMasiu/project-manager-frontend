@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { UserType } from 'src/app/shared/types/user.type';
 import { TeamManagerService } from '../../services/team-manager.service';
 import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -16,7 +17,7 @@ export class UserListComponent implements OnInit {
   @Input() permission: number = 0;
   @Input() meId: string = '';
 
-  constructor(public dialog: MatDialog, private teamManagerService: TeamManagerService) { }
+  constructor(public dialog: MatDialog, private teamManagerService: TeamManagerService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -55,6 +56,10 @@ export class UserListComponent implements OnInit {
         this.teamManagerService.leaveTeam();
       }
     });
+  }
+
+  changePermission(user: UserType) {
+     this.router.navigateByUrl(`/teams/change-permission?permission=${this.permission}&user=${user.user_id}`);
   }
 
 }
