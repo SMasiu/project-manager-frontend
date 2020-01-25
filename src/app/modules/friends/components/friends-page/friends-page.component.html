@@ -1,0 +1,46 @@
+<section class="friends-page-wrapper">
+
+    <div>
+        <h2 class="d-flex align-items-center">
+            <app-icon icon="keyboard_arrow_left" class="mr-2" [button]="true" routerLink="/dashboard"></app-icon>
+            Friends
+        </h2>
+
+        <header class="friends-header">
+            <form [formGroup]="form">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="search" formControlName="search">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+            <div>
+                <button class="btn btn-primary">Invite friends</button>
+            </div>
+        </header>
+
+        <main>
+
+            <div *ngFor="let user of pagedFriends" class="mt-4">
+                <app-user-item-wrapper [user]="user">
+                    <div>
+                        <div ngbDropdown class="d-inline-block" placement="bottom-right">
+                            <button class="btn btn-outline-primary more-dropdown" ngbDropdownToggle>More</button>
+                            <div ngbDropdownMenu>
+                                <button ngbDropdownItem class="text-dark">View profile</button>
+                                <button ngbDropdownItem class="text-dark">Send message</button>
+                                <button ngbDropdownItem class="text-danger">Remove friend</button>
+                            </div>
+                        </div>
+                    </div>
+                </app-user-item-wrapper>
+            </div>
+
+        </main>
+    </div>
+    <footer class="d-flex justify-content-center">
+        <app-pages-select [itemsCount]="filtredFriends.length" [itemsOnPage]="paging.itemsOnPage" (change)="handlePageChanges($event)"></app-pages-select>
+    </footer>
+
+</section>

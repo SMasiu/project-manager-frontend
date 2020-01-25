@@ -13,6 +13,8 @@ import { InviteMemberPageComponent } from './modules/teams/components/invite-mem
 import { DangerZonePageComponent } from './modules/teams/components/danger-zone-page/danger-zone-page.component';
 import { TeamInvitationPageComponent } from './modules/teams/components/team-invitation-page/team-invitation-page.component';
 import { ChangePermissionPageComponent } from './modules/teams/components/change-permission-page/change-permission-page.component';
+import { FriendsPageWrapperComponent } from './modules/friends/components/friends-page-wrapper/friends-page-wrapper.component';
+import { FriendsPageComponent } from './modules/friends/components/friends-page/friends-page.component';
 
 
 const routes: Routes = [
@@ -29,7 +31,10 @@ const routes: Routes = [
 		{ path: 'manage/:id', component: ManageTeamComponent },
 		{ path: 'invite/:id', component: InviteMemberPageComponent },
 		{ path: 'danger-zone/:id', component: DangerZonePageComponent },
-		{ path: 'change-permission', component: ChangePermissionPageComponent }
+		{ path: 'change-permission', component: ChangePermissionPageComponent },
+	]},
+	{ path: 'friends', component: FriendsPageWrapperComponent, children: [
+		{ path: '', pathMatch: 'full', component: FriendsPageComponent }
 	]}
 ];
 

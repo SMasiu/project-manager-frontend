@@ -25,6 +25,8 @@ export class TeamPageComponent implements OnInit {
 
   displayItems: string = 'view_module';
 
+  searchSubscription: Subscription;
+
   constructor(private teamsService: TeamService) { }
 
   ngOnInit() {
@@ -50,7 +52,7 @@ export class TeamPageComponent implements OnInit {
       search: new FormControl('')
     });
 
-    this.searchForm.controls.search.valueChanges.subscribe( v => this.teamsPaging.filter(v) );
+    this.searchSubscription = this.searchForm.controls.search.valueChanges.subscribe( v => this.teamsPaging.filter(v) );
   }
 
   handlePageChanges(page: number) {
@@ -72,6 +74,7 @@ export class TeamPageComponent implements OnInit {
   ngOnDestroy() {
     this.pagingSubscription.unsubscribe();
     this.teamsSubsctiption.unsubscribe();
+    this.searchSubscription.unsubscribe();
   }
 
 }

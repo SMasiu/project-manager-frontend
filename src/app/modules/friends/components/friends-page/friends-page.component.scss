@@ -1,0 +1,21 @@
+.friends-page-wrapper {
+    padding: 50px 100px;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+
+    .friends-header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 25px;
+        margin-top: 25px;
+
+        .invite-button {
+            width: 150px;
+        }
+    }
+
+    .more-dropdown {
+        width: 115px;
+    }
+}
