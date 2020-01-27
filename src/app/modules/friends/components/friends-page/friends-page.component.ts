@@ -6,6 +6,7 @@ import { FriendsService } from '../../services/friends.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.component';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 
 @Component({
   selector: 'app-friends-page',
@@ -22,11 +23,20 @@ export class FriendsPageComponent implements OnInit {
   pagingSubscription: Subscription;
 
   friendsSubscription: Subscription;
-
+  
   form: FormGroup;
   searchSubscription: Subscription;
 
-  constructor(private friendsService: FriendsService, public dialog: MatDialog) { }
+  friendsInvitationCount: number = 0;
+  notificationSubscription: Subscription;
+
+  constructor(
+    private friendsService: FriendsService,
+    public dialog: MatDialog,
+    private notificationService: NotificationService
+  ) { }
+  
+  
 
   ngOnInit() {
     
@@ -57,6 +67,9 @@ export class FriendsPageComponent implements OnInit {
 
     this.friendsService.downloadFriends();
 
+    this.friendsInvitationCount = this.notificationService.getNotifications().friendInvitations.length;
+    this.notificationSubscription = this.notificationService.notificationsChanges.subscribe( n => this.friendsInvitationCount = n.friendInvitations.length );
+
   }
 
   handlePageChanges(page: number) {
@@ -86,6 +99,7 @@ export class FriendsPageComponent implements OnInit {
     this.pagingSubscription.unsubscribe();
     this.friendsSubscription.unsubscribe();
     this.searchSubscription.unsubscribe();
+    this.notificationSubscription.unsubscribe();
   }
   
 }

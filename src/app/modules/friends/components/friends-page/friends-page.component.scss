@@ -3,12 +3,13 @@
     min-height: 100vh;
     display: grid;
     grid-template-rows: 1fr auto;
-
+    
     .friends-header {
         display: grid;
-        grid-template-columns: 1fr auto;
+        grid-template-columns: 1fr auto auto;
+        align-items: center;
         gap: 25px;
-        margin-top: 25px;
+        margin-top: 15px;
 
         .invite-button {
             width: 150px;

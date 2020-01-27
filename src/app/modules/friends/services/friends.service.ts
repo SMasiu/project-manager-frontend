@@ -4,6 +4,7 @@ import { Apollo } from 'apollo-angular';
 import { take, map } from 'rxjs/operators';
 import { UserType } from 'src/app/shared/types/user.type';
 import { Subject } from 'rxjs';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 
 const getFriendsQuery = gql`
   {
@@ -40,6 +41,28 @@ const inviteFriendQuery = gql`
   }
 `
 
+const rejectFriendInvitation = gql`
+  mutation RejectFriendInvitation($user_id: ID!){
+    RejectFriendInvitation(user_id: $user_id) {
+      name,
+      nick,
+      surname,
+      user_id
+    }
+  }
+`
+
+const acceptFriendInvitation = gql`
+  mutation ($user_id: ID!){
+    AcceptFriendInvitation(user_id: $user_id) {
+      user_id,
+      surname,
+      name,
+      nick
+    }
+  }
+`
+
 @Injectable({
   providedIn: 'root'
 })
@@ -50,7 +73,7 @@ export class FriendsService {
   friends: UserType[] = [];
   friendsChanges: Subject<UserType[]> = new Subject();
 
-  constructor(private apollo: Apollo) { }
+  constructor(private apollo: Apollo, private notificationService: NotificationService) { }
 
   getFriends() {
     return [...this.friends];
@@ -97,6 +120,11 @@ export class FriendsService {
     });
   }
 
+  addFriend(friend: UserType) {
+    this.friends.push(friend);
+    this.emitFriends();
+  }
+
   inviteFriend(user_id: string) {
     this.apollo.mutate({
       mutation: inviteFriendQuery,
@@ -105,6 +133,31 @@ export class FriendsService {
       take(1),
     ).subscribe( friend => {
       console.log(friend);
+    });
+  }
+
+  rejectInvitation(user_id: string) {
+    this.apollo.mutate({
+      mutation: rejectFriendInvitation,
+      variables: { user_id }
+    }).pipe(
+      take(1),
+      map( (res: any) => res.data.RejectFriendInvitation )
+    ).subscribe( user => {
+      this.notificationService.removeFriendInvitation(user.user_id);
+    });
+  }
+
+  acceptInvitation(user_id: string) {
+    this.apollo.mutate({
+      mutation: acceptFriendInvitation,
+      variables: { user_id }
+    }).pipe(
+      take(1),
+      map( (res: any) => res.data.acceptFriendInvitation )
+    ).subscribe( user => {
+      this.addFriend(user);
+      this.notificationService.removeFriendInvitation(user_id);
     });
   }
 

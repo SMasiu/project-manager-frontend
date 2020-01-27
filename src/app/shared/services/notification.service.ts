@@ -34,7 +34,10 @@ const getNotifications = gql`
 })
 export class NotificationService {
 
-  notifications: NotificationType;
+  notifications: NotificationType = {
+    friendInvitations: [],
+    teamInvitations: []
+  };
   notificationsChanges: Subject<NotificationType> = new Subject();
 
   private downloaded: boolean = false;
@@ -77,6 +80,14 @@ export class NotificationService {
     const index = this.notifications.teamInvitations.findIndex( t => t.team_id === team_id );
     if(index !== -1) {
       this.notifications.teamInvitations.splice(index, 1);
+      this.emitNotifications();
+    }
+  }
+
+  removeFriendInvitation(user_id: string) {
+    const index = this.notifications.friendInvitations.findIndex( f => f.user_id === user_id );
+    if(index !== -1) {
+      this.notifications.friendInvitations.splice(index, 1);
       this.emitNotifications();
     }
   }

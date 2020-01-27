@@ -1,1 +1,22 @@
-<p>friends-invitation-page works!</p>
+<section class="friends-invitations-wrapper">
+
+    <h2 class="d-flex align-items-center">
+        <app-icon icon="keyboard_arrow_left" class="mr-2" [button]="true" routerLink="/friends"></app-icon>
+        Friends invitations
+    </h2>
+
+    <ng-template [ngIf]="friends?.length" [ngIfElse]="noInvitations">
+        <div *ngFor="let user of friends" class="mt-4">
+            <app-user-item-wrapper [user]="user">
+                <div>
+                    <button class="btn btn-danger mr-4" (click)="reject(user.user_id)">Reject invitation</button>
+                    <button class="btn btn-primary" (click)="accept(user.user_id)">Accept invitation</button>
+                </div>
+            </app-user-item-wrapper>
+        </div>
+    </ng-template>
+    <ng-template #noInvitations>
+        <h2 class="text-center mt-4">You don't have any invitations yet</h2>
+    </ng-template>
+
+</section>
