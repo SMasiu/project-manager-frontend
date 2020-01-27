@@ -31,12 +31,10 @@ const deleteFriendQuery = gql`
 const inviteFriendQuery = gql`
   mutation InviteFriend($user_id: ID!) {
     InviteFriend(user_id: $user_id) {
-      to {
-        nick,
-        name,
-        surname,
-        user_id
-      }
+      nick,
+      name,
+      surname,
+      user_id
     }
   }
 `
