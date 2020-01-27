@@ -7,9 +7,10 @@
     gap: 25px;
 
     .search-wrapper {
-        margin-top: 20px;
+        margin-top: 15px;
         display: grid;
-        grid-template-columns: 1fr auto auto;
+        grid-template-columns: 1fr repeat(3, auto);
+        align-items: center;
         gap: 50px;
     }
 

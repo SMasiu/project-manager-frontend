@@ -4,6 +4,7 @@ import { TeamType } from '../../types/team.type';
 import { Subscription } from 'rxjs';
 import Paging from 'src/app/shared/classes/paging';
 import { FormGroup, FormControl } from '@angular/forms';
+import { NotificationService } from 'src/app/shared/services/notification.service';
 
 @Component({
   selector: 'app-team-page',
@@ -27,7 +28,10 @@ export class TeamPageComponent implements OnInit {
 
   searchSubscription: Subscription;
 
-  constructor(private teamsService: TeamService) { }
+  teamInvitationsCount: number = 0;
+  notificationSubscription: Subscription;
+
+  constructor(private teamsService: TeamService, private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.teamsService.downloadTeams();
@@ -53,6 +57,9 @@ export class TeamPageComponent implements OnInit {
     });
 
     this.searchSubscription = this.searchForm.controls.search.valueChanges.subscribe( v => this.teamsPaging.filter(v) );
+
+    this.teamInvitationsCount = this.notificationService.getNotifications().teamInvitations.length;
+    this.notificationSubscription = this.notificationService.notificationsChanges.subscribe( n => this.teamInvitationsCount = n.teamInvitations.length );
   }
 
   handlePageChanges(page: number) {
@@ -75,6 +82,7 @@ export class TeamPageComponent implements OnInit {
     this.pagingSubscription.unsubscribe();
     this.teamsSubsctiption.unsubscribe();
     this.searchSubscription.unsubscribe();
+    this.notificationSubscription.unsubscribe();
   }
 
 }

@@ -16,6 +16,9 @@
                 <app-icon icon="sort_by_alpha" (click)="enableSorting()" [button]="true"></app-icon>
             </div>
             <div>
+                <app-account-info-item [noBorder]="true" [badge]="teamInvitationsCount" icon="group_add" routerLink="/teams/invitations"></app-account-info-item>
+            </div>
+            <div>
                 <button class="btn btn-primary" routerLink="/teams/create">Create new team</button>
             </div>
         </div>
