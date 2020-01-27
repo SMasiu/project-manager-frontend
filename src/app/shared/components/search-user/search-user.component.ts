@@ -14,6 +14,7 @@ export class SearchUserComponent implements OnInit {
 
   @Output() change: EventEmitter<UserType[]> = new EventEmitter();
   @Input() team_id: string;
+  @Input() friends: boolean;
 
   users: UserType[];
   count: number = 0;
@@ -48,8 +49,8 @@ export class SearchUserComponent implements OnInit {
   }
 
   getAndSave() {
-    const { offset, fullname, limit, team_id  } = this;
-    this.usersService.getUsers({limit, offset, fullname, team_id}).pipe(take(1)).subscribe(
+    const { offset, fullname, limit, team_id, friends  } = this;
+    this.usersService.getUsers({limit, offset, fullname, team_id, friends}).pipe(take(1)).subscribe(
       ({users, count}) => {
         this.count = count;
         this.setUsers(users);

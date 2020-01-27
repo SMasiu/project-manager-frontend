@@ -10,9 +10,9 @@
             </div>
         </div>
         <div class="info-wrapper">
-            <app-count-item count="1" title1="My" title2="friends"></app-count-item>
+            <app-count-item [count]="friendsCount" title1="My" title2="friends"></app-count-item>
             <app-account-info-item badge="0" title="Messages" icon="question_answer"></app-account-info-item>
-            <app-account-info-item badge="2" title="Invitations" icon="person_add" [noBorder]="true"></app-account-info-item>
+            <app-account-info-item [badge]="friendInvitations?.length || 0" title="Invitations" icon="person_add" [noBorder]="true" routerLink="/friends/invitations"></app-account-info-item>
         </div>
     </div>
     <footer>

@@ -16,27 +16,30 @@
                 </div>
             </form>
             <div>
-                <button class="btn btn-primary">Invite friends</button>
+                <button class="btn btn-primary" routerLink="/friends/invite">Invite friends</button>
             </div>
         </header>
 
         <main>
-
-            <div *ngFor="let user of pagedFriends" class="mt-4">
-                <app-user-item-wrapper [user]="user">
-                    <div>
-                        <div ngbDropdown class="d-inline-block" placement="bottom-right">
-                            <button class="btn btn-outline-primary more-dropdown" ngbDropdownToggle>More</button>
-                            <div ngbDropdownMenu>
-                                <button ngbDropdownItem class="text-dark">View profile</button>
-                                <button ngbDropdownItem class="text-dark">Send message</button>
-                                <button ngbDropdownItem class="text-danger">Remove friend</button>
+            <ng-template [ngIf]="filtredFriends.length" [ngIfElse]="noFriends"> 
+                <div *ngFor="let user of pagedFriends" class="mt-4">
+                    <app-user-item-wrapper [user]="user">
+                        <div>
+                            <div ngbDropdown class="d-inline-block" placement="bottom-right">
+                                <button class="btn btn-outline-primary more-dropdown" ngbDropdownToggle>More</button>
+                                <div ngbDropdownMenu>
+                                    <button ngbDropdownItem class="text-dark">View profile</button>
+                                    <button ngbDropdownItem class="text-dark">Send message</button>
+                                    <button ngbDropdownItem class="text-danger" (click)="openRemoveFriendDialog(user)">Remove friend</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </app-user-item-wrapper>
-            </div>
-
+                    </app-user-item-wrapper>
+                </div>
+            </ng-template>
+            <ng-template #noFriends>
+                <h2 class="text-center mt-4">You don't have any friends yet</h2>
+            </ng-template>
         </main>
     </div>
     <footer class="d-flex justify-content-center">

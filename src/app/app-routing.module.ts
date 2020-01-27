@@ -15,6 +15,8 @@ import { TeamInvitationPageComponent } from './modules/teams/components/team-inv
 import { ChangePermissionPageComponent } from './modules/teams/components/change-permission-page/change-permission-page.component';
 import { FriendsPageWrapperComponent } from './modules/friends/components/friends-page-wrapper/friends-page-wrapper.component';
 import { FriendsPageComponent } from './modules/friends/components/friends-page/friends-page.component';
+import { InviteFriendsPageComponent } from './modules/friends/components/invite-friends-page/invite-friends-page.component';
+import { FriendsInvitationPageComponent } from './modules/friends/components/friends-invitation-page/friends-invitation-page.component';
 
 
 const routes: Routes = [
@@ -22,8 +24,6 @@ const routes: Routes = [
 	{ path: 'login', component: LoginPageComponent },
 	{ path: 'register', component: RegisterPageComponent },
 	{ path: 'dashboard', component: DashboardPageComponent },
-	{ path: 'about', component: AboutPageComponent },
-	{ path: 'contact', component: ContactPageComponent },
 	{ path: 'teams', component: TeamPageWrapperComponent, children: [
 		{ path: '', pathMatch: 'full', component: TeamPageComponent },
 		{ path: 'create', component: CreateTeamPageComponent },
@@ -34,8 +34,13 @@ const routes: Routes = [
 		{ path: 'change-permission', component: ChangePermissionPageComponent },
 	]},
 	{ path: 'friends', component: FriendsPageWrapperComponent, children: [
-		{ path: '', pathMatch: 'full', component: FriendsPageComponent }
-	]}
+		{ path: '', pathMatch: 'full', component: FriendsPageComponent },
+		{ path: 'invite', component: InviteFriendsPageComponent },
+		{ path: 'invitations', component: FriendsInvitationPageComponent }
+	]},
+	{ path: 'about', component: AboutPageComponent },
+	{ path: 'contact', component: ContactPageComponent },
+	//errors!!!
 ];
 
 @NgModule({

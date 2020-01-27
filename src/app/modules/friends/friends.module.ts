@@ -6,13 +6,17 @@ import { AppRoutingModule } from 'src/app/app-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InviteFriendsPageComponent } from './components/invite-friends-page/invite-friends-page.component';
+import { FriendsInvitationPageComponent } from './components/friends-invitation-page/friends-invitation-page.component';
 
 
 
 @NgModule({
   declarations: [
     FriendsPageWrapperComponent,
-    FriendsPageComponent
+    FriendsPageComponent,
+    InviteFriendsPageComponent,
+    FriendsInvitationPageComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +29,9 @@ import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   exports: [
     FriendsPageWrapperComponent,
-    FriendsPageComponent
+    FriendsPageComponent,
+    InviteFriendsPageComponent,
+    FriendsInvitationPageComponent
   ]
 })
 export class FriendsModule { }

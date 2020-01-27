@@ -18,6 +18,12 @@ const getNotifications = gql`
           nick,
           user_id
         }
+      },
+      friendInvitations {
+        name,
+        nick,
+        surname,
+        user_id
       }
     }
   }

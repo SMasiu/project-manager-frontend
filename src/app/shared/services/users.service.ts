@@ -8,8 +8,8 @@ import { CacheQueriesService } from './cache-queries.service';
 import { QueryOptionsType } from '../types/get-user.type';
 
 const getUsersQuery = gql`
-  query GetUsersAndCount($limit: Int!, $offset: Int!, $fullname: String!, $team_id: ID!) {
-    GetUsersAndCount(fullname: $fullname, limit: $limit, offset: $offset, team_id: $team_id) {
+  query GetUsersAndCount($limit: Int!, $offset: Int!, $fullname: String!, $team_id: ID!, $friends: Boolean!) {
+    GetUsersAndCount(fullname: $fullname, limit: $limit, offset: $offset, team_id: $team_id, friends: $friends) {
       users {
         name,
         surname,
@@ -36,7 +36,9 @@ export class UsersService {
   getUsers(args: QueryOptionsType = {}): Observable<UsersAndCountType> {
     return Observable.create( observer => {
       
-      const { limit, offset, fullname, team_id } = args;
+      let { limit, offset, fullname, team_id, friends } = args;
+
+      friends = (typeof friends !== 'boolean' && !friends) ? true : friends;
 
       let name = this.cacheQueriesService.nameFromGetUsersAndCount(args);
       const GetUsersAndCount = this.cacheQueriesService.GetUsersAndCount;
@@ -45,14 +47,15 @@ export class UsersService {
         observer.next(GetUsersAndCount.get(name));
         return observer.complete();
       }
-      
+
       this.apollo.watchQuery({
         query: getUsersQuery,
         variables: {
           offset: offset || 0,
           limit: limit || 25,
           fullname: fullname || '',
-          team_id: team_id || ''
+          team_id: team_id || '',
+          friends: false
         }
       }).valueChanges.pipe(
         take(1),

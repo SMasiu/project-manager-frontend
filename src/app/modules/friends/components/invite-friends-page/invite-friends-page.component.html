@@ -1,0 +1,20 @@
+<section class="invite-friends-wrapper">
+
+    <h2 class="d-flex align-items-center">
+        <app-icon icon="keyboard_arrow_left" class="mr-2" [button]="true" routerLink="/friends"></app-icon>
+        Invite friends
+    </h2>
+
+    <div class="search-wrapper mt-4">
+        <app-search-user [friends]="false" (change)="handleUsersChanges($event)">
+            <div *ngFor="let user of users" class="mt-4">
+                <app-user-item-wrapper [user]="user">
+                    <div>
+                        <button class="btn btn-primary" (click)="inviteFriend(user.user_id)">Invite</button>
+                    </div>
+                </app-user-item-wrapper>
+            </div>
+        </app-search-user>
+    </div>
+
+</section>

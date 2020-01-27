@@ -3,5 +3,6 @@ export interface QueryOptionsType {
     limit?: number;
     fullname?: string;
     team_id?: string;
+    friends?: boolean;
 }
   

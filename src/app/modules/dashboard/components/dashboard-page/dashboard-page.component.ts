@@ -16,8 +16,8 @@ export class DashboardPageComponent implements OnInit {
   constructor(private notificationService: NotificationService) { }
 
   ngOnInit() {
-    this.notifications = this.notificationService.getNotifications();
     this.notificationSubscription = this.notificationService.notificationsChanges.subscribe( n => this.notifications = n );
+    this.notifications = this.notificationService.getNotifications();
   }
 
   ngOnDestroy() {

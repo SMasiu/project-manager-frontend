@@ -4,6 +4,8 @@ import Paging from 'src/app/shared/classes/paging';
 import { Subscription } from 'rxjs';
 import { FriendsService } from '../../services/friends.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material';
+import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.component';
 
 @Component({
   selector: 'app-friends-page',
@@ -24,7 +26,7 @@ export class FriendsPageComponent implements OnInit {
   form: FormGroup;
   searchSubscription: Subscription;
 
-  constructor(private friendsService: FriendsService) { }
+  constructor(private friendsService: FriendsService, public dialog: MatDialog) { }
 
   ngOnInit() {
     
@@ -61,10 +63,29 @@ export class FriendsPageComponent implements OnInit {
     this.paging.setPage(page);
   }
 
+  openRemoveFriendDialog(user: UserType): void {
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      width: 'auto',
+      data: {
+        text: `
+          <p>Are you sure to remove: <p>
+          <p><strong>${user.name} ${user.surname}</strong>?</p>
+        `,
+        successBtnText: 'Remove'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        this.friendsService.removeFriend(user.user_id);
+      }
+    });
+  }
+
   ngOnDestroy() {
     this.pagingSubscription.unsubscribe();
     this.friendsSubscription.unsubscribe();
     this.searchSubscription.unsubscribe();
   }
-
+  
 }
