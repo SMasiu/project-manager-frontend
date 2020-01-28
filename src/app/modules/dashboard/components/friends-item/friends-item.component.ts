@@ -19,7 +19,7 @@ export class FriendsItemComponent implements OnInit {
 
   ngOnInit() {
     this.friendsCount = this.friendsService.friends.length;
-    this.friendsSubscription = this.friendsService.friendsChanges.subscribe( f => this.friendsCount = f.length );
+    this.friendsSubscription = this.friendsService.friendsChanges.subscribe( f => this.friendsCount = f.friends.length );
     this.friendsService.downloadFriends();
   }
 

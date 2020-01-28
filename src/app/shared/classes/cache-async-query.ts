@@ -1,6 +1,6 @@
 export class CacheAsyncQuery {
 
-    data: {[key: string]: any} = {  };
+    data: {[key: string]: any} = { };
 
     add(name: string, data: any) {
         this.data[name] = data;
@@ -25,6 +25,10 @@ export class CacheAsyncQuery {
 
     reomve(name: string) {
         delete this.data[name];
+    }
+
+    clear() {
+        this.data = { };
     }
 
 }

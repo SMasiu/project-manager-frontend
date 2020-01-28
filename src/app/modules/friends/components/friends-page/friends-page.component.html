@@ -27,13 +27,19 @@
             <ng-template [ngIf]="filtredFriends.length" [ngIfElse]="noFriends"> 
                 <div *ngFor="let user of pagedFriends" class="mt-4">
                     <app-user-item-wrapper [user]="user">
-                        <div>
+                        <div class="d-flex align-items-center">
+                            <span *ngIf="!user.accepted" class="mr-3 text-secondary">(Invited)</span>
                             <div ngbDropdown class="d-inline-block" placement="bottom-right">
                                 <button class="btn btn-outline-primary more-dropdown" ngbDropdownToggle>More</button>
                                 <div ngbDropdownMenu>
                                     <button ngbDropdownItem class="text-dark">View profile</button>
-                                    <button ngbDropdownItem class="text-dark">Send message</button>
-                                    <button ngbDropdownItem class="text-danger" (click)="openRemoveFriendDialog(user)">Remove friend</button>
+                                    <ng-template [ngIf]="user.accepted" [ngIfElse]="notAccepted">
+                                        <button ngbDropdownItem class="text-dark">Send message</button>
+                                        <button ngbDropdownItem class="text-danger" (click)="openRemoveFriendDialog(user)">Remove friend</button>
+                                    </ng-template>
+                                    <ng-template #notAccepted>
+                                        <button ngbDropdownItem class="text-danger" (click)="cancelInvitation(user.user_id)">Cancel invitation</button>
+                                    </ng-template>
                                 </div>
                             </div>
                         </div>

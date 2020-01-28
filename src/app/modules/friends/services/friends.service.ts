@@ -8,11 +8,19 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
 
 const getFriendsQuery = gql`
   {
-    GetFriends {
-      name,
-      surname,
-      user_id,
-      nick
+    GetAllFriends {
+      my {
+        name,
+        nick,
+        surname,
+        user_id
+      },
+      invited {
+        name,
+        surname,
+        nick,
+        user_id
+      }
     }
   }
 `
@@ -61,6 +69,22 @@ const acceptFriendInvitation = gql`
   }
 `
 
+const cancelInvitationQuery = gql`
+  mutation CancelFriendInvitation ($user_id: ID!){
+    CancelFriendInvitation (user_id: $user_id) {
+      name,
+      surname,
+      nick,
+      user_id
+    }
+  }
+`
+
+interface FriendsChanges {
+  friends: UserType[];
+  invited: UserType[];
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -69,12 +93,17 @@ export class FriendsService {
   downloaded: boolean = false;
 
   friends: UserType[] = [];
-  friendsChanges: Subject<UserType[]> = new Subject();
+  invitedFriends: UserType[] = [];
+  friendsChanges: Subject<FriendsChanges> = new Subject();
 
   constructor(private apollo: Apollo, private notificationService: NotificationService) { }
 
   getFriends() {
     return [...this.friends];
+  }
+
+  getInvitedFriends() {
+    return [...this.invitedFriends]
   }
 
   downloadFriends() {
@@ -83,15 +112,15 @@ export class FriendsService {
       return false;
     }
 
-
     this.apollo.watchQuery({
       query: getFriendsQuery
     }).valueChanges.pipe(
       take(1),
-      map((res: any) => res.data.GetFriends)
+      map((res: any) => res.data.GetAllFriends)
     ).subscribe(
       friends => {
-        this.friends = friends;
+        this.friends = friends.my;
+        this.invitedFriends = friends.invited;
         this.downloaded = true;
         this.emitFriends();
       }
@@ -99,7 +128,10 @@ export class FriendsService {
   }
 
   emitFriends() {
-    this.friendsChanges.next([...this.friends]);
+    this.friendsChanges.next({
+      friends: [...this.friends],
+      invited: [...this.invitedFriends]
+    });
   }
 
   removeFriend(user_id: string) {
@@ -123,14 +155,28 @@ export class FriendsService {
     this.emitFriends();
   }
 
+  addInvitedFriend(friend: UserType) {
+    this.invitedFriends.push(friend);
+    this.emitFriends();
+  }
+
+  removeInvitedFriend(user_id: string) {
+    const index = this.invitedFriends.findIndex( i => i.user_id === user_id );
+    if(index !== -1) {
+      this.invitedFriends.splice(index, 1);
+      this.emitFriends();
+    }
+  }
+
   inviteFriend(user_id: string) {
     this.apollo.mutate({
       mutation: inviteFriendQuery,
       variables: { user_id }
     }).pipe(
       take(1),
+      map( (res: any) => res.data.InviteFriend )
     ).subscribe( friend => {
-      console.log(friend);
+      this.addInvitedFriend(friend);
     });
   }
 
@@ -156,6 +202,18 @@ export class FriendsService {
     ).subscribe( user => {
       this.addFriend(user);
       this.notificationService.removeFriendInvitation(user_id);
+    });
+  }
+
+  cancelInvitation(user_id: string) {
+    this.apollo.mutate({
+      mutation: cancelInvitationQuery,
+      variables: { user_id }
+    }).pipe(
+      take(1),
+      map( (res: any) => res.data.CancelFriendInvitation )
+    ).subscribe( user => {
+      this.removeInvitedFriend(user.user_id);
     });
   }
 

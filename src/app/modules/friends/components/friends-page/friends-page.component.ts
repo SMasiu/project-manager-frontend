@@ -7,6 +7,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.component';
 import { NotificationService } from 'src/app/shared/services/notification.service';
+import { mapUserToFriends } from '../../functions/map-user-to-friend';
+import { FriendType } from '../../types/friend.type';
 
 @Component({
   selector: 'app-friends-page',
@@ -15,9 +17,11 @@ import { NotificationService } from 'src/app/shared/services/notification.servic
 })
 export class FriendsPageComponent implements OnInit {
 
-  friends: UserType[] = [];
-  filtredFriends: UserType[] = [];
-  pagedFriends: UserType[] = [];
+  friends: FriendType[] = [];
+  filtredFriends: FriendType[] = [];
+  pagedFriends: FriendType[] = [];
+
+  invitedFriends: FriendType[] = [];
 
   paging: Paging;
   pagingSubscription: Subscription;
@@ -35,8 +39,6 @@ export class FriendsPageComponent implements OnInit {
     public dialog: MatDialog,
     private notificationService: NotificationService
   ) { }
-  
-  
 
   ngOnInit() {
     
@@ -50,11 +52,12 @@ export class FriendsPageComponent implements OnInit {
       itemsOnPage: 2
     });
     
-    this.friendsSubscription = this.friendsService.friendsChanges.subscribe( friends => {
-      this.friends = friends;
-      this.paging.setData(this.friends);
+    this.friendsSubscription = this.friendsService.friendsChanges.subscribe( friendsAll => {
+      this.friends = mapUserToFriends(friendsAll.friends, true);
+      this.invitedFriends = mapUserToFriends(friendsAll.invited, false);
+      this.paging.setData([...this.friends,...this.invitedFriends]);
     });
-    
+
     this.pagingSubscription = this.paging.valueChanges.subscribe( data => {
       this.filtredFriends = data.filtredData;
       this.pagedFriends = data.pageData;
@@ -62,8 +65,9 @@ export class FriendsPageComponent implements OnInit {
     
     this.searchSubscription = this.form.controls.search.valueChanges.subscribe( v => this.paging.filter(v));
     
-    this.friends = this.friendsService.getFriends();
-    this.paging.setData(this.friends);
+    this.friends = mapUserToFriends(this.friendsService.getFriends(), true);
+    this.invitedFriends = mapUserToFriends(this.friendsService.getInvitedFriends(), false);
+    this.paging.setData([...this.friends, ...this.invitedFriends]);
 
     this.friendsService.downloadFriends();
 
@@ -93,6 +97,10 @@ export class FriendsPageComponent implements OnInit {
         this.friendsService.removeFriend(user.user_id);
       }
     });
+  }
+
+  cancelInvitation(user_id: string) {
+    this.friendsService.cancelInvitation(user_id);
   }
 
   ngOnDestroy() {
