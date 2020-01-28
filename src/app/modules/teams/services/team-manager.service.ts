@@ -92,6 +92,8 @@ export class TeamManagerService {
 
   membersChanges: Subject<MemberType[]> = new Subject();
 
+  alredyInvitedMembers: string[] = [];
+
   constructor(
     private apollo: Apollo,
     private router: Router,
@@ -100,6 +102,7 @@ export class TeamManagerService {
 
   setTeam(team: TeamType) {
     this.team = team;
+    this.alredyInvitedMembers = [];
   }
 
   setMembers(members: MemberType[]) {
@@ -111,15 +114,24 @@ export class TeamManagerService {
     this.members.push(member);
     this.teamService.addMemberToTeam(this.team.team_id);
     this.team.membersCount++;
+    this.alredyInvitedMembers.push(member.user.user_id);
     this.updateMembers();
   }
 
   removeMember(member_id: string) {
     const index = this.members.findIndex( m => m.user.user_id === member_id );
     if(index !== -1) {
-      this.members.splice(index, 1);
-      this.teamService.removeMemberFromTeam(this.team.team_id);      
-      this.team.membersCount--;
+      let deleted = this.members.splice(index, 1);
+      if(deleted[0].permission !== 0) {
+        this.teamService.removeMemberFromTeam(this.team.team_id);
+        this.team.membersCount--;
+      }
+
+      let idx = this.alredyInvitedMembers.findIndex( a => a === member_id );
+      if(idx !== -1) {
+        this.alredyInvitedMembers.splice(idx, 1);
+      }
+
       this.updateMembers();
     }
   }

@@ -8,8 +8,13 @@
                 <div *ngFor="let user of users" class="user-wrapper">
                     <app-user-item-wrapper [user]="user">
                         <div>
-                            <button class="btn btn-primary mr-3">View profile</button>
-                            <button class="btn btn-primary" (click)="inviteUser(user)">Invite to team</button>
+                            <button class="btn btn-primary mr-3 btn-scale">View profile</button>
+                            <ng-template [ngIf]="isInInvited(user.user_id)" [ngIfElse]="invited">
+                                <button class="btn btn-primary btn-scale" (click)="inviteUser(user)">Invite to team</button>
+                            </ng-template>
+                            <ng-template #invited>
+                                <button class="btn btn-danger btn-scale" (click)="cancelInvitation(user.user_id)">Cancel invitation</button>
+                            </ng-template>
                         </div>
                     </app-user-item-wrapper>
                 </div>

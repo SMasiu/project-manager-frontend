@@ -55,7 +55,7 @@ export class UsersService {
           limit: limit || 25,
           fullname: fullname || '',
           team_id: team_id || '',
-          friends: false
+          friends: friends
         }
       }).valueChanges.pipe(
         take(1),

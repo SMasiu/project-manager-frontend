@@ -36,4 +36,12 @@ export class InviteMemberPageComponent implements OnInit {
     this.router.navigateByUrl(`teams/manage/${this.teamId}`);
   }
 
+  isInInvited(user_id: string) {
+    return this.teamManagerService.alredyInvitedMembers.findIndex( a => a === user_id ) === -1;
+  }
+
+  cancelInvitation(user_id: string) {
+    this.teamManagerService.kickMember(user_id);
+  }
+
 }

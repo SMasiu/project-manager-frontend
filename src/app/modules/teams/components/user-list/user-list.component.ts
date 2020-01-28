@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MemberType } from '../../types/member.type';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { UserType } from 'src/app/shared/types/user.type';
 import { TeamManagerService } from '../../services/team-manager.service';
 import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.component';
