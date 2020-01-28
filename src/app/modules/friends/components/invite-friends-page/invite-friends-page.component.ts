@@ -16,12 +16,20 @@ export class InviteFriendsPageComponent implements OnInit {
   ngOnInit() {
   }
 
+  isAlredyInvited(user_id) {
+    return this.friendsService.alredyInvitedFriends.findIndex( a => a === user_id ) === -1;
+  }
+
   handleUsersChanges(users: UserType[]) {
     this.users = users;
   }
 
   inviteFriend(id: string) {
     this.friendsService.inviteFriend(id);
+  }
+
+  cancelInvitation(user_id: string) {
+    this.friendsService.cancelInvitation(user_id);
   }
 
 }

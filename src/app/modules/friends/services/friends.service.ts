@@ -96,6 +96,8 @@ export class FriendsService {
   invitedFriends: UserType[] = [];
   friendsChanges: Subject<FriendsChanges> = new Subject();
 
+  alredyInvitedFriends: string[] = [];
+
   constructor(private apollo: Apollo, private notificationService: NotificationService) { }
 
   getFriends() {
@@ -157,6 +159,7 @@ export class FriendsService {
 
   addInvitedFriend(friend: UserType) {
     this.invitedFriends.push(friend);
+    this.alredyInvitedFriends.push(friend.user_id);
     this.emitFriends();
   }
 
@@ -165,6 +168,11 @@ export class FriendsService {
     if(index !== -1) {
       this.invitedFriends.splice(index, 1);
       this.emitFriends();
+
+      let idx = this.alredyInvitedFriends.findIndex( a => a === user_id );
+      if(idx !== -1) {
+        this.alredyInvitedFriends.splice(idx, 1);
+      }
     }
   }
 
