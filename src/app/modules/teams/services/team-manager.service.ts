@@ -102,7 +102,7 @@ export class TeamManagerService {
 
   setTeam(team: TeamType) {
     this.team = team;
-    this.alredyInvitedMembers = [];
+    this.alredyInvitedMembers = this.teamService.getAlredyInvitedMembersTeams(team.team_id);
   }
 
   setMembers(members: MemberType[]) {
@@ -112,9 +112,8 @@ export class TeamManagerService {
 
   addMember(member: MemberType) {
     this.members.push(member);
-    this.teamService.addMemberToTeam(this.team.team_id);
-    this.team.membersCount++;
     this.alredyInvitedMembers.push(member.user.user_id);
+    this.teamService.addAlredyInvitedMembersTeams(this.team.team_id, [...this.alredyInvitedMembers]);
     this.updateMembers();
   }
 
@@ -130,6 +129,7 @@ export class TeamManagerService {
       let idx = this.alredyInvitedMembers.findIndex( a => a === member_id );
       if(idx !== -1) {
         this.alredyInvitedMembers.splice(idx, 1);
+        this.teamService.addAlredyInvitedMembersTeams(this.team.team_id, [...this.alredyInvitedMembers]);
       }
 
       this.updateMembers();

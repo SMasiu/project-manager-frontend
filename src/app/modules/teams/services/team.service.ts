@@ -50,7 +50,20 @@ export class TeamService {
 
   teamMembers = new CacheAsyncQuery();
 
+  alredyInvitedMembersTeams: {[key: string]: string[]} = {}
+
   constructor(private apollo: Apollo, private notificationService: NotificationService) { }
+
+  addAlredyInvitedMembersTeams(id: string, data: string[]) {
+    this.alredyInvitedMembersTeams[id] = data;
+  }
+
+  getAlredyInvitedMembersTeams(id: string) {
+    if(this.alredyInvitedMembersTeams[id]) {
+      return [...this.alredyInvitedMembersTeams[id]];
+    }
+    return [];
+  }
 
   setTeams(teams) {
     this.teams = teams;
