@@ -5,6 +5,7 @@ import { ProjectsWrapperPageComponent } from './components/projects-wrapper-page
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { ProjectItemComponent } from './components/project-item/project-item.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -17,7 +18,9 @@ import { ProjectItemComponent } from './components/project-item/project-item.com
   imports: [
     CommonModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     ProjectsPageComponent,

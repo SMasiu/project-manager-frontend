@@ -21,7 +21,7 @@ export class SearchUserComponent implements OnInit {
 
   offset: number = 0;
   fullname: string = '';
-  limit: number = 3;
+  limit: number = 8;
 
   form: FormGroup;
   fullnameSubscription: Subscription;

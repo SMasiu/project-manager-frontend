@@ -49,7 +49,7 @@ export class FriendsPageComponent implements OnInit {
     this.paging = new Paging({
       filterCondition: (d, v) => !v ? true : `${d.name} ${d.surname} ${d.nick}`.search(v) !== -1,
       sortCondition: (x, y) => 0,
-      itemsOnPage: 2
+      itemsOnPage: 8
     });
     
     this.friendsSubscription = this.friendsService.friendsChanges.subscribe( friendsAll => {

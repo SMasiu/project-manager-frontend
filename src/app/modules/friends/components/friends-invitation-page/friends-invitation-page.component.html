@@ -6,7 +6,7 @@
     </h2>
 
     <ng-template [ngIf]="friends?.length" [ngIfElse]="noInvitations">
-        <div *ngFor="let user of friends" class="mt-4">
+        <div *ngFor="let user of friends" class="mt-4 item-box">
             <app-user-item-wrapper [user]="user">
                 <div>
                     <button class="btn btn-danger mr-4" (click)="reject(user.user_id)">Reject invitation</button>

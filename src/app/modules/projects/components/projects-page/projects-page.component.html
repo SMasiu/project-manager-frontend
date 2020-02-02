@@ -1,24 +1,42 @@
 <section class="projects-wrapper">
+    <div>
+        <h2 class="d-flex align-items-center">
+            <app-icon icon="keyboard_arrow_left" class="mr-2" [button]="true" routerLink="/dashboard"></app-icon>
+            Projects
+        </h2>
 
-    <h2 class="d-flex align-items-center">
-        <app-icon icon="keyboard_arrow_left" class="mr-2" [button]="true" routerLink="/dashboard"></app-icon>
-        Projects
-    </h2>
+        <header class="projects-header mt-4">
+            <form [formGroup]="form">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="search" formControlName="search">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary">Search</button>
+                    </div>
+                </div>
+            </form>
+            <div>
+                <button class="btn btn-primary btn-scale">Create project</button>
+            </div>
+        </header>
 
-    <section class="mt-4">
+        <section class="mt-4">
 
-        <app-async-content [loading]="loading">
-            
-            <div class="projects-list-wrapper">
+            <app-async-content [loading]="loading">
+                
+                <div class="projects-list-wrapper">
 
-                <div *ngFor="let project of projects">
-                    <app-project-item [project]="project"></app-project-item>
+                    <div *ngFor="let project of pagedProjects">
+                        <app-project-item [project]="project"></app-project-item>
+                    </div>
+
                 </div>
 
-            </div>
+            </app-async-content>
 
-        </app-async-content>
-
-    </section>
+        </section>
+    </div>
+    <footer class="d-flex justify-content-center">
+        <app-pages-select [itemsCount]="filtredProjects.length" [itemsOnPage]="paging.itemsOnPage" (change)="handlePageChanges($event)"></app-pages-select>
+    </footer>
 
 </section>

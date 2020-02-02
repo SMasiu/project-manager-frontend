@@ -1,3 +1,6 @@
 .invite-friends-wrapper {
     padding: 50px 100px;
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr;
 }

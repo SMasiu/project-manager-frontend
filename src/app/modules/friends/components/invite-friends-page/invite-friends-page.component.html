@@ -7,7 +7,7 @@
 
     <div class="search-wrapper mt-4">
         <app-search-user [friends]="false" (change)="handleUsersChanges($event)">
-            <div *ngFor="let user of users" class="mt-4">
+            <div *ngFor="let user of users" class="mt-4 item-box">
                 <app-user-item-wrapper [user]="user">
                     <div>
                         <ng-template [ngIf]="isAlredyInvited(user.user_id)" [ngIfElse]="invited">

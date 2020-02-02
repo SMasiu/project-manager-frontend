@@ -59,7 +59,7 @@ const rejectFriendInvitation = gql`
 `
 
 const acceptFriendInvitation = gql`
-  mutation ($user_id: ID!){
+  mutation AcceptFriendInvitation($user_id: ID!) {
     AcceptFriendInvitation(user_id: $user_id) {
       user_id,
       surname,
@@ -206,7 +206,7 @@ export class FriendsService {
       variables: { user_id }
     }).pipe(
       take(1),
-      map( (res: any) => res.data.acceptFriendInvitation )
+      map( (res: any) => res.data.AcceptFriendInvitation )
     ).subscribe( user => {
       this.addFriend(user);
       this.notificationService.removeFriendInvitation(user_id);

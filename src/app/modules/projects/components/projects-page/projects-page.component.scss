@@ -1,5 +1,14 @@
 .projects-wrapper {
     padding: 50px 100px;
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: 1fr auto;
+
+    .projects-header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 25px;
+    }
 
     .projects-list-wrapper {
         display: grid;

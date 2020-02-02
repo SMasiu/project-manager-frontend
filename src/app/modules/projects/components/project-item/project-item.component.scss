@@ -1,7 +1,7 @@
 .project-item-wrapper {
     min-height: 100%;
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: 1fr auto auto;
 
     .project-item {
 
@@ -9,22 +9,38 @@
         grid-template-columns: 175px 1fr;
         gap: 25px;
 
+        .item-list {
+            border-bottom: 1px solid var(--secondary);
+        }
+
         .project-info {
 
             min-height: 100%;
             display: grid;
             grid-template-rows: 1fr auto;
-
+            
+            
             .project-description {
+                
                 p {
                     margin: 0;
                 }
-
+                
                 .description-text {
                     text-transform: uppercase;
                     font-size: 10px;
                 }
             }
         }
+
+    }
+    .read-more-btn {
+        padding-left: 200px;
+    }
+
+    .project-footer {
+        display: grid;
+        grid-template-columns: 175px 1fr;
+        gap: 25px;
     }
 }

@@ -1,14 +1,14 @@
-<article class="item-box project-item-wrapper">
-    <h4>{{project.name}}</h4>
-
+<article class="item-box project-item-wrapper" *ngIf="project && project.creator">
+    
     <div class="project-item">
         <div>
             <app-profile-image path="assets/profile.jpg"></app-profile-image>
         </div>
         <div class="mt-2 mb-2">
+            <h3><strong>{{project.name}}</strong></h3>
             <div class="project-info">
                 <ng-template [ngIf]="!more" [ngIfElse]="readMore">
-                    <app-item-list [items]="[
+                    <app-item-list class="item-list" [items]="[
                         { header: 'owner', value: project.creator | fullname },
                         { header: 'team', value: project.team?.name || 'no team' },
                         { header: 'open', value: project.open | bool }
@@ -20,14 +20,14 @@
                         <p>{{project.description}}</p>
                     </div>
                 </ng-template>
-                <div class="mb-3 d-flex justify-content-center">
-                    <button class="btn btn-sm btn-scale" (click)="toogleMore()">{{moreBtnText}}</button>
-                </div>
+                
             </div>
         </div>
     </div>
-
-    <footer class="d-flex justify-content-between">
+    <div class="mb-3 d-flex justify-content-center read-more-btn">
+        <button class="btn btn-sm btn-scale" (click)="toogleMore()">{{moreBtnText}}</button>
+    </div>
+    <footer class="project-footer">
         <button class="btn btn-primary btn-scale">Manage project</button>
         <button class="btn btn-primary btn-scale">Go to project</button>
     </footer>
