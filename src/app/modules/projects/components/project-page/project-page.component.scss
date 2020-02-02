@@ -1,0 +1,47 @@
+.project-wrapper {
+    padding: 50px 60px;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
+    
+    .header-wrapper {
+        padding: 0 40px;
+        height: 100px;
+    }
+
+    main {
+        overflow-y: auto;
+        min-height: calc(100vh - 250px);
+
+        &::-webkit-scrollbar {
+            width:15px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: var(--secondary);
+            border-radius:50px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: var(--dark);
+            border-radius:50px;
+        }
+    }
+
+    .column-wrapper {
+        padding: 20px;
+        display: flex;
+        min-height: inherit;
+    }
+
+    .column {
+        width: 300px !important;
+        min-width: 300px !important;
+        margin: 0 20px;
+        min-height: 100%;
+    }
+
+    .column.cdk-drag-placeholder {
+        opacity: 0.2;
+    }
+}

@@ -19,6 +19,7 @@ import { InviteFriendsPageComponent } from './modules/friends/components/invite-
 import { FriendsInvitationPageComponent } from './modules/friends/components/friends-invitation-page/friends-invitation-page.component';
 import { ProjectsWrapperPageComponent } from './modules/projects/components/projects-wrapper-page/projects-wrapper-page.component';
 import { ProjectsPageComponent } from './modules/projects/components/projects-page/projects-page.component';
+import { ProjectPageComponent } from './modules/projects/components/project-page/project-page.component';
 
 
 const routes: Routes = [
@@ -41,7 +42,8 @@ const routes: Routes = [
 		{ path: 'invitations', component: FriendsInvitationPageComponent }
 	]},
 	{ path: 'projects', component: ProjectsWrapperPageComponent, children: [
-		{ path: '', pathMatch: 'full', component: ProjectsPageComponent }
+		{ path: '', pathMatch: 'full', component: ProjectsPageComponent },
+		{ path: 'project/:id', component: ProjectPageComponent }
 	]}, 
 	{ path: 'about', component: AboutPageComponent },
 	{ path: 'contact', component: ContactPageComponent },
