@@ -20,6 +20,7 @@ import { AsideMenuComponent } from './shared/components/aside-menu/aside-menu.co
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TeamsModule } from './modules/teams/teams.module';
 import { FriendsModule } from './modules/friends/friends.module';
+import { ProjectsModule } from './modules/projects/projects.module';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { FriendsModule } from './modules/friends/friends.module';
     SharedModule,
     NoopAnimationsModule,
     TeamsModule,
-    FriendsModule
+    FriendsModule,
+    ProjectsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,30 @@
+.project-item-wrapper {
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+
+    .project-item {
+
+        display: grid;
+        grid-template-columns: 175px 1fr;
+        gap: 25px;
+
+        .project-info {
+
+            min-height: 100%;
+            display: grid;
+            grid-template-rows: 1fr auto;
+
+            .project-description {
+                p {
+                    margin: 0;
+                }
+
+                .description-text {
+                    text-transform: uppercase;
+                    font-size: 10px;
+                }
+            }
+        }
+    }
+}

@@ -17,6 +17,8 @@ import { FriendsPageWrapperComponent } from './modules/friends/components/friend
 import { FriendsPageComponent } from './modules/friends/components/friends-page/friends-page.component';
 import { InviteFriendsPageComponent } from './modules/friends/components/invite-friends-page/invite-friends-page.component';
 import { FriendsInvitationPageComponent } from './modules/friends/components/friends-invitation-page/friends-invitation-page.component';
+import { ProjectsWrapperPageComponent } from './modules/projects/components/projects-wrapper-page/projects-wrapper-page.component';
+import { ProjectsPageComponent } from './modules/projects/components/projects-page/projects-page.component';
 
 
 const routes: Routes = [
@@ -38,6 +40,9 @@ const routes: Routes = [
 		{ path: 'invite', component: InviteFriendsPageComponent },
 		{ path: 'invitations', component: FriendsInvitationPageComponent }
 	]},
+	{ path: 'projects', component: ProjectsWrapperPageComponent, children: [
+		{ path: '', pathMatch: 'full', component: ProjectsPageComponent }
+	]}, 
 	{ path: 'about', component: AboutPageComponent },
 	{ path: 'contact', component: ContactPageComponent },
 	//errors!!!

@@ -1,0 +1,24 @@
+<section class="projects-wrapper">
+
+    <h2 class="d-flex align-items-center">
+        <app-icon icon="keyboard_arrow_left" class="mr-2" [button]="true" routerLink="/dashboard"></app-icon>
+        Projects
+    </h2>
+
+    <section class="mt-4">
+
+        <app-async-content [loading]="loading">
+            
+            <div class="projects-list-wrapper">
+
+                <div *ngFor="let project of projects">
+                    <app-project-item [project]="project"></app-project-item>
+                </div>
+
+            </div>
+
+        </app-async-content>
+
+    </section>
+
+</section>

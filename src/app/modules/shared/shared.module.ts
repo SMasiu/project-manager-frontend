@@ -15,6 +15,8 @@ import { SearchUserComponent } from 'src/app/shared/components/search-user/searc
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.component';
 import { ConfirmTextComponent } from 'src/app/shared/components/confirm-text/confirm-text.component';
+import { AsyncContentComponent } from 'src/app/shared/components/async-content/async-content.component';
+import { BoolPipe } from 'src/app/shared/pipes/bool.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ConfirmTextComponent } from 'src/app/shared/components/confirm-text/con
     UserItemWrapperComponent,
     SearchUserComponent,
     ConfirmComponent,
-    ConfirmTextComponent
+    ConfirmTextComponent,
+    AsyncContentComponent,
+    BoolPipe
   ],
   entryComponents: [
     ConfirmComponent,
@@ -54,7 +58,9 @@ import { ConfirmTextComponent } from 'src/app/shared/components/confirm-text/con
     CountItemComponent,
     AccountInfoItemComponent,
     UserItemWrapperComponent,
-    SearchUserComponent
+    SearchUserComponent,
+    AsyncContentComponent,
+    BoolPipe
   ]
 })
 export class SharedModule { }

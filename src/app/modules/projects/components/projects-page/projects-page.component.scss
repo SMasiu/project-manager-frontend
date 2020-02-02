@@ -1,0 +1,9 @@
+.projects-wrapper {
+    padding: 50px 100px;
+
+    .projects-list-wrapper {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+    }
+}
