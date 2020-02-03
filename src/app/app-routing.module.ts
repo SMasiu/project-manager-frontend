@@ -32,8 +32,8 @@ const routes: Routes = [
 		{ path: 'create', component: CreateTeamPageComponent },
 		{ path: 'invitations', component: TeamInvitationPageComponent },
 		{ path: 'manage/:id', component: ManageTeamComponent },
-		{ path: 'invite/:id', component: InviteMemberPageComponent },
-		{ path: 'danger-zone/:id', component: DangerZonePageComponent },
+		{ path: 'invite', component: InviteMemberPageComponent },
+		{ path: 'danger-zone', component: DangerZonePageComponent },
 		{ path: 'change-permission', component: ChangePermissionPageComponent },
 	]},
 	{ path: 'friends', component: FriendsPageWrapperComponent, children: [

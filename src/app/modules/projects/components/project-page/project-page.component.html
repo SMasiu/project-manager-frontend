@@ -9,26 +9,47 @@
         <header class="mt-4 d-flex justify-content-between">
             <div>
                 <button class="btn btn-primary btn-scale mr-4">New column</button>
-                <button class="btn btn-primary btn-scale">New task</button>
+                <button class="btn btn-primary btn-scale mr-4">New task</button>
+                <button class="btn btn-primary btn-scale">Column order</button>
             </div>
             <button class="btn btn-primary btn-scale">Manage project</button>
         </header>
 
     </div>
-    <main class="mt-4">
+    <div class="main-wrapper">
+        <app-async-content [loading]="loading">
+            <main class="" *ngIf="project" cdkDropListGroup>
 
-        <section 
-            class="column-wrapper"
-            [ngStyle]="{'width': getWidth() + 'px'}"
-            cdkDropList
-            cdkDropListOrientation="horizontal"
-            (cdkDropListDropped)="drop($event)">
+                <section class="column-wrapper" [ngStyle]="{'width': getWidth() + 'px'}">
+                    <div class="item-box column" *ngFor="let col of project.columns">
+                        <header class="column-header">
+                            <h6>{{col.name}}</h6>
+                        </header>
+                        <section class="tasks-wrapper"
+                            cdkDropList
+                            [cdkDropListData]="col.tasks"
+                            (cdkDropListDropped)="dropTask($event)">
 
-                <div class="item-box column" *ngFor="let t of timePeriods" cdkDrag>
-                    {{t}}
-                </div>
-        </section>
+                            <div *ngFor="let task of col.tasks" cdkDrag class="task">
+                                <app-task-item [task]="task"></app-task-item>
+                            </div>
 
-    </main>
+                        </section>
+                    </div>
+                    <div class="item-box column">
+                        <header class="column-header">
+                            <h6>Options</h6>
+                        </header>
+                        <section class="tasks-wrapper">
+                            <button class="btn btn-primary btn-block mt-2">Create new column</button>
+                            <button class="btn btn-primary btn-block mt-3">Create new task</button>
+                            <button class="btn btn-primary btn-block mt-3">Change column order</button>
+                            <button class="btn btn-primary btn-block mt-3">Manage project</button>
+                        </section>
+                    </div>
+                </section>
 
+            </main>
+        </app-async-content>
+    </div>
 </section>

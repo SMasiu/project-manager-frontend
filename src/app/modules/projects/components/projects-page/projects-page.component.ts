@@ -50,10 +50,10 @@ export class ProjectsPageComponent implements OnInit {
     });
 
     this.searchSubscription = this.form.controls.search.valueChanges.subscribe( v => this.paging.filter(v));
-
+    
     this.projects = this.projectsService.getProjects();
-    this.paging.setData([this.projects]);
-
+    this.paging.setData([...this.projects]);
+    
     if(this.projectsService.downloaded) {
       this.loading = false;
     }

@@ -8,6 +8,7 @@ import { ProjectItemComponent } from './components/project-item/project-item.com
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProjectPageComponent } from './components/project-page/project-page.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { TaskItemComponent } from './components/task-item/task-item.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     ProjectsPageComponent,
     ProjectsWrapperPageComponent,
     ProjectItemComponent,
-    ProjectPageComponent
+    ProjectPageComponent,
+    TaskItemComponent
   ],
   imports: [
     CommonModule,

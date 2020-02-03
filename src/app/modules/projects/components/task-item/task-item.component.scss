@@ -1,0 +1,24 @@
+.task-wrapper {
+    border-left: 3px solid var(--primary);
+    background-color: var(--light);
+    margin: 10px 0;
+    box-shadow: 0 0 2px var(--dark);
+    border-radius: 0 2px 2px 0;
+    
+    .task-header {
+        cursor: move;
+        padding: 10px;
+
+        h6 {
+            font-weight: bold;
+            text-align: center;
+            margin: 0;
+            border-bottom: 1px solid var(--secondary);
+            padding-bottom: 10px;
+        }
+    }
+
+    .task-body {
+        padding: 0 10px 10px 10px;
+    }
+}

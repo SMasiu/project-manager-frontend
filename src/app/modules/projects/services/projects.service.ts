@@ -1,38 +1,9 @@
 import { Injectable } from '@angular/core';
-import gql from 'graphql-tag';
 import { Apollo } from 'apollo-angular';
-import { ProjectType } from '../types/project.type';
+import { ProjectType, FullProjectType } from '../types/project.type';
 import { Subject } from 'rxjs';
 import { take, map } from 'rxjs/operators';
-
-const getProjectsQuery = gql`
-  {
-    GetProjects {
-      project_id,
-      open,
-      name,
-      description,
-      owner_type,
-      team {
-        team_id,
-        name,
-        membersCount,
-        owner {
-          name,
-          nick,
-          surname,
-          user_id
-        }
-      },
-      creator {
-        name,
-        surname,
-        nick,
-        user_id
-      }
-    }
-  }
-`
+import { getProjectsQuery } from '../query/project.query';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +15,21 @@ export class ProjectsService {
 
   downloaded: boolean = false;
 
+  private fullProjects: { [key: string]: FullProjectType } = { };
+
   constructor(private apollo: Apollo) { }
+
+  setFullProject(project: FullProjectType) {
+    this.fullProjects[project.project_id] = project;
+  }
+
+  checkIfExistsFullProject(name: string): boolean {
+    return this.fullProjects[name] ? true : false;
+  }
+
+  getFullProject(name: string): FullProjectType {
+    return this.fullProjects[name];
+  }
 
   downloadProjects() {
     if(!this.downloaded) {

@@ -12,7 +12,6 @@ export class AsyncContentComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
   }
 
 }

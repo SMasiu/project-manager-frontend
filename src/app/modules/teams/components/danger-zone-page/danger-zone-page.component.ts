@@ -12,14 +12,12 @@ import { ConfirmTextComponent } from 'src/app/shared/components/confirm-text/con
 })
 export class DangerZonePageComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute, private teamManagerService: TeamManagerService, public dialog: MatDialog) { }
+  constructor(private router: Router, private teamManagerService: TeamManagerService, public dialog: MatDialog) { }
 
   team_id: string;
 
   ngOnInit() {
-    this.route.paramMap.pipe(take(1)).subscribe( params => {
-      this.team_id = params.get('id');
-    });
+    this.team_id = this.teamManagerService.team.team_id;
   }
 
   back() {

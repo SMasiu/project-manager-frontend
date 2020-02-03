@@ -18,7 +18,7 @@ export class AdminPanelComponent implements OnInit {
   }
 
   redirectTo(path) {
-    this.router.navigateByUrl(`/teams/${path}/${this.team.team_id}`);
+    this.router.navigateByUrl(`/teams/${path}`);
   }
 
 }
