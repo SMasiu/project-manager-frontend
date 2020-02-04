@@ -1,5 +1,5 @@
 .task-wrapper {
-    border-left: 3px solid var(--primary);
+    border-left: 4px solid transparent;
     background-color: var(--light);
     margin: 10px 0;
     box-shadow: 0 0 2px var(--dark);
@@ -13,12 +13,66 @@
             font-weight: bold;
             text-align: center;
             margin: 0;
-            border-bottom: 1px solid var(--secondary);
-            padding-bottom: 10px;
         }
     }
 
     .task-body {
         padding: 0 10px 10px 10px;
+
+        .description {
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        .attached-users {
+            display: grid;
+            grid-template-columns: 15px 15px 15px;
+            padding-right: 10px;
+            
+            .attached-users-item {
+                margin: 0;
+                width: 25px;
+
+                img {
+                    border-radius: 50%;
+                    width: 100%;
+                    border: 2px solid var(--white);
+                }
+            }
+            
+            .attached-users-more {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: var(--white);
+                border-radius: 50%;
+                font-size: 12px;
+                font-weight: bold;
+                opacity: .90;
+            }
+
+        }
+        .no-users-badge {
+            font-size: 10px;
+            
+        }
+
+        .created-date {
+            font-size: 10px;
+            margin: 0;
+            text-align: right;
+        }
     }
+}
+
+.task-priority-0 {
+    border-left-color: var(--success);
+}
+
+.task-priority-1 {
+    border-left-color: var(--warning);
+}
+
+.task-priority-2 {
+    border-left-color: var(--danger);
 }

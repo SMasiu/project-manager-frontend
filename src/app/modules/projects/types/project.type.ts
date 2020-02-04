@@ -26,6 +26,7 @@ export interface TaskType {
     name: string;
     description: string;
     create_stamp: Date;
+    priority: number;
     creator: UserType;
     assignedUsers: UserType[];
 }

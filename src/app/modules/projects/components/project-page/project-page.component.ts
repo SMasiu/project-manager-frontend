@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { ProjectService } from '../../services/project.service';
-import { FullProjectType, ColumnType, TaskType } from '../../types/project.type';
+import { FullProjectType  , TaskType } from '../../types/project.type';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
-import { CONTEXT_NAME } from '@angular/compiler/src/render3/view/util';
 
 @Component({
   selector: 'app-project-page',
@@ -29,6 +28,7 @@ export class ProjectPageComponent implements OnInit {
       this.projectSubscription = this.projectService.projectChanges.subscribe( p => {
         this.project = p;
         this.loading = false;
+        this.sortTasks();
       });
       
       this.projectService.downloadProject(project_id);
@@ -36,12 +36,13 @@ export class ProjectPageComponent implements OnInit {
       this.project = this.projectService.getProject();
       if(this.project) {
         this.loading = false;
+        this.sortTasks();
       }
     });
   }
 
   getWidth() {
-    return (this.project.columns.length + 1) * (300 + 40) + 40;
+    return (this.project.columns.length + 1) * (325 + 40) + 40;
   }
 
   dropTask(event: CdkDragDrop<TaskType[]>) {
@@ -60,4 +61,13 @@ export class ProjectPageComponent implements OnInit {
   ngOnDestroy() {
     this.projectSubscription.unsubscribe();
   }
+
+  sortTasks() {
+    this.project.columns = this.project.columns
+      .map( c => {
+        c.tasks.sort((a,b) => a.priority > b.priority ? -1 : 1); 
+        return c;
+      });
+  }
+
 }

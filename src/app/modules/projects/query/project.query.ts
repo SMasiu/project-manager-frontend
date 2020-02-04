@@ -31,6 +31,7 @@ export const getProjectByIdQuery = gql`
                     task_id
                     name
                     description
+                    priority
                     create_stamp
                     creator {
                         user_id

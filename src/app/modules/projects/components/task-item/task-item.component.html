@@ -1,8 +1,27 @@
-<section class="task-wrapper">
-    <header class="task-header" cdkDragHandle>
+<section [class]="getClasses()">
+    <header class="task-header d-flex justify-content-between align-items-center">
         <h6>{{task.name}}</h6>
+        <button class="btn btn-sm">Read description</button>
     </header>
     <article class="task-body">
-        {{task.description}}
+        <footer class="d-flex justify-content-between align-items-center">
+            <p class="created-date">
+                Created at {{task.create_stamp | date:'medium'}}
+            </p>
+            <ng-template [ngIf]="task.assignedUsers.length" [ngIfElse]="noUsers">
+                <div class="attached-users">
+                    <span *ngFor="let f of getFill()"></span>
+                    <figure class="attached-users-item" *ngFor="let user of getUsers()">
+                        <img src="./assets/profile.jpg" alt="user profile">
+                    </figure>
+                    <div class="attached-users-item attached-users-more" *ngIf="task.assignedUsers.length > 3">
+                        +{{task.assignedUsers.length - 2}}
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template #noUsers>
+                <div class="no-users-badge">No users</div>
+            </ng-template>
+        </footer>
     </article>
 </section>

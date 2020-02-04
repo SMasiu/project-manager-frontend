@@ -17,6 +17,7 @@ import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.comp
 import { ConfirmTextComponent } from 'src/app/shared/components/confirm-text/confirm-text.component';
 import { AsyncContentComponent } from 'src/app/shared/components/async-content/async-content.component';
 import { BoolPipe } from 'src/app/shared/pipes/bool.pipe';
+import { AddButtonComponent } from 'src/app/shared/components/add-button/add-button.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { BoolPipe } from 'src/app/shared/pipes/bool.pipe';
     ConfirmComponent,
     ConfirmTextComponent,
     AsyncContentComponent,
-    BoolPipe
+    BoolPipe,
+    AddButtonComponent
   ],
   entryComponents: [
     ConfirmComponent,
@@ -60,7 +62,8 @@ import { BoolPipe } from 'src/app/shared/pipes/bool.pipe';
     UserItemWrapperComponent,
     SearchUserComponent,
     AsyncContentComponent,
-    BoolPipe
+    BoolPipe,
+    AddButtonComponent
   ]
 })
 export class SharedModule { }

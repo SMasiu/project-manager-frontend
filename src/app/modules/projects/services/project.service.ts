@@ -17,7 +17,6 @@ export class ProjectService {
   constructor(private projectsService: ProjectsService, private apollo: Apollo) { }
 
   downloadProject(project_id: string) {
-    console.log(project_id)
     if(this.projectsService.checkIfExistsFullProject(project_id)) {
       this.project = this.projectsService.getFullProject(project_id);
       this.emitProject();
@@ -30,7 +29,6 @@ export class ProjectService {
         map( (res: any) => res.data.GetProject )
       ).subscribe( project => {
         this.project = project;
-        // console.log(project)
         this.emitProject();
       });
     }
