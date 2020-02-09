@@ -1,0 +1,22 @@
+.create-project-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+
+    .create-project {
+        min-width: 700px;
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        .project-description {
+            resize: none;
+        }
+    }
+}

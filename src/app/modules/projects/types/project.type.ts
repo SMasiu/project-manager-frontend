@@ -30,3 +30,9 @@ export interface TaskType {
     creator: UserType;
     assignedUsers: UserType[];
 }
+
+export interface CreateProjectType {
+    name: string;
+    description: string;
+    team_id: string;
+}

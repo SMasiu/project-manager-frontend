@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { FullProjectType } from '../types/project.type';
+import { FullProjectType, ColumnType } from '../types/project.type';
 import { ProjectsService } from './projects.service';
 import { Apollo } from 'apollo-angular';
-import { getProjectByIdQuery } from '../query/project.query';
+import { getProjectByIdQuery, createColumnQuery } from '../query/project.query';
 import { take, map } from 'rxjs/operators';
 
 @Injectable({
@@ -43,5 +43,22 @@ export class ProjectService {
       return {...this.project};
     }
     return null;
+  }
+
+  createProject({name}) {
+    this.apollo.mutate({
+      mutation: createColumnQuery,
+      variables: { name , project_id: this.project.project_id }
+    }).pipe(
+      take(1),
+      map( (res: any) => res.data.CreateColumn )
+    ).subscribe( 
+      col => {
+        let column: ColumnType = {...col, tasks: []}
+        this.project.columns.push(column);
+        this.projectsService.setFullProject(this.project);
+        this.emitProject();
+      }
+    );
   }
 }

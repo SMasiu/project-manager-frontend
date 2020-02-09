@@ -13,7 +13,7 @@ export class ConfirmTextComponent implements OnInit {
   form: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) public data: any) { }  
-  
+   
   ngOnInit() {
     this.form = new FormGroup({
       match: new FormControl('', [isSameValidator(this.data.match)])

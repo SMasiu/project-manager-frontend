@@ -1,0 +1,56 @@
+<section class="create-project-wrapper">
+    <div class="item-box-big create-project">
+        <h2>Create project</h2>
+
+        <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input 
+                    type="text"
+                    class="form-control" 
+                    id="name"
+                    placeholder="project name"
+                    formControlName="name">
+                <app-form-info 
+                    [control]="form.controls.name"
+                    [errorList]="{
+                        required: 'Name is required',
+                        minlength: 'Name is too short',
+                        maxlength: 'Name is too long'
+                    }"></app-form-info>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea 
+                    class="form-control project-description"
+                    id="description"
+                    rows="5"
+                    placeholder="project description"
+                    formControlName="description"></textarea>
+                <app-form-info 
+                    [control]="form.controls.description"
+                    [errorList]="{
+                        required: 'Description is required',
+                        minlength: 'Description is too short',
+                        maxlength: 'Description is too long'
+                    }"></app-form-info>
+            </div>
+
+            <div class="form-group">
+                <label for="teams">Team</label>
+                <select class="form-control" id="teams" formControlName="team_id">
+                    <option [value]="-1">No team</option>
+                    <option *ngFor="let team of teams" [value]="team.team_id">{{team.name}} - Team</option>
+                </select>
+            </div>
+
+            <footer class="d-flex justify-content-between align-items-center">
+                <p class="back" routerLink="/projects">back</p>
+                <button class="btn btn-primary" [disabled]="form.invalid">Create</button>
+            </footer>
+
+        </form>
+    </div>
+</section>

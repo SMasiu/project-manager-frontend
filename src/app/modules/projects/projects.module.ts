@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProjectPageComponent } from './components/project-page/project-page.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TaskItemComponent } from './components/task-item/task-item.component';
+import { CreateProjectComponent } from './components/create-project/create-project.component';
+import { CreateColumnComponent } from './components/create-column/create-column.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { TaskItemComponent } from './components/task-item/task-item.component';
     ProjectsWrapperPageComponent,
     ProjectItemComponent,
     ProjectPageComponent,
-    TaskItemComponent
+    TaskItemComponent,
+    CreateProjectComponent,
+    CreateColumnComponent
   ],
   imports: [
     CommonModule,
@@ -27,10 +31,14 @@ import { TaskItemComponent } from './components/task-item/task-item.component';
     ReactiveFormsModule,
     DragDropModule
   ],
+  entryComponents: [
+    CreateColumnComponent
+  ],
   exports: [
     ProjectsPageComponent,
     ProjectsWrapperPageComponent,
-    ProjectPageComponent
+    ProjectPageComponent,
+    CreateProjectComponent
   ]
 })
 export class ProjectsModule { }

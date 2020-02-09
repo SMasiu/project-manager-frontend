@@ -1,0 +1,27 @@
+<section class="create-column">
+    <h2>Create column</h2>
+    <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+
+        <div class="form-group name-input">
+            <label for="name">Name</label>
+            <input
+                type="text"
+                class="form-control" 
+                id="name"
+                placeholder="project name"
+                formControlName="name">
+            <app-form-info 
+                [control]="form.controls.name"
+                [errorList]="{
+                    required: 'Name is required',
+                    maxlength: 'Name is too long'
+                }"></app-form-info>
+        </div>
+
+        <footer class="d-flex justify-content-between">
+            <button class="btn btn-danger btn-scale" (click)="handleClose()">Cancel</button>
+            <button class="btn btn-primary btn-scale" [disabled]="form.invalid">Create</button>
+        </footer>
+
+    </form>
+</section>

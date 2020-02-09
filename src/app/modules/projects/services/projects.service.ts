@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { ProjectType, FullProjectType } from '../types/project.type';
+import { ProjectType, FullProjectType, CreateProjectType } from '../types/project.type';
 import { Subject } from 'rxjs';
 import { take, map } from 'rxjs/operators';
-import { getProjectsQuery } from '../query/project.query';
+import { getProjectsQuery, createProjectQuery } from '../query/project.query';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class ProjectsService {
 
   private fullProjects: { [key: string]: FullProjectType } = { };
 
-  constructor(private apollo: Apollo) { }
+  constructor(private apollo: Apollo, private router: Router) { }
 
   setFullProject(project: FullProjectType) {
     this.fullProjects[project.project_id] = project;
@@ -54,6 +55,34 @@ export class ProjectsService {
 
   private emitProjects() {
     this.projectChanges.next(this.getProjects());
+  }
+
+  addProject(project: ProjectType) {
+    this.projects.push(project);
+    this.emitProjects();
+  }
+
+  createProject({name, description, team_id}: CreateProjectType) {
+    let variables: {[key: string]: any} = {
+      name,
+      description
+    };
+    if(team_id !== '-1') {
+      variables['team_id'] = team_id;
+    }
+    variables['owner_type'] = team_id !== '-1' ? 'team' : 'user';
+    this.apollo.mutate({
+      mutation: createProjectQuery,
+      variables
+    }).pipe(
+      take(1),
+      map( (res: any) => res.data.CreateProject )
+    ).subscribe(
+      project => {
+        this.addProject(project);
+        this.router.navigateByUrl('/projects');
+      }
+    );
   }
 
 }

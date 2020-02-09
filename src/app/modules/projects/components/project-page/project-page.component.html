@@ -8,7 +8,7 @@
 
         <header class="mt-4 d-flex justify-content-between">
             <div>
-                <button class="btn btn-primary btn-scale mr-4">New column</button>
+                <button class="btn btn-primary btn-scale mr-4" (click)="openCreateColumnDialog()">New column</button>
                 <button class="btn btn-primary btn-scale mr-4">New task</button>
                 <button class="btn btn-primary btn-scale">Column order</button>
             </div>
@@ -37,7 +37,7 @@
                         </section>
                     </div>
                     <div class="column last-column d-flex justify-content-center align-items-center">
-                            <app-add-button></app-add-button>
+                        <app-add-button (click)="openCreateColumnDialog()"></app-add-button>
                     </div>
                 </section>
 

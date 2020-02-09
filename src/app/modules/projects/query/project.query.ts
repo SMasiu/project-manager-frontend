@@ -79,3 +79,42 @@ export const getProjectsQuery = gql`
         }
     }
 `
+
+export const createProjectQuery = gql`
+    mutation CreateProject($name: String!, $owner_type: String!, $description: String!, $team_id: ID) {
+        CreateProject(name: $name, owner_type: $owner_type, description: $description, team_id: $team_id) {
+            project_id
+            open
+            name
+            description
+            owner_type
+            team {
+            team_id
+            name
+            membersCount
+            owner {
+                name
+                nick
+                surname
+                user_id
+            }
+            }
+            creator {
+            name
+            surname
+            nick
+            user_id
+            }
+        }
+    }
+`
+
+export const createColumnQuery = gql`
+    mutation CreateColumn($project_id: ID!, $name: String!){
+        CreateColumn(project_id: $project_id, name: $name) {
+            name,
+            column_id,
+            position,
+        }
+    }
+`

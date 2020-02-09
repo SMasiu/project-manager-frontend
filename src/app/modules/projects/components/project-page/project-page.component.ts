@@ -5,6 +5,8 @@ import { FullProjectType  , TaskType } from '../../types/project.type';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
+import { MatDialog } from '@angular/material';
+import { CreateColumnComponent } from '../create-column/create-column.component';
 
 @Component({
   selector: 'app-project-page',
@@ -18,7 +20,7 @@ export class ProjectPageComponent implements OnInit {
 
   loading: boolean = true;
 
-  constructor(private projectService: ProjectService, private route: ActivatedRoute) { }
+  constructor(private projectService: ProjectService, private route: ActivatedRoute, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.route.paramMap.pipe(take(1)).subscribe( params => {
@@ -68,6 +70,17 @@ export class ProjectPageComponent implements OnInit {
         c.tasks.sort((a,b) => a.priority > b.priority ? -1 : 1); 
         return c;
       });
+  }
+
+  openCreateColumnDialog(): void {
+    
+    const dialogRef = this.dialog.open(CreateColumnComponent, {
+      width: 'auto',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      
+    });
   }
 
 }

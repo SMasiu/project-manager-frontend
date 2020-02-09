@@ -67,7 +67,8 @@ button:disabled {
 .back {
     transition: color .3s;
     cursor: pointer;
-    padding: 5px 0;
+    padding: 5px 0  ;
+    margin: 0 !important;
 
     &:hover {
         color: var(--primary);
