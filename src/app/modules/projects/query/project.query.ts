@@ -60,21 +60,21 @@ export const getProjectsQuery = gql`
             description,
             owner_type,
             team {
-            team_id,
-            name,
-            membersCount,
-            owner {
+                team_id,
                 name,
-                nick,
-                surname,
-                user_id
-            }
+                membersCount,
+                owner {
+                    name,
+                    nick,
+                    surname,
+                    user_id
+                }
             },
             creator {
-            name,
-            surname,
-            nick,
-            user_id
+                name,
+                surname,
+                nick,
+                user_id
             }
         }
     }
@@ -89,21 +89,21 @@ export const createProjectQuery = gql`
             description
             owner_type
             team {
-            team_id
-            name
-            membersCount
-            owner {
+                team_id
                 name
-                nick
-                surname
-                user_id
-            }
+                membersCount
+                owner {
+                    name
+                    nick
+                    surname
+                    user_id
+                }
             }
             creator {
-            name
-            surname
-            nick
-            user_id
+                name
+                surname
+                nick
+                user_id
             }
         }
     }
@@ -115,6 +115,24 @@ export const createColumnQuery = gql`
             name,
             column_id,
             position,
+        }
+    }
+`
+
+export const createTaskQuery = gql`
+    mutation CreateTask($project_id: ID!, $column_id: ID!, $name: String!, $description: String!, $priority: Int!) {
+        CreateTask(project_id: $project_id, column_id: $column_id, name: $name, description: $description, priority: $priority) {
+            task_id
+            name
+            description
+            priority
+            create_stamp
+            creator {
+                user_id
+                surname
+                nick
+                name
+            }
         }
     }
 `

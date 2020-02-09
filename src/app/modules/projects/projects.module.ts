@@ -11,6 +11,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TaskItemComponent } from './components/task-item/task-item.component';
 import { CreateProjectComponent } from './components/create-project/create-project.component';
 import { CreateColumnComponent } from './components/create-column/create-column.component';
+import { CreateTaskComponent } from './components/create-task/create-task.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { CreateColumnComponent } from './components/create-column/create-column.
     ProjectPageComponent,
     TaskItemComponent,
     CreateProjectComponent,
-    CreateColumnComponent
+    CreateColumnComponent,
+    CreateTaskComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { CreateColumnComponent } from './components/create-column/create-column.
     DragDropModule
   ],
   entryComponents: [
-    CreateColumnComponent
+    CreateColumnComponent,
+    CreateTaskComponent
   ],
   exports: [
     ProjectsPageComponent,

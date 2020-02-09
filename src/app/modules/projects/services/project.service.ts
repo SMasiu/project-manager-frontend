@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { FullProjectType, ColumnType } from '../types/project.type';
 import { ProjectsService } from './projects.service';
 import { Apollo } from 'apollo-angular';
-import { getProjectByIdQuery, createColumnQuery } from '../query/project.query';
+import { getProjectByIdQuery, createColumnQuery, createTaskQuery } from '../query/project.query';
 import { take, map } from 'rxjs/operators';
 
 @Injectable({
@@ -58,6 +58,27 @@ export class ProjectService {
         this.project.columns.push(column);
         this.projectsService.setFullProject(this.project);
         this.emitProject();
+      }
+    );
+  }
+
+  createTask(task) {
+    let variables = { ...task, project_id: this.project.project_id };
+    variables.priority = parseInt(variables.priority);
+    this.apollo.mutate({
+      mutation: createTaskQuery,
+      variables
+    }).pipe(
+      take(1),
+      map( (res: any) => res.data.CreateTask )
+    ).subscribe(
+      newTask => {
+        let index = this.project.columns.findIndex( c => c.column_id === task.column_id );
+        if(index !== -1) {
+          this.project.columns[index].tasks.push({...newTask, assignedUsers: []});
+          this.projectsService.setFullProject(this.project);
+          this.emitProject();
+        }
       }
     );
   }

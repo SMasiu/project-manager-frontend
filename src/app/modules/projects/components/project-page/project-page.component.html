@@ -9,7 +9,7 @@
         <header class="mt-4 d-flex justify-content-between">
             <div>
                 <button class="btn btn-primary btn-scale mr-4" (click)="openCreateColumnDialog()">New column</button>
-                <button class="btn btn-primary btn-scale mr-4">New task</button>
+                <button class="btn btn-primary btn-scale mr-4" (click)="openCreateTaskDialog()">New task</button>
                 <button class="btn btn-primary btn-scale">Column order</button>
             </div>
             <button class="btn btn-primary btn-scale">Manage project</button>
@@ -32,6 +32,10 @@
 
                             <div *ngFor="let task of col.tasks" cdkDrag class="task">
                                 <app-task-item [task]="task"></app-task-item>
+                            </div>
+
+                            <div class="d-flex justify-content-center mt-2">
+                                <app-add-button (click)="openCreateTaskDialog(col.column_id)"></app-add-button>
                             </div>
 
                         </section>

@@ -1,0 +1,67 @@
+<section class="create-task-wrapper">
+
+    <h2>Create task</h2>
+
+    <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+        <div class="inputs-wrapper">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input
+                    type="text"
+                    class="form-control" 
+                    id="name"
+                    placeholder="task name"
+                    formControlName="name">
+                <app-form-info 
+                    [control]="form.controls.name"
+                    [errorList]="{
+                        required: 'Name is required',
+                        maxlength: 'Name is too long'
+                    }"></app-form-info>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea
+                    type="text"
+                    class="form-control task-description" 
+                    id="description"
+                    rows="5"
+                    placeholder="task description"
+                    formControlName="description">
+                </textarea>
+                <app-form-info 
+                    [control]="form.controls.description"
+                    [errorList]="{
+                        required: 'Description is required',
+                        maxlength: 'Description is too long'
+                    }"></app-form-info>
+            </div>
+
+            <div class="form-group">
+                <label for="priority">Priority</label>
+                <select class="form-control" id="teams" formControlName="priority">
+                    <option *ngFor="let p of priorityOptions" [value]="p.value">{{p.header}}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="column">Column</label>
+                <select class="form-control" id="column" formControlName="column_id">
+                    <option *ngFor="let c of data?.columns" [value]="c.column_id">{{c.name}}</option>
+                </select>
+                <app-form-info 
+                    [control]="form.controls.column_id"
+                    [errorList]="{
+                        required: 'Column is required'
+                    }"></app-form-info>
+            </div>
+        </div>
+        <footer class="d-flex justify-content-between">
+            <button class="btn btn-danger" (click)="handleClose()">Cancel</button>
+            <button class="btn btn-primary" [disabled]="form.invalid">Create</button>
+        </footer>
+
+    </form>
+
+</section>

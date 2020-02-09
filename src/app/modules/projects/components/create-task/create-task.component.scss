@@ -1,0 +1,12 @@
+.create-task-wrapper {
+    min-width: 600px;
+    margin: 25px;
+
+    .inputs-wrapper {
+        margin: 20px 0 30px 0;
+
+        .task-description {
+            resize: none;
+        }
+    }
+}

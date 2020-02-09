@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { MatDialog } from '@angular/material';
 import { CreateColumnComponent } from '../create-column/create-column.component';
+import { CreateTaskComponent } from '../create-task/create-task.component';
 
 @Component({
   selector: 'app-project-page',
@@ -73,13 +74,18 @@ export class ProjectPageComponent implements OnInit {
   }
 
   openCreateColumnDialog(): void {
-    
     const dialogRef = this.dialog.open(CreateColumnComponent, {
       width: 'auto',
     });
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-      
+  openCreateTaskDialog(column_id: string = null): void {
+    const dialogRef = this.dialog.open(CreateTaskComponent, {
+      width: 'auto',
+      data: {
+        columns: this.project.columns,
+        defaultColumn: column_id
+      }
     });
   }
 
