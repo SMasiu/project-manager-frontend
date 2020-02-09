@@ -14,6 +14,14 @@
             text-align: center;
             margin: 0;
         }
+
+        .task-dorpdown {
+            cursor: pointer;
+            height: 24px;
+            &::after {
+                content: none;
+            }
+        }
     }
 
     .task-body {

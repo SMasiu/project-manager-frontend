@@ -136,3 +136,11 @@ export const createTaskQuery = gql`
         }
     }
 `
+
+export const moveTaskQuery = gql`
+    mutation MoveTask($task_id: ID!, $project_id: ID!, $column_id: ID!) {
+        MoveTask(task_id: $task_id, project_id: $project_id, column_id: $column_id) {
+            task_id
+        }
+    }
+`

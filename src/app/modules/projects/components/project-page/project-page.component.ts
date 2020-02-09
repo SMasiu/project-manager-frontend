@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { ProjectService } from '../../services/project.service';
-import { FullProjectType  , TaskType } from '../../types/project.type';
+import { FullProjectType  , TaskType, ColumnType } from '../../types/project.type';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
@@ -20,6 +20,7 @@ export class ProjectPageComponent implements OnInit {
   projectSubscription: Subscription;
 
   loading: boolean = true;
+  lastDraggedTask: TaskType;
 
   constructor(private projectService: ProjectService, private route: ActivatedRoute, public dialog: MatDialog) { }
 
@@ -48,10 +49,15 @@ export class ProjectPageComponent implements OnInit {
     return (this.project.columns.length + 1) * (325 + 40) + 40;
   }
 
-  dropTask(event: CdkDragDrop<TaskType[]>) {
+  setDraggedTask(task: TaskType) {
+    this.lastDraggedTask = task;
+  }
+
+  dropTask(event: CdkDragDrop<TaskType[]>, col: ColumnType) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
+      this.projectService.moveTask(this.lastDraggedTask.task_id, col.column_id);
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,

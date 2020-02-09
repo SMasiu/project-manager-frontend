@@ -23,21 +23,30 @@
                 <section class="column-wrapper" [ngStyle]="{'width': getWidth() + 'px'}">
                     <div class="item-box column" *ngFor="let col of project.columns">
                         <header class="column-header">
-                            <h6>{{col.name}}</h6>
+                            <div class="header-inner-wrapper d-flex align-items-center justify-content-between">
+                                <h6>{{col.name}}</h6>
+                                <div ngbDropdown class="d-inline-block" placement="bottom-right">
+                                    <div ngbDropdownToggle class="column-dorpdown">
+                                        <mat-icon>more_vert</mat-icon>
+                                    </div>
+                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                        <button ngbDropdownItem class="text-dark">Upadte column</button>
+                                        <button ngbDropdownItem class="text-dark">Move column</button>
+                                        <button ngbDropdownItem class="text-danger">Delete column</button>
+                                    </div>
+                                </div>
+                            </div>
                         </header>
-                        <section class="tasks-wrapper"
-                            cdkDropList
-                            [cdkDropListData]="col.tasks"
-                            (cdkDropListDropped)="dropTask($event)">
+                        <section class="tasks-wrapper" cdkDropList [cdkDropListData]="col.tasks"
+                            (cdkDropListDropped)="dropTask($event, col)">
 
-                            <div *ngFor="let task of col.tasks" cdkDrag class="task">
+                            <div *ngFor="let task of col.tasks" cdkDrag (mousedown)="setDraggedTask(task)" class="task">
                                 <app-task-item [task]="task"></app-task-item>
                             </div>
 
-                            <div class="d-flex justify-content-center mt-2">
+                            <div class="d-flex justify-content-center mt-3">
                                 <app-add-button (click)="openCreateTaskDialog(col.column_id)"></app-add-button>
                             </div>
-
                         </section>
                     </div>
                     <div class="column last-column d-flex justify-content-center align-items-center">

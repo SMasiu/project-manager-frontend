@@ -53,15 +53,26 @@
 
         .column-header {
             padding: 0 20px;
-            
-            h6 {
-                font-weight: bold;
+
+            .header-inner-wrapper {
                 border-bottom: 1px solid var(--secondary);
-                padding: 20px 0;
-                text-align: center;
-                margin: 0;
-                font-size: 16px;
-                cursor: move;
+                
+                h6 {
+                    font-weight: bold;
+                    padding: 20px 0;
+                    text-align: center;
+                    margin: 0;
+                    font-size: 16px;
+                }
+
+                .column-dorpdown {
+                    cursor: pointer;
+                    height: 24px;
+                    
+                    &::after {
+                        content: none;
+                    }
+                }
             }
         }
 

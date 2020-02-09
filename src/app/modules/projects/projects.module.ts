@@ -12,6 +12,8 @@ import { TaskItemComponent } from './components/task-item/task-item.component';
 import { CreateProjectComponent } from './components/create-project/create-project.component';
 import { CreateColumnComponent } from './components/create-column/create-column.component';
 import { CreateTaskComponent } from './components/create-task/create-task.component';
+import { MatIconModule } from '@angular/material';
+import { NgbModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -31,7 +33,10 @@ import { CreateTaskComponent } from './components/create-task/create-task.compon
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    DragDropModule
+    DragDropModule,
+    MatIconModule,
+    NgbModule,
+    NgbDropdownModule,
   ],
   entryComponents: [
     CreateColumnComponent,

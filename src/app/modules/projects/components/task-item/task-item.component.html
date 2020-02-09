@@ -1,7 +1,18 @@
 <section [class]="getClasses()">
     <header class="task-header d-flex justify-content-between align-items-center">
         <h6>{{task.name}}</h6>
-        <button class="btn btn-sm">More</button>
+
+        <div ngbDropdown class="d-inline-block" placement="bottom-right">
+            <div ngbDropdownToggle class="task-dorpdown">
+                <mat-icon>more_vert</mat-icon>
+            </div>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem class="text-dark">Read more</button>
+                <button ngbDropdownItem class="text-dark">Update task</button>
+                <button ngbDropdownItem class="text-danger">Delete task</button>
+            </div>
+        </div>
+
     </header>
     <article class="task-body">
         <footer class="d-flex justify-content-between align-items-center">
