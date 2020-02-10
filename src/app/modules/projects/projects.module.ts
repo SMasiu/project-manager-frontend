@@ -14,6 +14,7 @@ import { CreateColumnComponent } from './components/create-column/create-column.
 import { CreateTaskComponent } from './components/create-task/create-task.component';
 import { MatIconModule } from '@angular/material';
 import { NgbModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddUserToTaskComponent } from './components/add-user-to-task/add-user-to-task.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { NgbModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
     TaskItemComponent,
     CreateProjectComponent,
     CreateColumnComponent,
-    CreateTaskComponent
+    CreateTaskComponent,
+    AddUserToTaskComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +42,8 @@ import { NgbModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   entryComponents: [
     CreateColumnComponent,
-    CreateTaskComponent
+    CreateTaskComponent,
+    AddUserToTaskComponent
   ],
   exports: [
     ProjectsPageComponent,

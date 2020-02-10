@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { FullProjectType, ColumnType, TaskType } from '../types/project.type';
 import { ProjectsService } from './projects.service';
 import { Apollo } from 'apollo-angular';
-import { getProjectByIdQuery, createColumnQuery, createTaskQuery, moveTaskQuery } from '../query/project.query';
+import { getProjectByIdQuery, createColumnQuery, createTaskQuery, moveTaskQuery, addUserToTask, removeUserFromTask } from '../query/project.query';
 import { take, map } from 'rxjs/operators';
 
 @Injectable({
@@ -96,8 +96,68 @@ export class ProjectService {
       map( (res: any) => res.data.MoveTask )
     ).subscribe(
       task => {
-        console.log(task)
+        return true;
       }
     );
   }
+
+  addUserToTask(task_id: string, user_id: string) {
+    this.apollo.mutate({
+      mutation: addUserToTask,
+      variables: {
+        task_id,
+        user_id,
+        project_id: this.project.project_id
+      }
+    }).pipe(
+      take(1),
+      map( (res: any) => res.data.AddUserToTask )
+    ).subscribe(
+      user => {
+        let task = this.getTaskLocal(task_id) 
+
+        if(task) {
+          task.assignedUsers.push(user);
+          this.projectsService.setFullProject(this.project);
+          this.emitProject();
+        }
+      }
+    )
+  }
+
+  private getTaskLocal(task_id: string): TaskType | null {
+    let colIndex = this.project.columns.findIndex( c => c.tasks.find(t => t.task_id === task_id) );
+      if(colIndex !== -1) {
+        let task = this.project.columns[colIndex].tasks.find( t => t.task_id === task_id );
+        return task;
+      }
+      return null;
+  }
+
+  removeUserFromTask(task_id: string, user_id: string) {
+    this.apollo.mutate({
+      mutation: removeUserFromTask,
+      variables: {
+        task_id,
+        user_id,
+        project_id: this.project.project_id
+      }
+    }).pipe(
+      take(1),
+      map( (res: any) => res.data.DeleteUserFromTask )
+    ).subscribe(
+      user => {
+        let task = this.getTaskLocal(task_id);
+        if(task) {
+          let index = task.assignedUsers.findIndex(t => t.user_id === user_id);
+          if(index !== -1) {
+            task.assignedUsers.splice(index, 1);
+            this.projectsService.setFullProject(this.project);
+            this.emitProject();
+          }
+        }
+      }
+    )
+  }
+
 }

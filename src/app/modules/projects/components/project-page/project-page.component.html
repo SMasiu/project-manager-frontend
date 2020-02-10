@@ -41,7 +41,7 @@
                             (cdkDropListDropped)="dropTask($event, col)">
 
                             <div *ngFor="let task of col.tasks" cdkDrag (mousedown)="setDraggedTask(task)" class="task">
-                                <app-task-item [task]="task"></app-task-item>
+                                <app-task-item [task]="task" [members]="teamMembers"></app-task-item>
                             </div>
 
                             <div class="d-flex justify-content-center mt-3">

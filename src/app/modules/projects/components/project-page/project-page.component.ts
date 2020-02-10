@@ -8,6 +8,9 @@ import { take } from 'rxjs/operators';
 import { MatDialog } from '@angular/material';
 import { CreateColumnComponent } from '../create-column/create-column.component';
 import { CreateTaskComponent } from '../create-task/create-task.component';
+import { TeamService } from 'src/app/modules/teams/services/team.service';
+import { TeamManagerService } from 'src/app/modules/teams/services/team-manager.service';
+import { MemberType } from 'src/app/modules/teams/types/member.type';
 
 @Component({
   selector: 'app-project-page',
@@ -18,11 +21,17 @@ export class ProjectPageComponent implements OnInit {
 
   project: FullProjectType;
   projectSubscription: Subscription;
+  teamMembers: MemberType[] = [];
 
   loading: boolean = true;
   lastDraggedTask: TaskType;
 
-  constructor(private projectService: ProjectService, private route: ActivatedRoute, public dialog: MatDialog) { }
+  constructor(
+    private projectService: ProjectService,
+    private route: ActivatedRoute,
+    public dialog: MatDialog,
+    private teamService: TeamService,
+    private teamManagerService: TeamManagerService) { }
 
   ngOnInit() {
     this.route.paramMap.pipe(take(1)).subscribe( params => {
@@ -33,6 +42,7 @@ export class ProjectPageComponent implements OnInit {
         this.project = p;
         this.loading = false;
         this.sortTasks();
+        this.afterProjectGet();
       });
       
       this.projectService.downloadProject(project_id);
@@ -41,8 +51,22 @@ export class ProjectPageComponent implements OnInit {
       if(this.project) {
         this.loading = false;
         this.sortTasks();
+        this.afterProjectGet();
       }
+
     });
+  }
+
+  afterProjectGet() {
+    if(this.project.team && !this.teamMembers.length) {
+      this.teamManagerService.membersChanges.subscribe(m => {this.teamMembers = m; console.log(this.teamMembers)});
+
+      this.teamManagerService.setTeam(this.project.team);
+      this.teamManagerService.getMembers();
+
+      this.teamMembers = [...this.teamManagerService.members];
+      console.log(this.teamMembers)
+    }
   }
 
   getWidth() {

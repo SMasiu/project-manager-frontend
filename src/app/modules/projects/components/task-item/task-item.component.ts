@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TaskType } from '../../types/project.type';
 import { UserType } from 'src/app/shared/types/user.type';
+import { MatDialog } from '@angular/material';
+import { AddUserToTaskComponent } from '../add-user-to-task/add-user-to-task.component';
+import { MemberType } from 'src/app/modules/teams/types/member.type';
 
 @Component({
   selector: 'app-task-item',
@@ -10,10 +13,11 @@ import { UserType } from 'src/app/shared/types/user.type';
 export class TaskItemComponent implements OnInit {
 
   @Input() task: TaskType;
+  @Input() members: MemberType[];
 
   usersToDisplay: UserType[] = [];
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -38,6 +42,16 @@ export class TaskItemComponent implements OnInit {
       return this.task.assignedUsers.length === 1 ? [null,null] : [null];
     }
     return [];
+  }
+
+  openAddUserTaskDialog(): void {
+    const dialogRef = this.dialog.open(AddUserToTaskComponent, {
+      width: 'auto',
+      data: {
+        members: this.members,
+        task: this.task
+      }
+    });
   }
 
 }

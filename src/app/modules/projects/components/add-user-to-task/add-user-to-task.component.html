@@ -1,0 +1,22 @@
+<section class="add-user-wrapper">
+
+    <h2>Add user to task</h2>
+
+    <div *ngFor="let user of getFiltredUsers()" class="mt-4">
+        <app-user-item-wrapper [user]="user.user">
+            <div>
+                <ng-template [ngIf]="isInTask(user.user.user_id)" [ngIfElse]="removeUser">
+                    <button class="btn btn-primary btn-scale" (click)="addUser(user.user)">Add user</button>
+                </ng-template>
+                <ng-template #removeUser>
+                    <button class="btn btn-danger btn-scale" (click)="removeUserFromTask(user.user)">Remove user</button>
+                </ng-template>
+            </div>
+        </app-user-item-wrapper>
+    </div>
+
+    <footer>
+        <button class="btn btn-danger btn-block mt-4" (click)="handleClose()">Close</button>
+    </footer>
+
+</section>
