@@ -8,7 +8,6 @@ import { take } from 'rxjs/operators';
 import { MatDialog } from '@angular/material';
 import { CreateColumnComponent } from '../create-column/create-column.component';
 import { CreateTaskComponent } from '../create-task/create-task.component';
-import { TeamService } from 'src/app/modules/teams/services/team.service';
 import { TeamManagerService } from 'src/app/modules/teams/services/team-manager.service';
 import { MemberType } from 'src/app/modules/teams/types/member.type';
 import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.component';
@@ -31,7 +30,6 @@ export class ProjectPageComponent implements OnInit {
     private projectService: ProjectService,
     private route: ActivatedRoute,
     public dialog: MatDialog,
-    private teamService: TeamService,
     private teamManagerService: TeamManagerService) { }
 
   ngOnInit() {
@@ -60,7 +58,7 @@ export class ProjectPageComponent implements OnInit {
 
   afterProjectGet() {
     if(this.project.team && !this.teamMembers.length) {
-      this.teamManagerService.membersChanges.subscribe(m => {this.teamMembers = m; console.log(this.teamMembers)});
+      this.teamManagerService.membersChanges.subscribe( m => this.teamMembers = m );
 
       this.teamManagerService.setTeam(this.project.team);
       this.teamManagerService.getMembers();
@@ -103,10 +101,21 @@ export class ProjectPageComponent implements OnInit {
       });
   }
 
-  openCreateColumnDialog(): void {
+  openCreateColumnDialog(column: ColumnType = null): void {
     const dialogRef = this.dialog.open(CreateColumnComponent, {
       width: 'auto',
+      data: {
+        column
+      }
     });
+  }
+
+  createColumn() {
+    this.openCreateColumnDialog();
+  }
+
+  updateColumn(column: ColumnType) {
+    this.openCreateColumnDialog(column);
   }
 
   openCreateTaskDialog(column_id: string = null, task: TaskType | any = { }): void {

@@ -202,3 +202,11 @@ export const deleteColumnQuery = gql`
         }
     }
 `
+
+export const updateColumnQuery = gql`
+    mutation UpdateColumn ($name: String!, $column_id: ID!, $project_id: ID!){
+        UpdateColumn (name: $name, column_id: $column_id, project_id: $project_id) {
+            name
+        }
+    }
+`

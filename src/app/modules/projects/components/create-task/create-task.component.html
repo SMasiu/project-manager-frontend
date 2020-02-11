@@ -1,6 +1,6 @@
 <section class="create-task-wrapper">
 
-    <h2>Create task</h2>
+    <h2>{{isUpdating ? 'Update' : 'Create'}} task</h2>
 
     <form [formGroup]="form" (ngSubmit)="handleSubmit()">
         <div class="inputs-wrapper">
@@ -59,7 +59,7 @@
         </div>
         <footer class="d-flex justify-content-between">
             <button class="btn btn-danger" type="button" (click)="handleClose()">Cancel</button>
-            <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Create</button>
+            <button class="btn btn-primary" type="submit" [disabled]="form.invalid">{{isUpdating ? 'Update' : 'Create'}}</button>
         </footer>
 
     </form>

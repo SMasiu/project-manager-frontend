@@ -8,7 +8,7 @@
 
         <header class="mt-4 d-flex justify-content-between">
             <div>
-                <button class="btn btn-primary btn-scale mr-4" (click)="openCreateColumnDialog()">New column</button>
+                <button class="btn btn-primary btn-scale mr-4" (click)="createColumn()">New column</button>
                 <button class="btn btn-primary btn-scale mr-4" (click)="createTask()">New task</button>
                 <button class="btn btn-primary btn-scale">Column order</button>
             </div>
@@ -30,7 +30,7 @@
                                         <mat-icon>more_vert</mat-icon>
                                     </div>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                        <button ngbDropdownItem class="text-dark">Upadte column</button>
+                                        <button ngbDropdownItem class="text-dark" (click)="updateColumn(col)">Upadte column</button>
                                         <button ngbDropdownItem class="text-dark">Move column</button>
                                         <button ngbDropdownItem class="text-danger" (click)="deleteColumn(col)">Delete column</button>
                                     </div>
@@ -50,7 +50,7 @@
                         </section>
                     </div>
                     <div class="column last-column d-flex justify-content-center align-items-center">
-                        <app-add-button (click)="openCreateColumnDialog()"></app-add-button>
+                        <app-add-button (click)="createColumn()"></app-add-button>
                     </div>
                 </section>
 

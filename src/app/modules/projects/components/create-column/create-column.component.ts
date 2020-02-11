@@ -11,6 +11,7 @@ import { ProjectService } from '../../services/project.service';
 export class CreateColumnComponent implements OnInit {
 
   form: FormGroup;
+  isUpdating: boolean = false;
 
   constructor(
     public dialogRef: MatDialogRef<any>,
@@ -18,8 +19,14 @@ export class CreateColumnComponent implements OnInit {
     private projectService: ProjectService) { }  
   
   ngOnInit() {
+    let name = '';
+    if(this.data.column) {
+      this.isUpdating = true;
+      name = this.data.column.name;
+    }
+
     this.form = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.maxLength(50)])
+      name: new FormControl(name, [Validators.required, Validators.maxLength(50)])
     });
   }
 
@@ -28,7 +35,11 @@ export class CreateColumnComponent implements OnInit {
   }
 
   handleSubmit() {
-    this.projectService.createProject(this.form.value);
+    if(this.isUpdating) {
+      this.projectService.updateColumn(this.data.column.column_id, this.form.value);
+    } else {
+      this.projectService.createProject(this.form.value);
+    }
     this.handleClose();
   }
 
