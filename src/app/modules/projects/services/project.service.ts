@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { FullProjectType, ColumnType, TaskType } from '../types/project.type';
 import { ProjectsService } from './projects.service';
 import { Apollo } from 'apollo-angular';
-import { getProjectByIdQuery, createColumnQuery, createTaskQuery, moveTaskQuery, addUserToTask, removeUserFromTask, removeTaskQuery, updateTaskQuery } from '../query/project.query';
+import { getProjectByIdQuery, createColumnQuery, createTaskQuery, moveTaskQuery, addUserToTask, removeUserFromTask, removeTaskQuery, updateTaskQuery, deleteColumnQuery } from '../query/project.query';
 import { take, map } from 'rxjs/operators';
 
 @Injectable({
@@ -211,6 +211,28 @@ export class ProjectService {
         this.project.columns[colIndex].tasks.splice(taskIndex, 1, task);
         this.projectsService.setFullProject(this.project);
         this.emitProject();
+      }
+    );
+  }
+
+  deleteColumn(column_id: string) {
+    this.apollo.mutate({
+      mutation: deleteColumnQuery,
+      variables: {
+        column_id,
+        project_id: this.project.project_id
+      }
+    }).pipe(
+      take(1),
+      map( (res: any) => res.data.DeleteColumn )
+    ).subscribe(
+      column => {
+        const index = this.project.columns.findIndex( c => c.column_id === column.column_id );
+        if(index !== -1) {
+          this.project.columns.splice(index, 1);
+          this.projectsService.setFullProject(this.project);
+          this.emitProject();
+        }
       }
     );
   }

@@ -58,8 +58,8 @@
             </div>
         </div>
         <footer class="d-flex justify-content-between">
-            <button class="btn btn-danger" (click)="handleClose()">Cancel</button>
-            <button class="btn btn-primary" [disabled]="form.invalid">Create</button>
+            <button class="btn btn-danger" type="button" (click)="handleClose()">Cancel</button>
+            <button class="btn btn-primary" type="submit" [disabled]="form.invalid">Create</button>
         </footer>
 
     </form>

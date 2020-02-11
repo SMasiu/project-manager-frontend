@@ -19,8 +19,8 @@
         </div>
 
         <footer class="d-flex justify-content-between">
-            <button class="btn btn-danger btn-scale" (click)="handleClose()">Cancel</button>
-            <button class="btn btn-primary btn-scale" [disabled]="form.invalid">Create</button>
+            <button class="btn btn-danger btn-scale" type="button" (click)="handleClose()">Cancel</button>
+            <button class="btn btn-primary btn-scale" type="submit" [disabled]="form.invalid">Create</button>
         </footer>
 
     </form>

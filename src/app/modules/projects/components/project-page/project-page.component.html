@@ -32,7 +32,7 @@
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                                         <button ngbDropdownItem class="text-dark">Upadte column</button>
                                         <button ngbDropdownItem class="text-dark">Move column</button>
-                                        <button ngbDropdownItem class="text-danger">Delete column</button>
+                                        <button ngbDropdownItem class="text-danger" (click)="deleteColumn(col)">Delete column</button>
                                     </div>
                                 </div>
                             </div>

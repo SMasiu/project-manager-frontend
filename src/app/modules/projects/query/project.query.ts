@@ -194,3 +194,11 @@ export const updateTaskQuery = gql`
         }
     }
 `
+
+export const deleteColumnQuery = gql`
+    mutation DeleteColumn ($project_id: ID!, $column_id: ID!) {
+        DeleteColumn (project_id: $project_id, column_id: $column_id) {
+            column_id,
+        }
+    }
+`

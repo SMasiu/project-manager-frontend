@@ -11,6 +11,7 @@ import { CreateTaskComponent } from '../create-task/create-task.component';
 import { TeamService } from 'src/app/modules/teams/services/team.service';
 import { TeamManagerService } from 'src/app/modules/teams/services/team-manager.service';
 import { MemberType } from 'src/app/modules/teams/types/member.type';
+import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.component';
 
 @Component({
   selector: 'app-project-page',
@@ -126,6 +127,33 @@ export class ProjectPageComponent implements OnInit {
 
   handleUpdateTask(task: TaskType) {
     this.openCreateTaskDialog(null, task);
+  }
+
+  deleteColumn({column_id, tasks}: ColumnType) {
+    if(tasks.length) {
+      this.openDeleteColumnDialog(column_id);
+    } else {
+      this.projectService.deleteColumn(column_id);
+    }
+  }
+
+  openDeleteColumnDialog(column_id: string) {
+    const dialogRef = this.dialog.open(ConfirmComponent, {
+      width: 'auto',
+      data: {
+        successBtnText: 'delete',
+        text: `
+          <h2 class="text-center">Are you sure to remove this column</h2>
+          <div class="alert alert-danger">There are tasks in this column</div>
+        `
+      }
+    });
+
+    dialogRef.afterClosed().subscribe( res => {
+      if(res) {
+        this.projectService.deleteColumn(column_id);
+      }
+    });
   }
 
 }
