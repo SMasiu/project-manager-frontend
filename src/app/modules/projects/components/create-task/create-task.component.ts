@@ -11,6 +11,7 @@ import { ProjectService } from '../../services/project.service';
 export class CreateTaskComponent implements OnInit {
 
   form: FormGroup;
+  isUpdating: boolean = false;
 
   priorityOptions = [
     { value: 0, header: 'low' },
@@ -24,12 +25,22 @@ export class CreateTaskComponent implements OnInit {
     private projectService: ProjectService) { }  
   
   ngOnInit() {
+
+    const { name, description, priority } = this.data.task;
+    if(this.data.task && this.data.task.task_id) {
+      this.isUpdating = true;
+    }
+
     this.form = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      description: new FormControl('', [Validators.required, Validators.maxLength(5000)]),
-      priority: new FormControl(0),
-      column_id: new FormControl(this.data.defaultColumn, [Validators.required])
+      name: new FormControl(name || '', [Validators.required, Validators.maxLength(50)]),
+      description: new FormControl(description || '', [Validators.required, Validators.maxLength(5000)]),
+      priority: new FormControl(priority || 0),
+      column_id: new FormControl(this.data.defaultColumn)
     });
+
+    if(!this.isUpdating) {
+      this.form.controls.column_id.setValidators(Validators.required);
+    }
   }
 
   handleClose() {
@@ -37,7 +48,12 @@ export class CreateTaskComponent implements OnInit {
   }
 
   handleSubmit() {
-    this.projectService.createTask(this.form.value);
+    if(this.isUpdating) {
+      const { name, description, priority }  = this.form.value;
+      this.projectService.updateTask({name, description, priority, task_id: this.data.task.task_id});
+    } else {
+      this.projectService.createTask(this.form.value);
+    }
     this.handleClose();
   }
 

@@ -109,14 +109,23 @@ export class ProjectPageComponent implements OnInit {
     });
   }
 
-  openCreateTaskDialog(column_id: string = null): void {
+  openCreateTaskDialog(column_id: string = null, task: TaskType | any = { }): void {
     const dialogRef = this.dialog.open(CreateTaskComponent, {
       width: 'auto',
       data: {
         columns: this.project.columns,
-        defaultColumn: column_id
+        defaultColumn: column_id,
+        task
       }
     });
+  }
+
+  createTask(column_id: string = null): void {
+    this.openCreateTaskDialog(column_id);
+  }
+
+  handleUpdateTask(task: TaskType) {
+    this.openCreateTaskDialog(null, task);
   }
 
 }

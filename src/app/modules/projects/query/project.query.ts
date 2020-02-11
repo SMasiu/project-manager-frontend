@@ -163,3 +163,34 @@ export const removeUserFromTask = gql`
         }
     }
 `
+
+export const removeTaskQuery = gql`
+    mutation DeleteTask($task_id: ID!, $project_id: ID!) {
+        DeleteTask(task_id: $task_id, project_id: $project_id) {
+            task_id
+        }
+    }
+`
+
+export const updateTaskQuery = gql`
+    mutation UpdateTask($task_id: ID!, $project_id: ID!, $name: String!, $description: String!, $priority: Int!) {
+        UpdateTask(task_id: $task_id, project_id: $project_id, name: $name, description: $description, priority: $priority) {
+            task_id
+            name
+            description
+            priority
+            creator {
+                name
+                nick
+                user_id
+                surname
+            }
+            assignedUsers {
+                name
+                nick
+                surname
+                user_id
+            }
+        }
+    }
+`

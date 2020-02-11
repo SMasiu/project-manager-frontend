@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { FullProjectType, ColumnType, TaskType } from '../types/project.type';
 import { ProjectsService } from './projects.service';
 import { Apollo } from 'apollo-angular';
-import { getProjectByIdQuery, createColumnQuery, createTaskQuery, moveTaskQuery, addUserToTask, removeUserFromTask } from '../query/project.query';
+import { getProjectByIdQuery, createColumnQuery, createTaskQuery, moveTaskQuery, addUserToTask, removeUserFromTask, removeTaskQuery, updateTaskQuery } from '../query/project.query';
 import { take, map } from 'rxjs/operators';
 
 @Injectable({
@@ -126,12 +126,20 @@ export class ProjectService {
   }
 
   private getTaskLocal(task_id: string): TaskType | null {
-    let colIndex = this.project.columns.findIndex( c => c.tasks.find(t => t.task_id === task_id) );
+    let colIndex = this.getColumnIndex(task_id);
       if(colIndex !== -1) {
         let task = this.project.columns[colIndex].tasks.find( t => t.task_id === task_id );
         return task;
       }
       return null;
+  }
+
+  private getColumnIndex(task_id: string): number {
+    return this.project.columns.findIndex( c => c.tasks.find(t => t.task_id === task_id) );
+  }
+
+  private findTaskIndex(columnIndex: number, task_id: string): number {
+    return this.project.columns[columnIndex].tasks.findIndex( t => t.task_id === task_id );
   }
 
   removeUserFromTask(task_id: string, user_id: string) {
@@ -158,6 +166,53 @@ export class ProjectService {
         }
       }
     )
+  }
+
+  removeTask(task_id: string) {
+    this.apollo.mutate({
+      mutation: removeTaskQuery,
+      variables: {
+        task_id,
+        project_id: this.project.project_id
+      }
+    }).pipe(
+      take(1),
+      map( (res: any) => res.data.DeleteTask )
+    ).subscribe(
+      task => {
+        let index = this.getColumnIndex(task_id);
+        let taskIndex = this.findTaskIndex(index, task_id)
+
+        this.project.columns[index].tasks.splice(taskIndex, 1);
+        this.projectsService.setFullProject(this.project);
+        this.emitProject();
+      }
+    )
+  }
+
+  updateTask({name, description, priority, task_id}) {
+    this.apollo.mutate({
+      mutation: updateTaskQuery,
+      variables: {
+        name,
+        description,
+        priority: parseInt(priority),
+        task_id,
+        project_id: this.project.project_id
+      }
+    }).pipe(
+      take(1),
+      map( (res: any) => res.data.UpdateTask )
+    ).subscribe(
+      task => {
+        let colIndex = this.getColumnIndex(task.task_id);
+        let taskIndex = this.findTaskIndex(colIndex, task.task_id);
+
+        this.project.columns[colIndex].tasks.splice(taskIndex, 1, task);
+        this.projectsService.setFullProject(this.project);
+        this.emitProject();
+      }
+    );
   }
 
 }

@@ -9,7 +9,7 @@
         <header class="mt-4 d-flex justify-content-between">
             <div>
                 <button class="btn btn-primary btn-scale mr-4" (click)="openCreateColumnDialog()">New column</button>
-                <button class="btn btn-primary btn-scale mr-4" (click)="openCreateTaskDialog()">New task</button>
+                <button class="btn btn-primary btn-scale mr-4" (click)="createTask()">New task</button>
                 <button class="btn btn-primary btn-scale">Column order</button>
             </div>
             <button class="btn btn-primary btn-scale">Manage project</button>
@@ -41,11 +41,11 @@
                             (cdkDropListDropped)="dropTask($event, col)">
 
                             <div *ngFor="let task of col.tasks" cdkDrag (mousedown)="setDraggedTask(task)" class="task">
-                                <app-task-item [task]="task" [members]="teamMembers"></app-task-item>
+                                <app-task-item (updateTask)="handleUpdateTask($event)" [task]="task" [members]="teamMembers"></app-task-item>
                             </div>
 
                             <div class="d-flex justify-content-center mt-3">
-                                <app-add-button (click)="openCreateTaskDialog(col.column_id)"></app-add-button>
+                                <app-add-button (click)="createTask(col.column_id)"></app-add-button>
                             </div>
                         </section>
                     </div>

@@ -45,7 +45,7 @@
                 </select>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" *ngIf="!isUpdating">
                 <label for="column">Column</label>
                 <select class="form-control" id="column" formControlName="column_id">
                     <option *ngFor="let c of data?.columns" [value]="c.column_id">{{c.name}}</option>
