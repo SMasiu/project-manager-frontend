@@ -66,7 +66,6 @@ export class ProjectPageComponent implements OnInit {
       this.teamManagerService.getMembers();
 
       this.teamMembers = [...this.teamManagerService.members];
-      console.log(this.teamMembers)
     }
   }
 
