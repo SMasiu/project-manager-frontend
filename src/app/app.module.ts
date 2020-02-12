@@ -21,6 +21,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TeamsModule } from './modules/teams/teams.module';
 import { FriendsModule } from './modules/friends/friends.module';
 import { ProjectsModule } from './modules/projects/projects.module';
+import { ProfileModule } from './modules/profile/profile.module';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { ProjectsModule } from './modules/projects/projects.module';
     NoopAnimationsModule,
     TeamsModule,
     FriendsModule,
-    ProjectsModule
+    ProjectsModule,
+    ProfileModule
   ],
   providers: [],
   bootstrap: [AppComponent]

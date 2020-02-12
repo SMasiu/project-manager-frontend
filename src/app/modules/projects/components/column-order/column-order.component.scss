@@ -1,0 +1,11 @@
+.column-wrapper {
+    min-width: 600px;
+
+    .cdk-drag-placeholder {
+        opacity: .2;
+    }
+
+    h2 {
+        text-align: center;
+    }
+}

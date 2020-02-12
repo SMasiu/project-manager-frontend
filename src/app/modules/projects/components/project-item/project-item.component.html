@@ -28,7 +28,7 @@
         <button class="btn btn-sm btn-scale" (click)="toogleMore()">{{moreBtnText}}</button>
     </div>
     <footer class="project-footer">
-        <button class="btn btn-primary btn-scale">Manage project</button>
+        <button class="btn btn-primary btn-scale" (click)="goToManage(project.project_id)">Manage project</button>
         <button class="btn btn-primary btn-scale" (click)="goToProject(project.project_id)">Go to project</button>
     </footer>
 </article>

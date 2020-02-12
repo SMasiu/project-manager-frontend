@@ -1,0 +1,19 @@
+<section class="column-wrapper">
+
+    <h2>Change column order</h2>
+
+    <ul cdkDropList class="list-group mt-4" (cdkDropListDropped)="drop($event)">
+
+        <li
+            cdkDrag
+            class="list-group-item"
+            *ngFor="let column of data.columns"
+            (mousedown)="setDragged(column)">{{column.name}}</li>
+
+    </ul>
+    
+    <footer class="mt-4">
+        <button class="btn btn-primary btn-block" (click)="handleClose()">Close</button>
+    </footer>
+
+</section>

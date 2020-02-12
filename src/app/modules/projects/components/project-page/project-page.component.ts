@@ -3,7 +3,7 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 import { ProjectService } from '../../services/project.service';
 import { FullProjectType  , TaskType, ColumnType } from '../../types/project.type';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { MatDialog } from '@angular/material';
 import { CreateColumnComponent } from '../create-column/create-column.component';
@@ -11,6 +11,8 @@ import { CreateTaskComponent } from '../create-task/create-task.component';
 import { TeamManagerService } from 'src/app/modules/teams/services/team-manager.service';
 import { MemberType } from 'src/app/modules/teams/types/member.type';
 import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.component';
+import { ColumnOrderComponent } from '../column-order/column-order.component';
+import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-project-page',
@@ -30,7 +32,12 @@ export class ProjectPageComponent implements OnInit {
     private projectService: ProjectService,
     private route: ActivatedRoute,
     public dialog: MatDialog,
-    private teamManagerService: TeamManagerService) { }
+    private teamManagerService: TeamManagerService,
+    private router: Router) { }
+
+  toManage() {
+    this.router.navigateByUrl(`/projects/manage/${this.project.project_id}`);
+  }
 
   ngOnInit() {
     this.route.paramMap.pipe(take(1)).subscribe( params => {
@@ -94,6 +101,9 @@ export class ProjectPageComponent implements OnInit {
   }
 
   sortTasks() {
+    this.project.columns = this.project.columns
+      .sort((a, b) => a.position > b.position ? 1 : -1);
+      
     this.project.columns = this.project.columns
       .map( c => {
         c.tasks.sort((a,b) => a.priority > b.priority ? -1 : 1); 
@@ -160,6 +170,15 @@ export class ProjectPageComponent implements OnInit {
     dialogRef.afterClosed().subscribe( res => {
       if(res) {
         this.projectService.deleteColumn(column_id);
+      }
+    });
+  }
+
+  changeColumnOrder() {
+    const dialogRef = this.dialog.open(ColumnOrderComponent, {
+      width: 'auto',
+      data: {
+        columns: this.project.columns
       }
     });
   }

@@ -24,6 +24,10 @@ export class ProjectItemComponent implements OnInit {
     this.moreBtnText = this.more ? 'Back' : 'Read more...';
   }
 
+  goToManage(project_id: string) {
+    this.router.navigateByUrl(`/projects/manage/${project_id}`);
+  }
+
   goToProject(project_id: string) {
     this.router.navigateByUrl(`/projects/project/${project_id}`);
   }

@@ -3,8 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginPageComponent } from './modules/login/components/login-page/login-page.component';
 import { RegisterPageComponent } from './modules/login/components/register-page/register-page.component';
 import { DashboardPageComponent } from './modules/dashboard/components/dashboard-page/dashboard-page.component';
-import { AboutPageComponent } from './modules/about/components/about-page/about-page.component';
-import { ContactPageComponent } from './modules/contact/components/contact-page/contact-page.component';
 import { TeamPageComponent } from './modules/teams/components/team-page/team-page.component';
 import { CreateTeamPageComponent } from './modules/teams/components/create-team-page/create-team-page.component';
 import { TeamPageWrapperComponent } from './modules/teams/components/team-page-wrapper/team-page-wrapper.component';
@@ -21,6 +19,8 @@ import { ProjectsWrapperPageComponent } from './modules/projects/components/proj
 import { ProjectsPageComponent } from './modules/projects/components/projects-page/projects-page.component';
 import { ProjectPageComponent } from './modules/projects/components/project-page/project-page.component';
 import { CreateProjectComponent } from './modules/projects/components/create-project/create-project.component';
+import { ProjectManagerPageComponent } from './modules/projects/components/project-manager-page/project-manager-page.component';
+import { ProfileComponent } from './modules/profile/components/profile/profile.component';
 
 
 const routes: Routes = [
@@ -46,9 +46,9 @@ const routes: Routes = [
 		{ path: '', pathMatch: 'full', component: ProjectsPageComponent },
 		{ path: 'create', component: CreateProjectComponent },
 		{ path: 'project/:id', component: ProjectPageComponent },
+		{ path: 'manage/:id', component: ProjectManagerPageComponent }
 	]}, 
-	{ path: 'about', component: AboutPageComponent },
-	{ path: 'contact', component: ContactPageComponent },
+	{ path: 'profile/:id', component: ProfileComponent }
 	//errors!!!
 ];
 

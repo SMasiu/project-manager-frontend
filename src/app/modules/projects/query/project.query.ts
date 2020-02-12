@@ -210,3 +210,11 @@ export const updateColumnQuery = gql`
         }
     }
 `
+
+export const changeColumnPositionQuery = gql`
+    mutation ChangeColumnPosition ($project_id: ID!, $column_id: ID!, $position: Int!) {
+        ChangeColumnPosition (project_id: $project_id, column_id: $column_id, position: $position) {
+            position
+        }
+    }
+`
