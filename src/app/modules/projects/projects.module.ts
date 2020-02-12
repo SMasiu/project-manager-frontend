@@ -18,6 +18,7 @@ import { AddUserToTaskComponent } from './components/add-user-to-task/add-user-t
 import { TaskFullItemComponent } from './components/task-full-item/task-full-item.component';
 import { ColumnOrderComponent } from './components/column-order/column-order.component';
 import { ProjectManagerPageComponent } from './components/project-manager-page/project-manager-page.component';
+import { ChangeOwnerTypeComponent } from './components/change-owner-type/change-owner-type.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ProjectManagerPageComponent } from './components/project-manager-page/p
     AddUserToTaskComponent,
     TaskFullItemComponent,
     ColumnOrderComponent,
-    ProjectManagerPageComponent
+    ProjectManagerPageComponent,
+    ChangeOwnerTypeComponent
   ],
   imports: [
     CommonModule,
@@ -58,7 +60,8 @@ import { ProjectManagerPageComponent } from './components/project-manager-page/p
     ProjectsWrapperPageComponent,
     ProjectPageComponent,
     CreateProjectComponent,
-    ProjectPageComponent
+    ProjectPageComponent,
+    ChangeOwnerTypeComponent
   ]
 })
 export class ProjectsModule { }

@@ -8,6 +8,7 @@ export interface ProjectType {
     description: string;
     owner_type: string;
     team: TeamType;
+    creator: UserType;
 }
 
 export interface FullProjectType extends ProjectType {

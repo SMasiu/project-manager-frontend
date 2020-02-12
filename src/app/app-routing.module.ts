@@ -21,6 +21,7 @@ import { ProjectPageComponent } from './modules/projects/components/project-page
 import { CreateProjectComponent } from './modules/projects/components/create-project/create-project.component';
 import { ProjectManagerPageComponent } from './modules/projects/components/project-manager-page/project-manager-page.component';
 import { ProfileComponent } from './modules/profile/components/profile/profile.component';
+import { ChangeOwnerTypeComponent } from './modules/projects/components/change-owner-type/change-owner-type.component';
 
 
 const routes: Routes = [
@@ -46,7 +47,8 @@ const routes: Routes = [
 		{ path: '', pathMatch: 'full', component: ProjectsPageComponent },
 		{ path: 'create', component: CreateProjectComponent },
 		{ path: 'project/:id', component: ProjectPageComponent },
-		{ path: 'manage/:id', component: ProjectManagerPageComponent }
+		{ path: 'manage/:id', component: ProjectManagerPageComponent },
+		{ path: 'owner-type', component: ChangeOwnerTypeComponent }
 	]}, 
 	{ path: 'profile/:id', component: ProfileComponent }
 	//errors!!!

@@ -6,7 +6,7 @@
             <app-account-item></app-account-item>
         </app-dashboard-item>
         <app-dashboard-item [title]="'Projects'">
-            <app-project-item></app-project-item>
+            <app-project-item [projects]="projects"></app-project-item>
         </app-dashboard-item>
         <app-dashboard-item [title]="'Teams'">
             <app-teams-item [teams]="teams" [teamInvitations]="notifications.teamInvitations"></app-teams-item>

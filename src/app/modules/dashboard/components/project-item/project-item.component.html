@@ -1,15 +1,15 @@
 <section class="project-item-wrapper">
     <div class="d-flex flex-column justify-content-between">
         <section class="info">
-            <app-count-item count="2" title1="Owned" title2="projects"></app-count-item>
-            <app-count-item count="3" title1="Open" title2="projects"></app-count-item>
-            <app-count-item count="90" title1="Closed" title2="projects"></app-count-item>
+            <app-count-item [count]="ownedProjects" title1="Owned" title2="projects"></app-count-item>
+            <app-count-item [count]="openProjects" title1="Open" title2="projects"></app-count-item>
+            <app-count-item [count]="closedProjects" title1="Closed" title2="projects"></app-count-item>
             <div class="d-flex align-items-center justify-content-center">
                 <app-account-info-item title="Notifications" icon="notifications" [noBorder]="true"></app-account-info-item>
             </div>
         </section>
         <section class="list-wrapper">
-            <app-list [items]="[{title: '1'}]" icon="note" empltyMessage="You haven't any project yet"></app-list>
+            <app-list [items]="filterProjects()" icon="note" empltyMessage="You haven't any project yet"></app-list>
         </section>
     </div>
     <footer class="d-flex justify-content-between">
