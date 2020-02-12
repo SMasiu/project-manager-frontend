@@ -13,7 +13,7 @@
         </div>
         <div class="info-wrapper">
             <div>
-                <app-list emptyMessage="You haven't any team yet"></app-list>
+                <app-list [items]="filterItems()" emptyMessage="You haven't any team yet"></app-list>
             </div>
             <div class="info-items-wrapper">
                 <app-account-info-item title="Messages" icon="question_answer"></app-account-info-item>

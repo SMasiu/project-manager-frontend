@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class TeamsItemComponent implements OnInit {
 
   @Input() teamInvitations: TeamType[] = [];
+  @Input() teams: TeamType[] = [];
 
   form: FormGroup;
 
@@ -20,6 +21,22 @@ export class TeamsItemComponent implements OnInit {
     this.form = new FormGroup({
       search: new FormControl('')
     });
+  }
+
+  filterItems() {
+    let items = [];
+    for(let i = 0; i < this.teams.length; i++) {
+      if(i === 2) {
+        break;
+      }
+      items.push({
+        title: this.teams[i].name,
+        action: () => {
+          this.router.navigateByUrl(`/teams/manage/${this.teams[i].team_id}`);
+        }
+      });
+    }
+    return items;
   }
 
   handleSubmit() {
