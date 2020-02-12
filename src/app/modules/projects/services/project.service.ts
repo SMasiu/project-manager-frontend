@@ -3,8 +3,9 @@ import { Subject } from 'rxjs';
 import { FullProjectType, ColumnType, TaskType } from '../types/project.type';
 import { ProjectsService } from './projects.service';
 import { Apollo } from 'apollo-angular';
-import { getProjectByIdQuery, createColumnQuery, createTaskQuery, moveTaskQuery, addUserToTask, removeUserFromTask, removeTaskQuery, updateTaskQuery, deleteColumnQuery, updateColumnQuery, changeColumnPositionQuery } from '../query/project.query';
+import { getProjectByIdQuery, createColumnQuery, createTaskQuery, moveTaskQuery, addUserToTask, removeUserFromTask, removeTaskQuery, updateTaskQuery, deleteColumnQuery, updateColumnQuery, changeColumnPositionQuery, deleteProjectQuery, toogleOpenProjectQuery } from '../query/project.query';
 import { take, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class ProjectService {
   private project: FullProjectType;
   projectChanges: Subject<FullProjectType> = new Subject();
 
-  constructor(private projectsService: ProjectsService, private apollo: Apollo) { }
+  constructor(private projectsService: ProjectsService, private apollo: Apollo, private router: Router) { }
 
   downloadProject(project_id: string) {
     if(this.projectsService.checkIfExistsFullProject(project_id)) {
@@ -272,6 +273,43 @@ export class ProjectService {
     ).subscribe(
       col => {
         return col;
+      }
+    )
+  }
+
+  deleteProject() {
+    this.apollo.mutate({
+      mutation: deleteProjectQuery,
+      variables: {
+        project_id: this.project.project_id
+      }
+    }).pipe(
+      take(1),
+      map( (res: any) => res.data.DeleteProject )
+    ).subscribe(
+      project => {
+        this.projectsService.removeProject(this.project.project_id);
+        this.project = null;
+        this.router.navigateByUrl('/projects');
+      }
+    )
+  }
+
+  toogleOpenProject() {
+    this.apollo.mutate({
+      mutation: toogleOpenProjectQuery,
+      variables: {
+        project_id: this.project.project_id,
+        open: !this.project.open
+      }
+    }).pipe(
+      take(1),
+      map( (res: any) => res.data.ToogleOpenProject )
+    ).subscribe(
+      () => {
+        this.project.open = !this.project.open;
+        this.projectsService.setFullProject(this.project);
+        this.emitProject();
       }
     )
   }

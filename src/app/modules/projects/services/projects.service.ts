@@ -85,4 +85,12 @@ export class ProjectsService {
     );
   }
 
+  removeProject(project_id: string) {
+    let index = this.projects.findIndex( p => project_id === project_id);
+    if(index !== -1) {
+      this.projects.splice(index, 1);
+      this.emitProjects();
+    }
+  }
+
 }

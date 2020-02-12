@@ -1,1 +1,37 @@
-<p>project-manager-page works!</p>
+<section class="project-wrapper">
+
+    <h2 class="d-flex align-items-center">
+        <app-icon icon="keyboard_arrow_left" class="mr-2" [button]="true" routerLink="/projects"></app-icon>
+        Project manager
+    </h2>
+
+    <div *ngIf="project">
+
+        <section class="danger-item item-box mt-4">
+            <div class="danger-border">
+                <h4>Delete project</h4>
+                <p>You will delete this project</p>
+                <button class="btn btn-danger btn-block" (click)="deleteProject()">Delete</button>
+            </div>
+        </section>
+
+        <section class="danger-item item-box mt-4">
+            <div class="danger-border">
+                <h4>Change owner type</h4>
+                <p>You change owner type of this project</p>
+                <button class="btn btn-danger btn-block">Change</button>
+            </div>
+        </section>
+
+        <section class="danger-item item-box mt-4">
+            <div class="danger-border">
+                <h4>Change open project</h4>
+                <p>You will change open of this project.</p>
+                <p>Curent open: <strong>{{project.open ? 'open':'closed'}}</strong></p>
+                <button class="btn btn-danger btn-block" (click)="toogleOpenProject()">Change</button>
+            </div>
+        </section>
+
+    </div>
+
+</section>

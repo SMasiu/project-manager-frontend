@@ -218,3 +218,19 @@ export const changeColumnPositionQuery = gql`
         }
     }
 `
+
+export const deleteProjectQuery = gql`
+    mutation DeleteProject($project_id: ID!) {
+        DeleteProject(project_id: $project_id) {
+            project_id
+        }
+    }
+`
+
+export const toogleOpenProjectQuery = gql`
+    mutation ToogleOpenProject($project_id: ID!, $open: Boolean!) {
+        ToogleOpenProject(project_id: $project_id, open: $open) {
+            open
+        }
+    }
+`

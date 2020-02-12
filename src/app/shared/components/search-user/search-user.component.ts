@@ -15,6 +15,7 @@ export class SearchUserComponent implements OnInit {
   @Output() change: EventEmitter<UserType[]> = new EventEmitter();
   @Input() team_id: string;
   @Input() friends: boolean;
+  @Input() search: string = '';
 
   users: UserType[];
   count: number = 0;
@@ -41,6 +42,10 @@ export class SearchUserComponent implements OnInit {
     });
 
     this.getAndSave();
+
+    if(this.search) {
+      this.form.controls.fullname.setValue(this.search);
+    }
   }
 
   setUsers(users: UserType[]) {

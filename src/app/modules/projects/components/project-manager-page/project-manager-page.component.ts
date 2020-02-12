@@ -58,4 +58,12 @@ export class ProjectManagerPageComponent implements OnInit {
     }
   }
 
+  deleteProject() {
+    this.projectService.deleteProject();
+  }
+
+  toogleOpenProject() {
+    this.projectService.toogleOpenProject();
+  }
+
 }

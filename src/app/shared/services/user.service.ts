@@ -81,7 +81,7 @@ export class UserService {
           this.setUser(me);
           this.setLogged(true);
           this.notificationService.downloadNotifications();
-          this.router.navigateByUrl('/profile/2');
+          this.router.navigateByUrl('/dashboard');
         }
       }
     );

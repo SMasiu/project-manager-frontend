@@ -10,14 +10,14 @@
         </div>
         <div class="profile-info">
             <app-account-info-item title="Friends" icon="people"></app-account-info-item>
-            <app-account-info-item title="Teams" icon="people" badge="10"></app-account-info-item>
-            <app-account-info-item title="Messages" icon="question_answer" badge="3"></app-account-info-item>
+            <app-account-info-item title="Teams" icon="people" badge="0"></app-account-info-item>
+            <app-account-info-item title="Messages" icon="question_answer" badge="0"></app-account-info-item>
             <app-account-info-item title="Notifications" icon="notifications" [noBorder]="true"></app-account-info-item>
         </div>
 
     </div>
     <footer class="profile-footer d-flex align-items-center justify-content-between">
         <button class="btn btn-danger" (click)="logout()">Logout</button>
-        <button class="btn btn-primary">Manage your account</button>
+        <button class="btn btn-primary" (click)="manageAccount()">Manage your account</button>
     </footer>
 </section>

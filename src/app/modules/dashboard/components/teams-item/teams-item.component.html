@@ -2,12 +2,14 @@
     <div class="d-flex flex-column justify-content-between">
         <div>
             <p class="label">Search for a team</p>
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="search">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-primary" type="button">Search</button>
+            <form [formGroup]="form" (ngSubmit)="handleSubmit()">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="search" formControlName="search">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="submit">Search</button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
         <div class="info-wrapper">
             <div>

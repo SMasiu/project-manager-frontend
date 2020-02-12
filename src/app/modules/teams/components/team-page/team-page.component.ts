@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import Paging from 'src/app/shared/classes/paging';
 import { FormGroup, FormControl } from '@angular/forms';
 import { NotificationService } from 'src/app/shared/services/notification.service';
+import { ActivatedRoute } from '@angular/router';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-team-page',
@@ -31,7 +33,7 @@ export class TeamPageComponent implements OnInit {
   teamInvitationsCount: number = 0;
   notificationSubscription: Subscription;
 
-  constructor(private teamsService: TeamService, private notificationService: NotificationService) { }
+  constructor(private teamsService: TeamService, private notificationService: NotificationService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.teamsService.downloadTeams();
@@ -60,6 +62,16 @@ export class TeamPageComponent implements OnInit {
 
     this.teamInvitationsCount = this.notificationService.getNotifications().teamInvitations.length;
     this.notificationSubscription = this.notificationService.notificationsChanges.subscribe( n => this.teamInvitationsCount = n.teamInvitations.length );
+
+    this.route.queryParamMap
+      .pipe(take(1))
+      .subscribe( query => {
+        const search = query.get('search');
+
+        if(search) {
+          this.searchForm.controls.search.setValue(search);
+        }
+      });
   }
 
   handlePageChanges(page: number) {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserType } from 'src/app/shared/types/user.type';
 import { FriendsService } from '../../services/friends.service';
+import { ActivatedRoute } from '@angular/router';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-invite-friends-page',
@@ -10,10 +12,16 @@ import { FriendsService } from '../../services/friends.service';
 export class InviteFriendsPageComponent implements OnInit {
 
   users: UserType[] = [];
+  search: string = '';
 
-  constructor(private friendsService: FriendsService) { }
+  constructor(private friendsService: FriendsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.queryParamMap
+      .pipe(take(1))
+      .subscribe( query => {
+        this.search = query.get('search');
+      });
   }
 
   isAlredyInvited(user_id) {
