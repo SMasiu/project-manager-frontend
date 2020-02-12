@@ -1,0 +1,16 @@
+.task-wrapper {
+    min-width: 600px;
+    border-left: 5px solid var(--danger);
+    padding-left: 20px;
+
+    p {
+        margin: 0;
+    }
+
+    .label {
+        margin-top: 10px;
+        font-size: 10px;
+        text-transform: uppercase;
+        color: var(--secondary);
+    }
+}

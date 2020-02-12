@@ -6,6 +6,7 @@ import { AddUserToTaskComponent } from '../add-user-to-task/add-user-to-task.com
 import { MemberType } from 'src/app/modules/teams/types/member.type';
 import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.component';
 import { ProjectService } from '../../services/project.service';
+import { TaskFullItemComponent } from '../task-full-item/task-full-item.component';
 
 @Component({
   selector: 'app-task-item',
@@ -82,6 +83,15 @@ export class TaskItemComponent implements OnInit {
     dialogRef.afterClosed().subscribe(res => {
       if(res) {
         this.projectService.removeTask(this.task.task_id);
+      }
+    });
+  }
+
+  openTaskReadMore() {
+    const dialogRef = this.dialog.open(TaskFullItemComponent, {
+      width: 'auto',
+      data: {
+        task: this.task
       }
     });
   }

@@ -15,6 +15,7 @@ import { CreateTaskComponent } from './components/create-task/create-task.compon
 import { MatIconModule } from '@angular/material';
 import { NgbModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddUserToTaskComponent } from './components/add-user-to-task/add-user-to-task.component';
+import { TaskFullItemComponent } from './components/task-full-item/task-full-item.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { AddUserToTaskComponent } from './components/add-user-to-task/add-user-t
     CreateProjectComponent,
     CreateColumnComponent,
     CreateTaskComponent,
-    AddUserToTaskComponent
+    AddUserToTaskComponent,
+    TaskFullItemComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +45,8 @@ import { AddUserToTaskComponent } from './components/add-user-to-task/add-user-t
   entryComponents: [
     CreateColumnComponent,
     CreateTaskComponent,
-    AddUserToTaskComponent
+    AddUserToTaskComponent,
+    TaskFullItemComponent
   ],
   exports: [
     ProjectsPageComponent,

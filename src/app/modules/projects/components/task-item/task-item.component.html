@@ -7,7 +7,7 @@
                 <mat-icon>more_vert</mat-icon>
             </div>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <button ngbDropdownItem class="text-dark">Read more</button>
+                <button ngbDropdownItem class="text-dark" (click)="openTaskReadMore()">Read more</button>
                 <button ngbDropdownItem class="text-dark" (click)="requestTaskUpdate()">Update task</button>
                 <button ngbDropdownItem class="text-dark" (click)="openAddUserTaskDialog()">Task users</button>
                 <button ngbDropdownItem class="text-danger" (click)="deleteTask()">Delete task</button>

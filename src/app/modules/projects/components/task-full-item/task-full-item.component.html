@@ -1,0 +1,26 @@
+<section class="task-wrapper">
+
+    <h2>{{data.task.name}}</h2>
+
+    <p class="label">Description:</p>
+
+    <p>{{data.task.description}}</p>
+
+    <p class="label">Created at:</p>
+
+    <p>{{data.task.create_stamp | date:'medium'}}</p>
+
+    <p class="label">Creator:</p>
+
+    <div class="mt-2">
+        <app-user-item-wrapper [user]="data.task.creator"></app-user-item-wrapper>
+    </div>
+    <ng-template [ngIf]="data.task.assignedUsers.length">
+        <p class="label">Assigned users:</p>
+
+        <div class="mt-2" *ngFor="let user of data.task.assignedUsers">
+            <app-user-item-wrapper [user]="user"></app-user-item-wrapper>
+        </div>
+    </ng-template>
+
+</section>
