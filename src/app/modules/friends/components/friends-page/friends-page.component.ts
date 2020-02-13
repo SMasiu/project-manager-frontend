@@ -9,6 +9,7 @@ import { ConfirmComponent } from 'src/app/shared/components/confirm/confirm.comp
 import { NotificationService } from 'src/app/shared/services/notification.service';
 import { mapUserToFriends } from '../../functions/map-user-to-friend';
 import { FriendType } from '../../types/friend.type';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-friends-page',
@@ -37,7 +38,8 @@ export class FriendsPageComponent implements OnInit {
   constructor(
     private friendsService: FriendsService,
     public dialog: MatDialog,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -110,4 +112,8 @@ export class FriendsPageComponent implements OnInit {
     this.notificationSubscription.unsubscribe();
   }
   
+  seeProfile(user_id: string) {
+    this.router.navigateByUrl(`/profile/${user_id}`);
+  }
+
 }

@@ -41,4 +41,8 @@ export class InviteMemberPageComponent implements OnInit {
     this.teamManagerService.kickMember(user_id);
   }
 
+  seeProfile(user_id: string) {
+    this.router.navigateByUrl(`/profile/${user_id}`);
+  }
+
 }

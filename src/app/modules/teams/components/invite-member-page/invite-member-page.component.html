@@ -8,7 +8,7 @@
                 <div *ngFor="let user of users" class="user-wrapper item-box">
                     <app-user-item-wrapper [user]="user">
                         <div>
-                            <button class="btn btn-primary mr-3 btn-scale">View profile</button>
+                            <button class="btn btn-primary mr-3 btn-scale"(click)="seeProfile(user.user_id)">View profile</button>
                             <ng-template [ngIf]="isInInvited(user.user_id)" [ngIfElse]="invited">
                                 <button class="btn btn-primary btn-scale" (click)="inviteUser(user)">Invite to team</button>
                             </ng-template>

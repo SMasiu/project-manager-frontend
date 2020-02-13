@@ -62,4 +62,8 @@ export class UserListComponent implements OnInit {
      this.router.navigateByUrl(`/teams/change-permission?permission=${this.permission}&user=${user.user_id}`);
   }
 
+  seeProfile(user_id: string) {
+    this.router.navigateByUrl(`/profile/${user_id}`);
+  }
+
 }

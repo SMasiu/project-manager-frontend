@@ -24,7 +24,7 @@
             </div>
 
             <footer class="d-flex justify-content-between">
-                <button class="btn btn-danger btn-scale" type="button">Back</button>
+                <button class="btn btn-danger btn-scale" type="button" (click)="back()">Back</button>
                 <button class="btn btn-primary btn-scale" type="submit" [disabled]="form.value.owner_type === 'team' && form.value.team_id === '-1'">Update</button>
             </footer>
         </form>

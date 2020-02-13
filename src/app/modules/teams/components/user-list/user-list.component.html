@@ -12,7 +12,7 @@
                 <div ngbDropdown class="d-inline-block" placement="bottom-right">
                     <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>More</button>
                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                        <button ngbDropdownItem class="text-dark">View profile</button>
+                        <button ngbDropdownItem class="text-dark" (click)="seeProfile(member.user.user_id)">View profile</button>
                         <ng-template [ngIf]="member.user.user_id !== meId" [ngIfElse]="leave">
                             <button ngbDropdownItem class="text-dark">Send message</button>
                             <ng-template [ngIf]="permission > 1 && member.permission !== 3">
