@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { FullProjectType, ColumnType, TaskType } from '../types/project.type';
 import { ProjectsService } from './projects.service';
 import { Apollo } from 'apollo-angular';
-import { getProjectByIdQuery, createColumnQuery, createTaskQuery, moveTaskQuery, addUserToTask, removeUserFromTask, removeTaskQuery, updateTaskQuery, deleteColumnQuery, updateColumnQuery, changeColumnPositionQuery, deleteProjectQuery, toogleOpenProjectQuery } from '../query/project.query';
+import { getProjectByIdQuery, createColumnQuery, createTaskQuery, moveTaskQuery, addUserToTask, removeUserFromTask, removeTaskQuery, updateTaskQuery, deleteColumnQuery, updateColumnQuery, changeColumnPositionQuery, deleteProjectQuery, toogleOpenProjectQuery, updateOwnerTypeQuery } from '../query/project.query';
 import { take, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
@@ -310,6 +310,27 @@ export class ProjectService {
         this.project.open = !this.project.open;
         this.projectsService.setFullProject(this.project);
         this.emitProject();
+      }
+    )
+  }
+
+  changeOwnerType(owner_type: string, team_id: string) {
+    this.apollo.mutate({
+      mutation: updateOwnerTypeQuery,
+      variables: {
+        project_id: this.project.project_id,
+        team_id,
+        owner_type
+      }
+    }).pipe(
+      take(1),
+      map( (res: any) => res.data.ChangeProjectOwnerType )
+    ).subscribe(
+      project => {
+        this.project = {...this.project, ...project};
+        this.projectsService.setFullProject(this.project);
+        this.emitProject();
+        this.router.navigateByUrl(`/projects/manage/${this.project.project_id}`);
       }
     )
   }

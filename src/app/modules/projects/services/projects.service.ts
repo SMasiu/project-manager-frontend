@@ -22,6 +22,7 @@ export class ProjectsService {
 
   setFullProject(project: FullProjectType) {
     this.fullProjects[project.project_id] = project;
+    this.emitProjects();
   }
 
   checkIfExistsFullProject(name: string): boolean {

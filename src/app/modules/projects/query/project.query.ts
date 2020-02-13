@@ -234,3 +234,22 @@ export const toogleOpenProjectQuery = gql`
         }
     }
 `
+
+export const updateOwnerTypeQuery = gql`
+    mutation ChangeProjectOwnerType ($project_id: ID!, $owner_type: String!, $team_id: ID){
+        ChangeProjectOwnerType(project_id: $project_id, owner_type: $owner_type, team_id: $team_id) {
+            owner_type
+            team {
+                team_id
+                name
+                membersCount
+                owner {
+                    name
+                    surname
+                    user_id
+                    nick
+                }
+            }
+        }
+    }
+`

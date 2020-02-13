@@ -1,1 +1,34 @@
-<p>change-owner-type works!</p>
+<section class="owner-type-wrapper">
+
+    <h2 class="d-flex align-items-center">
+        <app-icon icon="keyboard_arrow_left" class="mr-2" [button]="true" (click)="back()"></app-icon>
+        Project manager
+    </h2>
+
+    <article class="item-box mt-4">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="type">Owner type</label>
+                <select class="form-control" id="type" formControlName="owner_type">
+                    <option value="user">User</option>
+                    <option value="team">Team</option>
+                </select>
+            </div>
+
+            <div class="form-group" *ngIf="form.value.owner_type === 'team'">
+                <label for="team">Team</label>
+                <select class="form-control" id="team" formControlName="team_id">
+                    <option value="-1">No team</option>
+                    <option *ngFor="let team of teams" [value]="team.team_id">{{team.name}} - (Team)</option>
+                </select>
+            </div>
+
+            <footer class="d-flex justify-content-between">
+                <button class="btn btn-danger btn-scale" type="button">Back</button>
+                <button class="btn btn-primary btn-scale" type="submit" [disabled]="form.value.owner_type === 'team' && form.value.team_id === '-1'">Update</button>
+            </footer>
+        </form>
+
+    </article>
+
+</section>
